@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artifacts | Project Aegis</title>
+  <meta name="description" content="Supporting artifacts for Project Aegis including diagrams, threat models, implementation notes, and adversarial test material." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>Project Aegis</strong>
+          <small>Secure Enterprise AI on Azure</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="security.html">Security</a>
+        <a class="is-active" href="artifacts.html">Artifacts</a>
+        <a href="interview.html">Interview Flow</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Artifacts</p>
+        <h1 class="page-title">Evidence, source material, and implementation proof.</h1>
+        <p class="page-intro">These artifacts turn the project from a summary into proof. They show the network design, threat model, build sequence, application notes, and adversarial testing inputs that shaped the implementation.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="artifact-grid artifact-grid-expanded">
+          <a class="artifact-card featured" href="SupportingDocs/aegis_final_polished_diagram.png" target="_blank" rel="noopener">
+            <span class="artifact-type">Diagram</span>
+            <h3>Final network and service architecture</h3>
+            <p>Polished visual architecture of the Azure environment, trust zones, and service placement decisions.</p>
+            <span class="artifact-link">View full architecture</span>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/Threat%20Modeling%20Document%20-%20Executive.docx" target="_blank" rel="noopener">
+            <span class="artifact-type">Threat Model</span>
+            <h3>Executive threat modeling document</h3>
+            <p>Detailed threat narrative covering trust boundaries, risks, controls, residual concerns, and recommendations.</p>
+            <span class="artifact-link">Open document</span>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/Threat%20Modeling%20Document%20-%20Executive%20Table.docx" target="_blank" rel="noopener">
+            <span class="artifact-type">Risk Table</span>
+            <h3>Prioritized executive risk table</h3>
+            <p>Short-form summary of severity, business impact, likelihood, and recommended action order.</p>
+            <span class="artifact-link">Open risk summary</span>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/Project%20Aegis%20checklist%20and%20screen%20shots.docx" target="_blank" rel="noopener">
+            <span class="artifact-type">Build Record</span>
+            <h3>Implementation checklist and screenshots</h3>
+            <p>Provisioning and validation notes for the tenant, resources, and app build-out.</p>
+            <span class="artifact-link">Review build evidence</span>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/Egress%20Strategy.docx" target="_blank" rel="noopener">
+            <span class="artifact-type">Architecture Note</span>
+            <h3>Egress strategy</h3>
+            <p>Supporting design material for outbound traffic decisions and network-control posture.</p>
+            <span class="artifact-link">Open design note</span>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/IP%20Adressing%20Plan.xlsx" target="_blank" rel="noopener">
+            <span class="artifact-type">Network Plan</span>
+            <h3>IP addressing plan</h3>
+            <p>Addressing structure that supports the segmented hub-and-spoke deployment model.</p>
+            <span class="artifact-link">Open network plan</span>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/app_hybrid_search/README.md" target="_blank" rel="noopener">
+            <span class="artifact-type">App Source</span>
+            <h3>Hybrid search application notes</h3>
+            <p>Implementation summary for the Flask app, managed identity usage, chunk flow, storage, and citations.</p>
+            <span class="artifact-link">Read implementation notes</span>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/PromptInjection/01_ignore_instructions.txt" target="_blank" rel="noopener">
+            <span class="artifact-type">Adversarial Test</span>
+            <h3>Prompt injection test corpus</h3>
+            <p>Sample malicious content used to validate that retrieved documents are treated as untrusted data.</p>
+            <span class="artifact-link">Inspect test file</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <strong>Project Aegis</strong>
+        <p>Security-first Azure AI portfolio case study.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="security.html">Security</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

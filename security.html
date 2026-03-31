@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security | Project Aegis</title>
+  <meta name="description" content="Security model, threat analysis, and control decisions for Project Aegis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>Project Aegis</strong>
+          <small>Secure Enterprise AI on Azure</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="architecture.html">Architecture</a>
+        <a class="is-active" href="security.html">Security</a>
+        <a href="artifacts.html">Artifacts</a>
+        <a href="interview.html">Interview Flow</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Security</p>
+        <h1 class="page-title">Controls, trust boundaries, and AI-specific failure modes.</h1>
+        <p class="page-intro">The core idea behind Project Aegis is that enterprise AI security is not solved by network isolation alone. It depends on how identity, retrieval, authorization, content trust, and monitoring are designed together as one control system.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="feature-grid two">
+          <article class="feature-card">
+            <h3>Identity and access</h3>
+            <ul class="clean-list">
+              <li>Entra ID used for SSO and tenant-backed user identity.</li>
+              <li>Conditional Access requires MFA and blocks legacy authentication.</li>
+              <li>Users, groups, and RBAC roles are designed as durable control structures.</li>
+              <li>Scope enforcement must be derived from trusted claims and validated server-side.</li>
+            </ul>
+          </article>
+          <article class="feature-card">
+            <h3>Secrets and service auth</h3>
+            <ul class="clean-list">
+              <li>Azure Key Vault stores application secrets and sensitive configuration values.</li>
+              <li>Managed identity reduces hardcoded credential exposure.</li>
+              <li>Diagnostic visibility supports secret-access monitoring and review.</li>
+              <li>Private exposure patterns reduce unnecessary internet reachability.</li>
+            </ul>
+          </article>
+          <article class="feature-card">
+            <h3>Data and AI safety</h3>
+            <ul class="clean-list">
+              <li>Retrieved documents are treated as untrusted content.</li>
+              <li>Chunking narrows blast radius and retrieval scope.</li>
+              <li>Prompt injection and document poisoning are treated as primary design threats.</li>
+              <li>Context should stay separated from instruction logic in orchestration.</li>
+            </ul>
+          </article>
+          <article class="feature-card">
+            <h3>Monitoring and detection</h3>
+            <ul class="clean-list">
+              <li>Cloud and application events flow into Log Analytics and Sentinel.</li>
+              <li>Security-relevant application logs are treated as telemetry, not just debugging output.</li>
+              <li>Design supports alerts for suspicious prompts, authorization failures, and abnormal usage patterns.</li>
+              <li>Monitoring closes the loop between prevention and operational response.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-subtle">
+      <div class="container">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Threat model</p>
+          <h2>Highest-priority risks identified in the project.</h2>
+          <p>The executive threat model prioritizes authorization abuse, prompt injection, poisoning, and infrastructure weakness as the key areas that can break trust in the system.</p>
+        </div>
+
+        <div class="risk-grid">
+          <article class="risk-card critical">
+            <span class="risk-level">Critical</span>
+            <h3>Authorization / scope abuse</h3>
+            <p>Unauthorized access to higher-sensitivity content if scope logic is weak or user-controlled.</p>
+            <small>Priority action: derive scope from claims, groups, or policy rather than trusting user input.</small>
+          </article>
+          <article class="risk-card high">
+            <span class="risk-level">High</span>
+            <h3>Prompt injection</h3>
+            <p>Malicious instructions embedded in retrieved documents can distort model behavior and outputs.</p>
+            <small>Priority action: isolate retrieved context and harden orchestration prompts.</small>
+          </article>
+          <article class="risk-card high">
+            <span class="risk-level">High</span>
+            <h3>Knowledge poisoning</h3>
+            <p>Adversarial or low-trust data inside a valid scope can degrade output integrity and business value.</p>
+            <small>Priority action: add provenance, review state, quarantine, and rollback mechanisms.</small>
+          </article>
+          <article class="risk-card medium">
+            <span class="risk-level">Med-High</span>
+            <h3>Infrastructure misconfiguration</h3>
+            <p>Private DNS, NVA routing, and segmentation introduce operational dependencies that must be validated.</p>
+            <small>Priority action: regularly test routes, DNS, east-west paths, and segmentation boundaries.</small>
+          </article>
+        </div>
+
+        <div class="feature-grid two spaced-top">
+          <article class="feature-card">
+            <h3>Adversarial examples included</h3>
+            <p>Supporting documents include test prompts meant to simulate malicious or manipulative retrieved content.</p>
+            <ul class="clean-list">
+              <li>Ignore previous instructions</li>
+              <li>Fake authorization claims</li>
+              <li>Secret exfiltration requests</li>
+              <li>Evidence suppression attempts</li>
+            </ul>
+          </article>
+          <article class="feature-card code-card">
+            <h3>Detection examples</h3>
+            <pre><code>AppServiceConsoleLogs
+| where ResultDescription contains '"event_type": "authz_denied"'</code></pre>
+            <pre><code>AppServiceConsoleLogs
+| where ResultDescription contains '"event_type": "content_filter_blocked"'</code></pre>
+            <pre><code>AppServiceConsoleLogs
+| where ResultDescription contains '"event_type": "fallback_used"'
+| summarize count() by bin(TimeGenerated, 1d)</code></pre>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <strong>Project Aegis</strong>
+        <p>Security-first Azure AI portfolio case study.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="artifacts.html">Artifacts</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

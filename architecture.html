@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecture | Project Aegis</title>
+  <meta name="description" content="Architecture overview for Project Aegis, including hub-and-spoke Azure design, trust zones, and data flow." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>Project Aegis</strong>
+          <small>Secure Enterprise AI on Azure</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a class="is-active" href="architecture.html">Architecture</a>
+        <a href="security.html">Security</a>
+        <a href="artifacts.html">Artifacts</a>
+        <a href="interview.html">Interview Flow</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Architecture</p>
+        <h1 class="page-title">Zero Trust Azure design with explicit trust separation.</h1>
+        <p class="page-intro">The architecture keeps application, AI, secrets, and data responsibilities separated so security decisions are enforced by the platform and the application rather than casually delegated to the model layer.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="architecture-layout">
+          <article class="panel panel-visual">
+            <div class="panel-head">
+              <h3>Reference architecture diagram</h3>
+              <a href="SupportingDocs/aegis_final_polished_diagram.png" target="_blank" rel="noopener">Open full diagram</a>
+            </div>
+            <img class="architecture-image" src="SupportingDocs/aegis_final_polished_diagram.png" alt="Project Aegis Azure architecture diagram showing hub-and-spoke networking, private endpoints, AI, app, and data components." />
+          </article>
+
+          <div class="stacked-panels">
+            <article class="panel">
+              <h3>Network pattern</h3>
+              <ul class="clean-list">
+                <li><strong>Hub VNet:</strong> central routing, NVA traffic forwarding, private DNS, and shared control-plane functions.</li>
+                <li><strong>App spoke:</strong> App Service with VNet integration and isolated workload placement.</li>
+                <li><strong>AI spoke:</strong> Azure OpenAI and Azure AI Search via private endpoint paths.</li>
+                <li><strong>Data spoke:</strong> Storage account access isolated from the public internet.</li>
+              </ul>
+            </article>
+
+            <article class="panel">
+              <h3>Control intent</h3>
+              <ul class="clean-list">
+                <li>Keep model access private and application-mediated.</li>
+                <li>Use bidirectional peering to preserve necessary internal reachability between spokes and hub.</li>
+                <li>Keep identity, data, and AI controls from collapsing into a single boundary.</li>
+                <li>Preserve operational visibility through centralized logging and diagnostics.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <div class="section-heading narrow spaced-top">
+          <p class="eyebrow">Flow</p>
+          <h2>How data and trust move through the system.</h2>
+        </div>
+
+        <div class="flow-grid flow-grid-four">
+          <article class="feature-card flow-card">
+            <span class="step">01</span>
+            <h3>User identity is established</h3>
+            <p>Entra ID authenticates the user and Conditional Access adds MFA and policy enforcement.</p>
+          </article>
+          <article class="feature-card flow-card">
+            <span class="step">02</span>
+            <h3>App enforces authorization</h3>
+            <p>The backend validates scope and access boundaries before any retrieval or upload action is allowed.</p>
+          </article>
+          <article class="feature-card flow-card">
+            <span class="step">03</span>
+            <h3>Documents are stored and prepared</h3>
+            <p>Uploads are tagged, chunked, and stored with metadata before being made available for retrieval.</p>
+          </article>
+          <article class="feature-card flow-card">
+            <span class="step">04</span>
+            <h3>Scoped retrieval feeds Azure OpenAI</h3>
+            <p>Only the filtered context needed to answer the question is forwarded into the model path.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <strong>Project Aegis</strong>
+        <p>Security-first Azure AI portfolio case study.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="security.html">Security</a>
+        <a href="artifacts.html">Artifacts</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

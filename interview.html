@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interview Flow | Project Aegis</title>
+  <meta name="description" content="Interview walkthrough for presenting Project Aegis to a security engineering team." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>Project Aegis</strong>
+          <small>Secure Enterprise AI on Azure</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="security.html">Security</a>
+        <a href="artifacts.html">Artifacts</a>
+        <a class="is-active" href="interview.html">Interview Flow</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Interview Flow</p>
+        <h1 class="page-title">How to walk the project through with a security engineering team.</h1>
+        <p class="page-intro">This page turns the project into a discussion tool: start with the architecture, move into identity and control logic, then use the threat model and telemetry story to show engineering depth rather than feature breadth.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="timeline">
+          <article class="timeline-item">
+            <span class="timeline-step">01</span>
+            <div>
+              <h3>Start with the architecture, not the UI</h3>
+              <p>Lead with the hub-and-spoke model, private service placement, trust zones, and why the app, AI, data, and secrets were separated.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">02</span>
+            <div>
+              <h3>Explain identity and authorization first</h3>
+              <p>Walk through Entra ID SSO, Conditional Access, RBAC, and why scope enforcement is the critical trust control for the application.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">03</span>
+            <div>
+              <h3>Show the document and retrieval lifecycle</h3>
+              <p>Discuss upload, metadata tagging, chunking, storage, hybrid retrieval, and how only scoped context is sent into the model flow.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">04</span>
+            <div>
+              <h3>Use the threat model as the differentiator</h3>
+              <p>Highlight prompt injection, poisoning, authorization abuse, and why AI trust issues were treated as application security problems.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">05</span>
+            <div>
+              <h3>Close with detections and maturity</h3>
+              <p>Connect cloud and application logs to Sentinel, then explain how the design supports monitoring, incident response, and future hardening.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-subtle">
+      <div class="container">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Why this matters</p>
+          <h2>It frames the project around security engineering judgment.</h2>
+          <p>Instead of presenting the work like “I built an AI app,” this flow helps present it as “I designed a secure cloud system with AI-specific trust controls and operational visibility.” That reads much better for Microsoft-aligned roles.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <strong>Project Aegis</strong>
+        <p>Security-first Azure AI portfolio case study.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="security.html">Security</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
