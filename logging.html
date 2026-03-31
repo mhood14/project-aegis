@@ -79,15 +79,15 @@
               <p><strong>Step 1:</strong> A user repeatedly requests a document scope they are not allowed to access.</p>
               <p><strong>Step 2:</strong> The app records <code>authorization_denied</code> events with the requested scope, user context, and denial reason.</p>
               <p><strong>Step 3:</strong> Those events land in Log Analytics and are evaluated by a Sentinel analytics rule looking for repeated denials across a time window or unusual access behavior from the same identity.</p>
-              <p><strong>Step 4:</strong> The rule raises an alert for review, giving the operator a repeatable path from app event to security signal.</p>
-              
+              <p><strong>Step 4:</strong> The rule raises an alert for review, and the same workspace can be queried to confirm timing, source pattern, and whether the denials align with a broader probing sequence.</p>
+              <figure class="supporting-figure supporting-figure-compact"><img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics results in the Sentinel workspace showing correlated Project Aegis request events that support repeated authorization failure investigation." /><figcaption>Sentinel investigation starts from the analytics signal, then pivots into the workspace query trail to confirm repeated denial behavior and surrounding request context.</figcaption></figure>
             </div>
           </article>
           <article class="timeline-item">
             <span class="timeline-step">03</span>
             <div>
-              <h3>Querying the information afterward</h3>
-              <p><strong>Step 1:</strong> After a test or suspected incident, the operator queries Log Analytics for the request ID, affected user, or specific event type.</p>
+              <h3>Sentinel and Log Analytics querying after a test</h3>
+              <p><strong>Step 1:</strong> After a test or suspected incident, the operator pivots into the Sentinel-linked Log Analytics workspace using a request ID, affected user, or specific event type.</p>
               <p><strong>Step 2:</strong> The query can show whether the request was denied, sanitized, blocked by content filtering, or completed successfully.</p>
               <p><strong>Step 3:</strong> Related records help answer which document IDs were involved, whether the same user triggered repeated denials, and how activity changed over time.</p>
               <div class="code-card inline-code-card">
@@ -95,7 +95,7 @@
 | where ResultDescription contains 'authorization_denied'
 | summarize count() by CallerIpAddress, bin(TimeGenerated, 15m)</code></pre>
               </div>
-              <figure class="supporting-figure"><img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics query results tracing a single Project Aegis request across multiple logged events." /><figcaption>A request-trace query makes it possible to follow one retrieval transaction across sanitization, model, and completion events.</figcaption></figure>
+              <figure class="supporting-figure"><img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Log Analytics query results in the Sentinel workspace showing Project Aegis content filter and related application events for investigation." /><figcaption>The same workspace used by Sentinel analytics can be queried directly to verify test results, inspect filter outcomes, and compare event patterns over time.</figcaption></figure>
             </div>
           </article>
           <article class="timeline-item">
@@ -106,7 +106,7 @@
               <p><strong>Step 2:</strong> The app evaluates authorization, performs retrieval, and may sanitize risky content before the model call.</p>
               <p><strong>Step 3:</strong> Azure OpenAI receives scoped context, the request completes or is blocked, and the result is written to application and platform logs.</p>
               <p><strong>Step 4:</strong> Log Analytics and Sentinel make it possible to follow that same workflow across identity, application, and security layers afterward.</p>
-              
+              <figure class="supporting-figure supporting-figure-compact"><img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics query results tracing a single Project Aegis request across retrieval, sanitization, and model stages for cross-system investigation." /><figcaption>Cross-system tracing ties one request to the retrieval, sanitization, and model stages so the operator can reconstruct what happened without guessing.</figcaption></figure>
             </div>
           </article>
         </div>

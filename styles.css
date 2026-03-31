@@ -403,6 +403,10 @@ p { margin: 0; }
   background: #ffffff;
   box-shadow: var(--shadow-soft);
 }
+.content-image-contained {
+  width: min(75%, 860px);
+  margin: 0 auto;
+}
 .media-caption,
 .supporting-figure figcaption {
   margin-top: 0.85rem;
@@ -410,6 +414,9 @@ p { margin: 0; }
 }
 .supporting-figure {
   margin: 0.95rem 0 0;
+}
+.supporting-figure-compact {
+  max-width: 760px;
 }
 .supporting-figure .content-image {
   box-shadow: none;
