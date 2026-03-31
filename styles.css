@@ -387,12 +387,32 @@ p { margin: 0; }
   font-size: 0.85rem;
 }
 .detailed-timeline { gap: 1.2rem; }
-.image-placeholder {
+.feature-media-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+.media-panel {
+  border-top-color: rgba(79, 116, 191, 0.22);
+}
+.content-image {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+.media-caption,
+.supporting-figure figcaption {
   margin-top: 0.85rem;
-  padding: 0.85rem 1rem;
-  border: 1px dashed rgba(79, 116, 191, 0.4);
-  color: var(--text-muted);
-  background: rgba(79, 116, 191, 0.04);
+  color: var(--text-soft);
+}
+.supporting-figure {
+  margin: 0.95rem 0 0;
+}
+.supporting-figure .content-image {
+  box-shadow: none;
 }
 .inline-code-card { margin-top: 0.85rem; }
 .callout-inline {
@@ -471,6 +491,7 @@ code {
 @media (max-width: 900px) {
   .hero-layout,
   .architecture-layout,
+  .feature-media-grid,
   .feature-grid.two,
   .risk-grid,
   .artifact-grid,

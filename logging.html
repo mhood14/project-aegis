@@ -23,7 +23,7 @@
       <nav class="site-nav" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="architecture.html">Architecture</a>
-        <a href="app.html">Live Demo</a>
+        <a href="https://app-aegis-aiplatform-hfcscvfke4hwd0gk.eastus-01.azurewebsites.net/" target="_blank" rel="noopener">Open Live Demo</a>
         <a class="is-active" href="logging.html">Logging &amp; Testing</a>
         <a href="artifacts.html">Artifacts</a>
         <a href="about.html">About This Project</a>
@@ -69,7 +69,7 @@
               <p><strong>Step 2:</strong> The retrieval pipeline treats that content as untrusted data and strips suspicious lines before the model call when sanitization rules match.</p>
               <p><strong>Step 3:</strong> The app records events such as <code>retrieved_content_sanitized</code>. If the request cannot safely continue, the workflow can stop before the model call. If Azure OpenAI blocks the request, the app records <code>llm_request_blocked_content_filter</code>.</p>
               <p><strong>Step 4:</strong> Analysts can later query the request trail, affected document identifiers, and whether sanitization occurred before the model stage.</p>
-              <p class="image-placeholder">[INSERT DESCRIPTION HERE]</p>
+              <figure class="supporting-figure"><img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Log Analytics results showing Project Aegis content filter events captured from application logs." /><figcaption>Log Analytics captures content-filter outcomes from the application path so blocked model requests can be reviewed after testing.</figcaption></figure>
             </div>
           </article>
           <article class="timeline-item">
@@ -80,7 +80,7 @@
               <p><strong>Step 2:</strong> The app records <code>authorization_denied</code> events with the requested scope, user context, and denial reason.</p>
               <p><strong>Step 3:</strong> Those events land in Log Analytics and are evaluated by a Sentinel analytics rule looking for repeated denials across a time window or unusual access behavior from the same identity.</p>
               <p><strong>Step 4:</strong> The rule raises an alert for review, giving the operator a repeatable path from app event to security signal.</p>
-              <p class="image-placeholder">[INSERT DESCRIPTION HERE]</p>
+              
             </div>
           </article>
           <article class="timeline-item">
@@ -95,7 +95,7 @@
 | where ResultDescription contains 'authorization_denied'
 | summarize count() by CallerIpAddress, bin(TimeGenerated, 15m)</code></pre>
               </div>
-              <p class="image-placeholder">[INSERT DESCRIPTION HERE]</p>
+              <figure class="supporting-figure"><img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics query results tracing a single Project Aegis request across multiple logged events." /><figcaption>A request-trace query makes it possible to follow one retrieval transaction across sanitization, model, and completion events.</figcaption></figure>
             </div>
           </article>
           <article class="timeline-item">
@@ -106,7 +106,7 @@
               <p><strong>Step 2:</strong> The app evaluates authorization, performs retrieval, and may sanitize risky content before the model call.</p>
               <p><strong>Step 3:</strong> Azure OpenAI receives scoped context, the request completes or is blocked, and the result is written to application and platform logs.</p>
               <p><strong>Step 4:</strong> Log Analytics and Sentinel make it possible to follow that same workflow across identity, application, and security layers afterward.</p>
-              <p class="image-placeholder">[INSERT DESCRIPTION HERE]</p>
+              
             </div>
           </article>
         </div>
@@ -141,7 +141,7 @@
       </div>
       <div class="footer-links">
         <a href="architecture.html">Architecture</a>
-        <a href="app.html">Live Demo</a>
+        <a href="https://app-aegis-aiplatform-hfcscvfke4hwd0gk.eastus-01.azurewebsites.net/" target="_blank" rel="noopener">Open Live Demo</a>
         <a href="about.html">About This Project</a>
       </div>
     </div>
