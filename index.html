@@ -3,230 +3,328 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aegis AI Platform | Secure Enterprise AI on Azure</title>
-  <meta name="description" content="Aegis AI Platform is a secure enterprise AI system built on Azure with Zero Trust architecture, scoped retrieval, hybrid search, and Sentinel-integrated logging." />
-  <meta property="og:title" content="Aegis AI Platform" />
-  <meta property="og:description" content="Secure enterprise AI on Azure with Zero Trust architecture, hybrid search, and security telemetry." />
+  <title>Project Aegis | Secure Enterprise AI on Azure</title>
+  <meta name="description" content="Project Aegis is a Zero Trust Azure AI case study showcasing Entra ID, private networking, Azure OpenAI, AI Search, Microsoft Sentinel, and AI-focused threat modeling." />
+  <meta property="og:title" content="Project Aegis | Secure Enterprise AI on Azure" />
+  <meta property="og:description" content="A security-first Azure AI portfolio project built to demonstrate Zero Trust architecture, scoped retrieval, private networking, and detection engineering." />
   <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#top">Aegis AI Platform</a>
-      <nav>
+    <div class="container nav-shell">
+      <a class="brand" href="#top">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>Project Aegis</strong>
+          <small>Secure Enterprise AI on Azure</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
         <a href="#overview">Overview</a>
         <a href="#architecture">Architecture</a>
         <a href="#security">Security</a>
-        <a href="#hybrid-search">Hybrid Search</a>
-        <a href="#detections">Detections</a>
-        <a href="#demo">Demo</a>
+        <a href="#threat-model">Threat Model</a>
+        <a href="#artifacts">Artifacts</a>
+        <a href="#interview">Interview Flow</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Secure Enterprise AI on Azure</p>
-          <h1>From homelab project to a resume-worthy security architecture.</h1>
-          <p class="hero-copy">
-            Aegis AI Platform is a secure document retrieval and question-answering system built on Azure.
-            It combines Entra ID, managed identity, scoped authorization, private networking, Azure AI Search,
-            Azure OpenAI, hybrid search, and Sentinel telemetry into one Zero Trust AI design.
+    <section class="hero section-grid">
+      <div class="container hero-layout">
+        <div class="hero-copy-block">
+          <p class="eyebrow">Azure • Entra ID • Zero Trust • Sentinel • Azure OpenAI • AI Search</p>
+          <h1>Built like a secure cloud platform,<br />not a demo chatbot.</h1>
+          <p class="lead">
+            Project Aegis is a security-first Microsoft cloud and AI application portfolio project designed to
+            demonstrate the engineering decisions expected of a cyber security engineer: identity-driven access,
+            segmented networking, private service exposure, scoped retrieval, managed secrets, and detection-ready telemetry.
           </p>
-          <div class="cta-row">
-            <a class="button primary" href="#demo">View Demo Flow</a>
-            <a class="button secondary" href="#architecture">Explore Architecture</a>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#artifacts">Review Supporting Artifacts</a>
+            <a class="button button-secondary" href="#architecture">Explore the Architecture</a>
           </div>
-          <ul class="hero-highlights">
-            <li>Zero Trust hub-and-spoke Azure architecture</li>
-            <li>Scoped retrieval with RBAC-backed authorization</li>
-            <li>Hybrid search with keyword + embeddings</li>
-            <li>Sentinel-ready security telemetry and detections</li>
-          </ul>
-        </div>
-        <div class="hero-card">
-          <div class="metric-card">
-            <span class="metric-label">Core theme</span>
-            <strong>Secure AI Platform</strong>
-          </div>
-          <div class="metric-card">
-            <span class="metric-label">Identity</span>
-            <strong>Entra ID + Managed Identity</strong>
-          </div>
-          <div class="metric-card">
-            <span class="metric-label">Retrieval</span>
-            <strong>Scoped RAG + Hybrid Search</strong>
-          </div>
-          <div class="metric-card">
-            <span class="metric-label">Monitoring</span>
-            <strong>Sentinel + KQL Detections</strong>
+
+          <div class="tag-row" aria-label="Technology highlights">
+            <span>Entra ID</span>
+            <span>Conditional Access</span>
+            <span>Microsoft Defender for Cloud</span>
+            <span>Microsoft Sentinel</span>
+            <span>Azure Key Vault</span>
+            <span>Azure OpenAI</span>
+            <span>Azure AI Search</span>
+            <span>Private Endpoints</span>
+            <span>Hub-and-Spoke</span>
+            <span>Flask</span>
           </div>
         </div>
+
+        <aside class="hero-panel">
+          <div class="stat-card stat-card-accent">
+            <span class="stat-label">Primary Objective</span>
+            <strong>Showcase secure Azure AI engineering for Microsoft-focused security roles</strong>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <span class="stat-label">Identity</span>
+              <strong>Entra ID SSO + MFA + RBAC</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Networking</span>
+              <strong>Hub-and-spoke with private access paths</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">AI Controls</span>
+              <strong>Scoped retrieval, chunking, prompt hardening</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Detection</span>
+              <strong>Sentinel telemetry and KQL-driven monitoring concepts</strong>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
     <section id="overview" class="section">
       <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Project Overview</p>
-          <h2>What this project demonstrates</h2>
+        <div class="section-heading narrow">
+          <p class="eyebrow">Executive Summary</p>
+          <h2>A resume artifact built to prove security judgment, not just cloud familiarity.</h2>
+          <p>
+            This project began as a full Microsoft tenant and secure AI application build, then evolved into a case study centered on
+            the controls, trust boundaries, and risks that matter in enterprise environments. The result is a portfolio artifact that
+            demonstrates how identity, networking, application logic, and AI safety controls have to work together.
+          </p>
         </div>
-        <div class="cards three">
-          <article class="card">
-            <h3>Cloud Security Architecture</h3>
+
+        <div class="feature-grid three">
+          <article class="feature-card">
+            <h3>What was built</h3>
             <p>
-              Designed a hub-and-spoke Azure environment with separated app, AI, data, and control-plane responsibilities,
-              using private endpoints, private DNS, and managed identity.
+              A Flask-based document upload and question-answering application hosted in Azure, protected by Entra ID SSO,
+              integrated with Azure OpenAI and Azure AI Search, and backed by private storage and secrets management.
             </p>
           </article>
-          <article class="card">
-            <h3>Secure AI Implementation</h3>
+          <article class="feature-card">
+            <h3>What was secured</h3>
             <p>
-              Built a secure document Q&amp;A platform using Azure OpenAI and Azure AI Search with scope-aware retrieval,
-              prompt hardening, and document handling controls.
+              Identity flows, scope-aware authorization, east-west network paths, private service exposure, application secrets,
+              AI retrieval boundaries, and security telemetry pipelines into Sentinel and Log Analytics.
             </p>
           </article>
-          <article class="card">
-            <h3>Operational Security Mindset</h3>
+          <article class="feature-card">
+            <h3>Why it matters</h3>
             <p>
-              Treated application logs as security telemetry and validated detections in Microsoft Sentinel for
-              authorization failures, content filtering, and suspicious retrieval behavior.
+              The project shows practical understanding of Zero Trust principles in an AI setting, where network isolation alone is
+              not enough and the real trust problem lives in authorization, retrieval, and data handling.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="architecture" class="section section-alt">
+    <section class="section section-dark">
+      <div class="container proof-strip">
+        <div>
+          <p class="eyebrow">What this demonstrates</p>
+          <h2>Security themes aligned to modern Microsoft cloud engineering.</h2>
+        </div>
+        <div class="proof-grid">
+          <div class="proof-card">
+            <strong>Identity-first access control</strong>
+            <p>Conditional Access, MFA, RBAC, and server-side scope enforcement.</p>
+          </div>
+          <div class="proof-card">
+            <strong>Private service architecture</strong>
+            <p>Private endpoints, private DNS, blocked public access, and segmented spokes.</p>
+          </div>
+          <div class="proof-card">
+            <strong>AI-specific threat awareness</strong>
+            <p>Prompt injection, poisoning, over-retrieval, and trust boundary abuse.</p>
+          </div>
+          <div class="proof-card">
+            <strong>Detection mindset</strong>
+            <p>Audit signals routed to Sentinel with ideas for KQL-based detections and misuse monitoring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section">
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Architecture</p>
-          <h2>Zero Trust Azure design</h2>
+          <h2>Zero Trust Azure design with separated trust zones.</h2>
         </div>
-        <div class="architecture-grid">
-          <div class="card architecture-card">
-            <h3>Network layout</h3>
-            <ul class="clean-list">
-              <li><strong>Hub:</strong> Key Vault, private DNS, shared control-plane services</li>
-              <li><strong>App Spoke:</strong> App Service with VNet integration</li>
-              <li><strong>AI Spoke:</strong> Azure OpenAI and Azure AI Search private access paths</li>
-              <li><strong>Data Spoke:</strong> Storage account private access path</li>
-            </ul>
-            <p class="muted">
-              The design separates application, data, and AI responsibilities while keeping identity and network
-              trust decisions out of the model itself.
-            </p>
+
+        <div class="architecture-layout">
+          <article class="panel panel-visual">
+            <div class="panel-head">
+              <h3>Reference architecture diagram</h3>
+              <a href="SupportingDocs/aegis_final_polished_diagram.png" target="_blank" rel="noopener">Open full diagram</a>
+            </div>
+            <img class="architecture-image" src="SupportingDocs/aegis_final_polished_diagram.png" alt="Project Aegis Azure architecture diagram showing hub-and-spoke networking, private endpoints, AI, app, and data components." />
+          </article>
+
+          <div class="stacked-panels">
+            <article class="panel">
+              <h3>Network pattern</h3>
+              <ul class="clean-list">
+                <li><strong>Hub VNet:</strong> central routing, NVA traffic forwarding, private DNS, and shared control-plane functions.</li>
+                <li><strong>App spoke:</strong> Flask App Service with VNet integration and isolated workload placement.</li>
+                <li><strong>AI spoke:</strong> Azure OpenAI and Azure AI Search via private endpoint paths.</li>
+                <li><strong>Data spoke:</strong> storage account access isolated from the public internet.</li>
+              </ul>
+            </article>
+
+            <article class="panel">
+              <h3>Control intent</h3>
+              <ul class="clean-list">
+                <li>Keep model access private and application-mediated.</li>
+                <li>Separate app, AI, and data roles so trust decisions do not collapse into a single service boundary.</li>
+                <li>Use private DNS and bidirectional peering to preserve internal service reachability without public exposure.</li>
+                <li>Force security relevance into the architecture, not just the README.</li>
+              </ul>
+            </article>
           </div>
-          <div class="card">
-            <h3>Core data flow</h3>
-            <ol class="flow-list">
-              <li>User authenticates with Entra ID</li>
-              <li>App enforces authorization and scope boundaries</li>
-              <li>Documents are uploaded, chunked, tagged, and indexed</li>
-              <li>Hybrid search retrieves scoped content</li>
-              <li>Azure OpenAI answers only from retrieved context</li>
-              <li>Logs flow to Sentinel for monitoring and detections</li>
-            </ol>
-          </div>
         </div>
-      </div>
-    </section>
 
-    <section id="security" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Security Design</p>
-          <h2>Built like a control system, not just a chatbot</h2>
-        </div>
-        <div class="cards two">
-          <article class="card">
-            <h3>Identity and access</h3>
-            <ul class="clean-list">
-              <li>Entra ID SSO for user authentication</li>
-              <li>Conditional Access with MFA and blocked legacy auth</li>
-              <li>Server-side scope enforcement before retrieval</li>
-              <li>Security-sensitive scopes restricted to elevated roles</li>
-            </ul>
+        <div class="flow-grid">
+          <article class="feature-card flow-card">
+            <span class="step">01</span>
+            <h3>User identity is established</h3>
+            <p>Users authenticate through Entra ID, then Conditional Access enforces MFA and blocks legacy authentication.</p>
           </article>
-          <article class="card">
-            <h3>Data and AI safety</h3>
-            <ul class="clean-list">
-              <li>Documents treated as data, not trusted instructions</li>
-              <li>Chunking reduces blast radius of malicious content</li>
-              <li>Suspicious prompt content can be sanitized before model use</li>
-              <li>Test documents isolated from normal retrieval scopes</li>
-            </ul>
+          <article class="feature-card flow-card">
+            <span class="step">02</span>
+            <h3>Authorization is enforced by the app</h3>
+            <p>Scope values are tied to user context and must be validated server-side before retrieval or upload actions proceed.</p>
           </article>
-          <article class="card">
-            <h3>Service authentication</h3>
-            <ul class="clean-list">
-              <li>Managed identity for Storage, Search, OpenAI, and Key Vault access</li>
-              <li>No hardcoded application secrets in code</li>
-              <li>Least-privilege RBAC applied per Azure service</li>
-            </ul>
+          <article class="feature-card flow-card">
+            <span class="step">03</span>
+            <h3>Documents are chunked and tagged</h3>
+            <p>Uploaded documents are stored with metadata including uploader, time, type, and access scope, then processed for retrieval.</p>
           </article>
-          <article class="card">
-            <h3>Threats addressed</h3>
-            <ul class="clean-list">
-              <li>Prompt injection</li>
-              <li>Document poisoning</li>
-              <li>Authorization bypass</li>
-              <li>Data exfiltration through weak retrieval boundaries</li>
-              <li>Model misuse and over-retrieval</li>
-            </ul>
+          <article class="feature-card flow-card">
+            <span class="step">04</span>
+            <h3>Hybrid retrieval feeds the model</h3>
+            <p>Keyword and semantic retrieval improve answer quality while preserving scope boundaries before Azure OpenAI is invoked.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="hybrid-search" class="section section-alt">
+    <section id="security" class="section section-alt">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Hybrid Search</p>
-          <h2>Keyword precision plus semantic matching</h2>
+          <p class="eyebrow">Security Decisions</p>
+          <h2>The interesting part is not the stack. It is why each control exists.</h2>
         </div>
-        <div class="cards two">
-          <article class="card">
-            <h3>Why hybrid search matters</h3>
-            <p>
-              Keyword search is excellent for exact phrases and known terms. Vector search helps when users ask
-              conceptual or paraphrased questions. Hybrid search combines both, improving retrieval quality without
-              weakening scope filters or trust boundaries.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Implementation summary</h3>
+
+        <div class="feature-grid two">
+          <article class="feature-card">
+            <h3>Identity and Access</h3>
             <ul class="clean-list">
-              <li>Azure OpenAI embeddings generated during ingestion</li>
-              <li>Vector field stored in a dedicated Azure AI Search hybrid index</li>
-              <li>Query flow uses text + vector retrieval together</li>
-              <li>Scope and document trust filters remain enforced server-side</li>
+              <li>Entra ID used for SSO and tenant-backed user identity.</li>
+              <li>Conditional Access policies require MFA and block legacy auth.</li>
+              <li>Users, groups, and RBAC roles are designed as durable access controls, not one-off assignments.</li>
+              <li>High-risk security flaw identified in the threat model: scope handling must be authoritative and derived from trusted claims.</li>
+            </ul>
+          </article>
+
+          <article class="feature-card">
+            <h3>Secrets and Service Authentication</h3>
+            <ul class="clean-list">
+              <li>Azure Key Vault stores application secrets and environment-sensitive values.</li>
+              <li>Managed identity reduces dependence on hardcoded credentials.</li>
+              <li>Defender for Key Vault and diagnostic settings strengthen visibility on secret access patterns.</li>
+              <li>Public access is removed where possible to reduce unnecessary exposure.</li>
+            </ul>
+          </article>
+
+          <article class="feature-card">
+            <h3>Data and AI Safety</h3>
+            <ul class="clean-list">
+              <li>Documents are treated as untrusted input, not trusted instructions.</li>
+              <li>Chunking reduces blast radius and supports narrower retrieval context.</li>
+              <li>Prompt injection and document poisoning are explicitly modeled as primary risks.</li>
+              <li>Retrieved content should remain separated from control instructions in orchestration logic.</li>
+            </ul>
+          </article>
+
+          <article class="feature-card">
+            <h3>Monitoring and Detection</h3>
+            <ul class="clean-list">
+              <li>Subscription and activity logs flow into Log Analytics and Microsoft Sentinel.</li>
+              <li>Application logs are treated as security telemetry, not just troubleshooting noise.</li>
+              <li>Detection concepts include authz denial spikes, suspicious prompt activity, fallback anomalies, and abnormal scope usage.</li>
+              <li>The design supports incident response and future validation of AI misuse cases.</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="detections" class="section">
+    <section id="threat-model" class="section">
       <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Security Telemetry</p>
-          <h2>From logs to detections</h2>
+        <div class="section-heading narrow">
+          <p class="eyebrow">Threat Model</p>
+          <h2>The strongest signal in this project: security thinking was documented, prioritized, and mapped to controls.</h2>
+          <p>
+            The executive threat model identifies a critical takeaway: in AI systems, network isolation is necessary but not sufficient.
+            The real control problem sits in trust management across uploads, retrieval, prompt assembly, authorization, and output handling.
+          </p>
         </div>
-        <div class="cards two">
-          <article class="card">
-            <h3>Custom detections planned</h3>
+
+        <div class="risk-grid">
+          <article class="risk-card critical">
+            <span class="risk-level">Critical</span>
+            <h3>Authorization / scope abuse</h3>
+            <p>Unauthorized access to higher-sensitivity content if scope logic is weak or user-controlled.</p>
+            <small>Priority action: derive scope authoritatively from Entra claims, groups, or policy.</small>
+          </article>
+          <article class="risk-card high">
+            <span class="risk-level">High</span>
+            <h3>Prompt injection via retrieved content</h3>
+            <p>Malicious instructions embedded in documents can manipulate answers or attempt hidden instruction following.</p>
+            <small>Priority action: isolate retrieved context, harden orchestration prompts, and flag suspicious chunks.</small>
+          </article>
+          <article class="risk-card high">
+            <span class="risk-level">High</span>
+            <h3>Knowledge poisoning</h3>
+            <p>Adversarial or low-trust content inside a valid scope can degrade integrity and commercial usefulness.</p>
+            <small>Priority action: quarantine, provenance tracking, review states, ignore controls, and rollback capability.</small>
+          </article>
+          <article class="risk-card medium">
+            <span class="risk-level">Med-High</span>
+            <h3>Infrastructure misconfiguration</h3>
+            <p>Private DNS, NVA, routing, and east-west connectivity are powerful controls, but also operational dependencies.</p>
+            <small>Priority action: validate route tables, DNS behavior, and segmentation continuously.</small>
+          </article>
+        </div>
+
+        <div class="feature-grid two spaced-top">
+          <article class="feature-card">
+            <h3>Example adversarial test prompts</h3>
+            <p>Supporting documents include explicit prompt injection test files designed to pressure the retrieval pipeline.</p>
             <ul class="clean-list">
-              <li>Repeated authorization denial events</li>
-              <li>Suspicious prompt injection or content-filter blocks</li>
-              <li>Unusual fallback retrieval frequency or scope usage</li>
+              <li>Ignore previous instructions</li>
+              <li>Fake authorization claims</li>
+              <li>Request secret exfiltration</li>
+              <li>Suppress citations or evidence</li>
             </ul>
           </article>
-          <article class="card">
-            <h3>Example KQL ideas</h3>
+
+          <article class="feature-card code-card">
+            <h3>Detection examples</h3>
             <pre><code>AppServiceConsoleLogs
 | where ResultDescription contains '"event_type": "authz_denied"'</code></pre>
             <pre><code>AppServiceConsoleLogs
@@ -239,75 +337,149 @@
       </div>
     </section>
 
-    <section id="demo" class="section section-alt">
+    <section id="artifacts" class="section section-alt">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Demo Flow</p>
-          <h2>How I would walk this through in an interview</h2>
+          <p class="eyebrow">Supporting Artifacts</p>
+          <h2>Evidence, not just claims.</h2>
         </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <span class="timeline-number">1</span>
-            <div>
-              <h3>Authenticate with Entra ID</h3>
-              <p>Show the app requires SSO before any user interaction.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-number">2</span>
-            <div>
-              <h3>Upload a document into a permitted scope</h3>
-              <p>Demonstrate metadata tagging, chunking, indexing, and audit logging.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-number">3</span>
-            <div>
-              <h3>Ask a question and show scoped retrieval</h3>
-              <p>Explain how the model only receives filtered, retrieved context.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-number">4</span>
-            <div>
-              <h3>Show a denied action or suspicious case</h3>
-              <p>Validate that security controls are enforced in the backend, not by the model.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-number">5</span>
-            <div>
-              <h3>Pivot to monitoring and threat model</h3>
-              <p>Show how detections, logging, and trust boundaries tie the architecture together.</p>
-            </div>
-          </div>
+
+        <div class="artifact-grid">
+          <a class="artifact-card featured" href="SupportingDocs/aegis_final_polished_diagram.png" target="_blank" rel="noopener">
+            <span class="artifact-type">Diagram</span>
+            <h3>Final network and service architecture</h3>
+            <p>Polished visual architecture of the Azure environment, trust zones, and service placements.</p>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/Threat%20Modeling%20Document%20-%20Executive.docx" target="_blank" rel="noopener">
+            <span class="artifact-type">Threat Model</span>
+            <h3>Executive threat modeling document</h3>
+            <p>Detailed narrative of risks, trust boundaries, control mapping, residual risk, and recommendations.</p>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/Threat%20Modeling%20Document%20-%20Executive%20Table.docx" target="_blank" rel="noopener">
+            <span class="artifact-type">Risk Table</span>
+            <h3>Prioritized executive risk table</h3>
+            <p>Short-form risk summary focused on severity, business impact, likelihood, and priority response actions.</p>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/Project%20Aegis%20checklist%20and%20screen%20shots.docx" target="_blank" rel="noopener">
+            <span class="artifact-type">Build Record</span>
+            <h3>Implementation checklist and screenshots</h3>
+            <p>Provisioning sequence, deployment checklist, and captured proof points from the tenant and app build-out.</p>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/Egress%20Strategy.docx" target="_blank" rel="noopener">
+            <span class="artifact-type">Architecture Note</span>
+            <h3>Egress strategy</h3>
+            <p>Supporting design material for outbound traffic decisions and network control posture.</p>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/IP%20Adressing%20Plan.xlsx" target="_blank" rel="noopener">
+            <span class="artifact-type">Network Plan</span>
+            <h3>IP addressing plan</h3>
+            <p>Addressing structure that supports the segmented hub-and-spoke deployment model.</p>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/app_hybrid_search/README.md" target="_blank" rel="noopener">
+            <span class="artifact-type">App Source</span>
+            <h3>Hybrid search application notes</h3>
+            <p>Implementation summary for the Flask app, managed identity usage, document storage flow, and citations.</p>
+          </a>
+
+          <a class="artifact-card" href="SupportingDocs/PromptInjection/01_ignore_instructions.txt" target="_blank" rel="noopener">
+            <span class="artifact-type">Adversarial Test</span>
+            <h3>Prompt injection test corpus</h3>
+            <p>Sample malicious content used to validate that retrieved documents are treated as untrusted data.</p>
+          </a>
         </div>
       </div>
     </section>
 
-    <section id="resume" class="section">
+    <section id="interview" class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Resume-Ready Outcomes</p>
-          <h2>What this project proves</h2>
+          <p class="eyebrow">Interview Walkthrough</p>
+          <h2>How I would present this project to a security engineering team.</h2>
         </div>
-        <div class="card">
-          <ul class="clean-list">
-            <li>Designed and deployed a secure Azure-based AI platform using hub-and-spoke architecture, managed identity, and private networking.</li>
-            <li>Built a scoped document retrieval and question-answering system using Azure OpenAI and Azure AI Search.</li>
-            <li>Implemented hybrid search with embeddings to improve semantic relevance while preserving authorization boundaries.</li>
-            <li>Integrated application security telemetry into Microsoft Sentinel and planned custom detections for misuse and abuse cases.</li>
-            <li>Developed an AI-focused threat model covering prompt injection, data exfiltration, poisoning, and authorization risks.</li>
-          </ul>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <span class="timeline-step">01</span>
+            <div>
+              <h3>Start with the architecture, not the UI</h3>
+              <p>Explain the hub-and-spoke model, private service placement, and why trust boundaries were separated before discussing any AI features.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">02</span>
+            <div>
+              <h3>Show identity and authorization first</h3>
+              <p>Walk through Entra ID SSO, Conditional Access, and why backend scope enforcement is the key control for protecting sensitive content.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">03</span>
+            <div>
+              <h3>Demonstrate the document lifecycle</h3>
+              <p>Upload, metadata tagging, chunking, indexing, storage placement, and retrieval with scoped context only.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">04</span>
+            <div>
+              <h3>Use the threat model as the differentiator</h3>
+              <p>Discuss prompt injection, poisoning, over-retrieval, and how the project treats AI risk as an application trust problem rather than a marketing feature.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">05</span>
+            <div>
+              <h3>Close with detections and operational maturity</h3>
+              <p>Show how logs feed Sentinel, where KQL detections fit, and how incident response and quarantine workflows could evolve the platform further.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark outcome-section">
+      <div class="container">
+        <div class="section-heading narrow light">
+          <p class="eyebrow">Resume-Ready Outcomes</p>
+          <h2>What this project proves in one screen.</h2>
+        </div>
+
+        <div class="feature-grid two">
+          <article class="feature-card inverted">
+            <ul class="clean-list">
+              <li>Designed and deployed a secure Azure AI platform using hub-and-spoke networking, private endpoints, private DNS, and managed identity.</li>
+              <li>Implemented Entra ID SSO, Conditional Access, RBAC, and scope-aware authorization for a cloud-hosted Flask application.</li>
+              <li>Integrated Azure OpenAI and Azure AI Search into a scoped document retrieval workflow with chunking and metadata-based controls.</li>
+            </ul>
+          </article>
+          <article class="feature-card inverted">
+            <ul class="clean-list">
+              <li>Developed an AI-focused threat model covering authorization abuse, prompt injection, poisoning, data exfiltration, and infrastructure misconfiguration.</li>
+              <li>Routed security-relevant telemetry into Microsoft Sentinel and Log Analytics to support detection engineering and future incident response workflows.</li>
+              <li>Built a portfolio artifact that communicates both technical implementation and security reasoning for Microsoft-aligned cyber engineering roles.</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-row">
-      <p>Built as a security-focused AI architecture portfolio project.</p>
-      <a href="#top">Back to top ↑</a>
+    <div class="container footer-layout">
+      <div>
+        <strong>Project Aegis</strong>
+        <p>Security-first Azure AI portfolio case study.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+        <a href="https://github.com/mhood14/project-aegis" target="_blank" rel="noopener">View Repository</a>
+      </div>
     </div>
   </footer>
 </body>
