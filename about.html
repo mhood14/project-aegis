@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Project Aegis</title>
+  <meta name="description" content="About the creator, goals, and learning objectives behind Project Aegis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>Project Aegis</strong>
+          <small>Secure Enterprise AI on Azure</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="setup.html">Azure Setup</a>
+        <a href="networking.html">Networking</a>
+        <a href="app.html">AI App</a>
+        <a href="logging.html">Logging &amp; Testing</a>
+        <a href="artifacts.html">Artifacts</a>
+        <a class="is-active" href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">About</p>
+        <h1 class="page-title">Why Project Aegis exists and what I wanted to learn from it.</h1>
+        <p class="page-intro">Project Aegis started as a way to learn by building: take a secure-AI idea seriously, make the tradeoffs visible, and document the parts that usually get hand-waved away.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="timeline detailed-timeline">
+          <article class="timeline-item">
+            <span class="timeline-step">01</span>
+            <div>
+              <h3>Starting point</h3>
+              <p>I wanted to build something that felt closer to a real secure platform than a one-page AI demo. Project Aegis became the place to explore that seriously, without pretending the hard parts would solve themselves.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">02</span>
+            <div>
+              <h3>What I was trying to learn</h3>
+              <p>I wanted hands-on experience with Azure architecture, identity controls, network segmentation, managed identity, private service access, retrieval design, hybrid search, and detection-oriented logging.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">03</span>
+            <div>
+              <h3>What success looked like</h3>
+              <p>The goal was not just to make the app answer questions. It was to make the whole system more understandable: who can access what, where answers come from, how logs tell the story afterward, and how the design reacts under pressure.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">04</span>
+            <div>
+              <h3>Why the site is structured this way</h3>
+              <p>The home page stays lighter and easier to scan, while the deeper pages break the project into Azure setup, networking, application behavior, and logging/testing. That reflects the actual skills involved instead of flattening everything into one dense wall of copy.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <strong>Project Aegis</strong>
+        <p>Azure enterprise AI with identity, network, retrieval, and monitoring controls.</p>
+      </div>
+      <div class="footer-links">
+        <a href="setup.html">Azure Setup</a>
+        <a href="networking.html">Networking</a>
+        <a href="app.html">AI App</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

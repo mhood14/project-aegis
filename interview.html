@@ -2,122 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=about.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Walkthrough | Project Aegis</title>
-  <meta name="description" content="A guided walkthrough of Project Aegis covering the product story, architecture, security choices, and supporting evidence." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>About | Project Aegis</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-noise" aria-hidden="true"></div>
-  <header class="site-header">
-    <div class="container nav-shell">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">A</span>
-        <span>
-          <strong>Project Aegis</strong>
-          <small>Secure Enterprise AI on Azure</small>
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="architecture.html">Architecture</a>
-        <a href="security.html">Security</a>
-        <a href="artifacts.html">Artifacts</a>
-        <a class="is-active" href="interview.html">Walkthrough</a>
-      </nav>
+  <main class="section">
+    <div class="container">
+      <p class="eyebrow">Redirecting</p>
+      <h1 class="page-title">About now lives at a cleaner URL.</h1>
+      <p class="page-intro">If you are not redirected automatically, <a class="text-link" href="about.html">open About</a>.</p>
     </div>
-  </header>
-
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <p class="eyebrow">Walkthrough</p>
-        <h1 class="page-title">A quick tour of what Project Aegis is, why it exists, and how it stays credible.</h1>
-        <p class="page-intro">This page replaces the old interview framing with a public-facing walkthrough. It starts with the product story, then moves into architecture, trust controls, and the project evidence behind the claims.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="timeline">
-          <article class="timeline-item">
-            <span class="timeline-step">01</span>
-            <div>
-              <h3>Start with the user promise</h3>
-              <p>Project Aegis aims to make internal-content AI useful without pretending that convenience should outrank access control, provenance, or operational visibility.</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <span class="timeline-step">02</span>
-            <div>
-              <h3>Show the deployment boundary</h3>
-              <p>Walk through the hub-and-spoke layout and the separation between application, AI, and data services so the system reads like a real platform, not a single-box demo.</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <span class="timeline-step">03</span>
-            <div>
-              <h3>Explain who gets access and why</h3>
-              <p>Entra ID sign-in, Conditional Access, MFA, groups, RBAC, and server-side scope enforcement define the trust boundary more than the model itself does.</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <span class="timeline-step">04</span>
-            <div>
-              <h3>Follow the document lifecycle</h3>
-              <p>Source files move through storage, chunking, indexing, retrieval, and cited response generation so readers can understand where answers actually come from.</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <span class="timeline-step">05</span>
-            <div>
-              <h3>Close with security and proof</h3>
-              <p>Threat priorities, telemetry, Sentinel-ready monitoring, build records, and adversarial prompt tests show that the project is documented beyond the marketing layer.</p>
-            </div>
-          </article>
-        </div>
-
-        <div class="feature-grid three spaced-top">
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🗺️</span>
-            <h3>Architecture page</h3>
-            <p>For readers who want the network and service layout, the architecture page goes deeper into spokes, private connectivity, and system flow.</p>
-            <a class="text-link" href="architecture.html">Go to architecture</a>
-          </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🛡️</span>
-            <h3>Security page</h3>
-            <p>For readers who care most about the trust model, the security page focuses on identity, secrets, document trust, and monitoring priorities.</p>
-            <a class="text-link" href="security.html">Go to security</a>
-          </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">📁</span>
-            <h3>Artifacts page</h3>
-            <p>For readers who want receipts, the artifacts page links directly to the diagram, threat models, build evidence, and implementation notes.</p>
-            <a class="text-link" href="artifacts.html">Go to artifacts</a>
-          </article>
-        </div>
-      </div>
-    </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-layout">
-      <div>
-        <strong>Project Aegis</strong>
-        <p>Azure enterprise AI with identity, network, and retrieval controls.</p>
-      </div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="architecture.html">Architecture</a>
-        <a href="security.html">Security</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

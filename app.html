@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI App | Project Aegis</title>
+  <meta name="description" content="Application design for Project Aegis, including Flask, managed identity, hybrid search, citations, and guarded Azure OpenAI calls." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>Project Aegis</strong>
+          <small>Secure Enterprise AI on Azure</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="setup.html">Azure Setup</a>
+        <a href="networking.html">Networking</a>
+        <a class="is-active" href="app.html">AI App</a>
+        <a href="logging.html">Logging &amp; Testing</a>
+        <a href="artifacts.html">Artifacts</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">AI App</p>
+        <h1 class="page-title">The document workflow, search layer, and model call path.</h1>
+        <p class="page-intro">The application side of Project Aegis is a Flask app that accepts documents, processes them into chunks, indexes them for hybrid search, retrieves scoped content, and sends only that limited context to Azure OpenAI.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="flow-grid flow-grid-four">
+          <article class="feature-card flow-card">
+            <span class="step">01</span>
+            <h3>Upload and store</h3>
+            <p>Raw documents are uploaded into Blob Storage, giving the pipeline a durable input source before processing begins.</p>
+          </article>
+          <article class="feature-card flow-card">
+            <span class="step">02</span>
+            <h3>Chunk and prepare</h3>
+            <p>Documents are processed into chunks and prepared so retrieval can stay narrower and more inspectable than one large free-form prompt.</p>
+          </article>
+          <article class="feature-card flow-card">
+            <span class="step">03</span>
+            <h3>Index for hybrid search</h3>
+            <p>The app supports a hybrid index shape that keeps searchable content and vector content together, improving retrieval options without losing filterable metadata.</p>
+          </article>
+          <article class="feature-card flow-card">
+            <span class="step">04</span>
+            <h3>Answer with citations</h3>
+            <p>Only the retrieved chunks selected for the request are sent to the model, and the response is expected to remain grounded in cited chunk IDs.</p>
+          </article>
+        </div>
+
+        <div class="feature-grid two simple-columns spaced-top">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🧰</span>
+            <h3>Implementation notes reflected from the app</h3>
+            <ul class="clean-list">
+              <li>Flask provides the web application layer.</li>
+              <li>Managed identity is used through <code>DefaultAzureCredential</code>.</li>
+              <li>Raw and processed document containers separate original files from chunked content.</li>
+              <li>Azure AI Search stores indexed chunks and associated metadata.</li>
+              <li>Azure OpenAI receives the scoped document context, not the entire corpus.</li>
+            </ul>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🧭</span>
+            <h3>Guardrails visible in code</h3>
+            <ul class="clean-list">
+              <li>Retrieved content is treated as untrusted data, not executable instruction.</li>
+              <li>Suspicious prompt-injection style lines can be sanitized before the model call.</li>
+              <li>Authorization decisions are enforced server-side using authenticated user context.</li>
+              <li>Request activity is logged so failures and suspicious events can be investigated later.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="section-heading narrow spaced-top">
+          <p class="eyebrow">Live demo</p>
+          <h2>Try the running app.</h2>
+          <p>The live instance makes the project feel concrete: visitors can see the chat experience, retrieval flow, and grounded-answer pattern instead of only reading about it.</p>
+          <div class="live-demo-card">
+            <strong>Live demo</strong>
+            <div class="link-row">
+              <a class="text-link" href="https://app-aegis-aiplatform-hfcscvfke4hwd0gk.eastus-01.azurewebsites.net/" target="_blank" rel="noopener">Open Project Aegis demo ↗</a>
+            </div>
+            <p class="note">A live deployment makes the app flow, retrieval behavior, and grounded-answer experience easier to understand than screenshots alone.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <strong>Project Aegis</strong>
+        <p>Azure enterprise AI with identity, network, retrieval, and monitoring controls.</p>
+      </div>
+      <div class="footer-links">
+        <a href="setup.html">Azure Setup</a>
+        <a href="networking.html">Networking</a>
+        <a href="logging.html">Logging &amp; Testing</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -2,174 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=logging.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Security | Project Aegis</title>
-  <meta name="description" content="Security model, threat analysis, and control decisions for Project Aegis." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-noise" aria-hidden="true"></div>
-  <header class="site-header">
-    <div class="container nav-shell">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">A</span>
-        <span>
-          <strong>Project Aegis</strong>
-          <small>Secure Enterprise AI on Azure</small>
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="architecture.html">Architecture</a>
-        <a class="is-active" href="security.html">Security</a>
-        <a href="artifacts.html">Artifacts</a>
-        <a href="interview.html">Walkthrough</a>
-      </nav>
+  <main class="section">
+    <div class="container">
+      <p class="eyebrow">Redirecting</p>
+      <h1 class="page-title">Security content now lives across Networking, AI App, and Logging &amp; Testing.</h1>
+      <p class="page-intro">If you are not redirected automatically, <a class="text-link" href="logging.html">open Logging &amp; Testing</a>.</p>
     </div>
-  </header>
-
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <p class="eyebrow">Security</p>
-        <h1 class="page-title">Controls for identity, retrieval, secrets, and monitoring.</h1>
-        <p class="page-intro">The security model assumes that network isolation helps, but does not solve AI trust problems by itself. Identity, authorization, document trust, prompt handling, and telemetry all have to work together for the platform to stay credible.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-heading narrow">
-          <p class="eyebrow">Control areas</p>
-          <h2>The trust model in four readable pieces.</h2>
-          <p>These are the main control families the project keeps in view so the AI workflow stays understandable and defensible instead of magical.</p>
-        </div>
-
-        <div class="feature-grid two">
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🔐</span>
-            <h3>Identity and access</h3>
-            <ul class="clean-list">
-              <li>Entra ID provides single sign-on and tenant-backed user identity.</li>
-              <li>Conditional Access requires MFA and blocks legacy authentication paths.</li>
-              <li>Roles and groups are used as durable access-control structures.</li>
-              <li>Trusted claims and server-side checks determine scope rather than user-supplied values.</li>
-            </ul>
-          </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🗝️</span>
-            <h3>Secrets and service authentication</h3>
-            <ul class="clean-list">
-              <li>Azure Key Vault stores secrets and sensitive configuration values.</li>
-              <li>Managed identity reduces the need for embedded credentials.</li>
-              <li>Key Vault diagnostics support monitoring of secret-access activity.</li>
-              <li>Private service exposure patterns reduce unnecessary internet reachability.</li>
-            </ul>
-          </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">📄</span>
-            <h3>Document and model trust</h3>
-            <ul class="clean-list">
-              <li>Uploaded and retrieved documents are treated as untrusted content.</li>
-              <li>Chunking limits retrieval scope and narrows the effect of hostile content.</li>
-              <li>Prompt injection and document poisoning are treated as first-order risks.</li>
-              <li>Prompt assembly should keep system instructions distinct from retrieved context.</li>
-            </ul>
-          </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">📡</span>
-            <h3>Monitoring and detection</h3>
-            <ul class="clean-list">
-              <li>Cloud and application events flow into Log Analytics and Sentinel.</li>
-              <li>Application logs are treated as security telemetry, not only debugging output.</li>
-              <li>The design supports detections for suspicious prompts, authorization failures, fallback behavior, and abnormal usage patterns.</li>
-              <li>Observability is part of the security control set, not a separate afterthought.</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-subtle">
-      <div class="container">
-        <div class="section-heading narrow">
-          <p class="eyebrow">Threat priorities</p>
-          <h2>Highest-priority risks identified in the project material.</h2>
-          <p>The executive threat model puts the biggest weight on authorization abuse, prompt injection, knowledge poisoning, credential misuse, application vulnerabilities, infrastructure weakness, and monitoring blind spots.</p>
-        </div>
-
-        <div class="risk-grid">
-          <article class="risk-card critical">
-            <span class="risk-level">Critical</span>
-            <h3>Authorization and scope abuse</h3>
-            <p>Weak scope logic can expose higher-sensitivity content to the wrong user even when authentication itself succeeds.</p>
-            <small>Priority action: derive scope from claims, groups, or policy and enforce it server-side.</small>
-          </article>
-          <article class="risk-card high">
-            <span class="risk-level">High</span>
-            <h3>Prompt injection through retrieved content</h3>
-            <p>Malicious instructions hidden in documents can distort model behavior, suppress citations, or attempt unsafe output paths.</p>
-            <small>Priority action: separate instructions from retrieved context and detect suspicious chunks.</small>
-          </article>
-          <article class="risk-card high">
-            <span class="risk-level">High</span>
-            <h3>Knowledge poisoning</h3>
-            <p>Bad but in-scope data can degrade answer quality and create false confidence even without crossing an authorization boundary.</p>
-            <small>Priority action: add provenance, review state, quarantine, ignore, and rollback controls.</small>
-          </article>
-          <article class="risk-card medium">
-            <span class="risk-level">Med-High</span>
-            <h3>Infrastructure misconfiguration</h3>
-            <p>Private DNS, peering, routing, and centralized inspection plans create dependencies that need validation and continuous testing.</p>
-            <small>Priority action: test routes, DNS, east-west paths, and segmentation behavior regularly.</small>
-          </article>
-        </div>
-
-        <div class="feature-grid two spaced-top">
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🧪</span>
-            <h3>Adversarial test material</h3>
-            <p>The prompt-injection corpus includes examples such as:</p>
-            <ul class="clean-list">
-              <li>Instructions to ignore previous instructions</li>
-              <li>Attempts to fake authorization or escalate access</li>
-              <li>Requests to suppress citations</li>
-              <li>Secret-exfiltration style prompts</li>
-            </ul>
-          </article>
-          <article class="feature-card code-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🛰️</span>
-            <h3>Detection examples</h3>
-            <pre><code>AppServiceConsoleLogs
-| where ResultDescription contains '"event_type": "authz_denied"'</code></pre>
-            <pre><code>AppServiceConsoleLogs
-| where ResultDescription contains '"event_type": "content_filter_blocked"'</code></pre>
-            <pre><code>AppServiceConsoleLogs
-| where ResultDescription contains '"event_type": "fallback_used"'
-| summarize count() by bin(TimeGenerated, 1d)</code></pre>
-          </article>
-        </div>
-      </div>
-    </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-layout">
-      <div>
-        <strong>Project Aegis</strong>
-        <p>Azure enterprise AI with identity, network, and retrieval controls.</p>
-      </div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="architecture.html">Architecture</a>
-        <a href="artifacts.html">Artifacts</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

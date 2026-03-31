@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Aegis | Secure Enterprise AI on Azure</title>
-  <meta name="description" content="Project Aegis is a secure Azure AI project website explaining what the platform does, how it works, and how identity, retrieval, and monitoring stay under control." />
+  <meta name="description" content="Project Aegis is a secure Azure AI project website showing the product, Azure setup, networking, hybrid search app, and logging/testing story behind the build." />
   <meta property="og:title" content="Project Aegis | Secure Enterprise AI on Azure" />
-  <meta property="og:description" content="A friendly public-facing guide to Project Aegis, with deeper architecture, security, and implementation details a click away." />
+  <meta property="og:description" content="A clearer public-facing guide to Project Aegis, with product context up front and deeper implementation detail in dedicated sections." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#111111" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,10 +27,12 @@
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a class="is-active" href="index.html">Home</a>
-        <a href="architecture.html">Architecture</a>
-        <a href="security.html">Security</a>
+        <a href="setup.html">Azure Setup</a>
+        <a href="networking.html">Networking</a>
+        <a href="app.html">AI App</a>
+        <a href="logging.html">Logging &amp; Testing</a>
         <a href="artifacts.html">Artifacts</a>
-        <a href="interview.html">Walkthrough</a>
+        <a href="about.html">About</a>
       </nav>
     </div>
   </header>
@@ -39,61 +41,51 @@
     <section class="hero hero-home">
       <div class="container hero-layout hero-layout-home">
         <div class="hero-copy-block">
-          <p class="eyebrow">Private AI • Azure • Entra ID • Retrieval with citations • Sentinel-ready telemetry</p>
-          <h1>Project Aegis makes enterprise AI feel useful without feeling reckless.</h1>
-          <p class="lead">
-            Project Aegis is a secure Azure-based AI environment designed for people who want helpful answers from internal content
-            without casually opening the doors to the wrong users, the wrong documents, or the wrong network paths.
-            It pairs a simple document-question workflow with deliberate identity, retrieval, and monitoring controls.
+          <p class="eyebrow">Private AI • Azure • Hybrid search • Entra ID • Log Analytics + Sentinel</p>
+          <h1>Project Aegis explores what a useful internal AI system looks like when trust still matters.</h1>
+          <p class="lead lead-compact">
+            The idea is simple: let people ask useful questions against internal documents without turning the whole experience into a trust free-for-all.
+            Aegis brings together Azure identity, segmented networking, a Flask-based AI app, hybrid search, citations, and security telemetry in one readable build.
           </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="interview.html">Take the walkthrough</a>
-            <a class="button button-secondary" href="architecture.html">See how it works</a>
+            <a class="button button-primary" href="app.html">See the AI app</a>
+            <a class="button button-secondary" href="networking.html">Explore the architecture</a>
           </div>
 
-          <ul class="hero-points hero-points-compact hero-points-friendly" aria-label="Project highlights">
-            <li>
-              <span class="point-kicker">🧭 Clear boundaries</span>
-              Identity, app logic, search, storage, and model access each have a distinct job instead of blending into one fuzzy trust zone.
-            </li>
-            <li>
-              <span class="point-kicker">📚 Grounded answers</span>
-              Documents are processed for retrieval so responses can stay tied to source material rather than free-floating confidence.
-            </li>
-            <li>
-              <span class="point-kicker">🛡️ Built to be watched</span>
-              Telemetry flows into Log Analytics and Sentinel so problems can be investigated, not shrugged at.
-            </li>
+          <ul class="hero-points hero-points-simple" aria-label="Project highlights">
+            <li><span class="point-kicker">🔎 Grounded retrieval</span>Hybrid search and citations keep answers tied to indexed document chunks.</li>
+            <li><span class="point-kicker">🛂 Real access control</span>Entra ID, MFA, roles, and server-side scope checks stay in charge of who can reach what.</li>
+            <li><span class="point-kicker">📡 Observable behavior</span>Application and platform activity flow into logging so attacks, failures, and abuse are easier to spot and investigate.</li>
           </ul>
         </div>
 
         <aside class="hero-panel hero-panel-home">
           <div class="stat-card stat-card-accent hero-story-card">
-            <span class="stat-label">What this project is</span>
-            <strong>A standalone project website for a secure enterprise AI build — not a resume bullet, not a mock interview prop.</strong>
-            <p>Aegis is about showing a credible product shape first, then letting deeper readers drill into architecture, controls, and source evidence.</p>
+            <span class="stat-label">Project shape</span>
+            <strong>A standalone project website for a real Azure security + AI build.</strong>
+            <p>Start with the product story here, then go deeper into setup, networking, app design, and detection-oriented operations.</p>
           </div>
-          <div class="stat-grid">
+          <div class="stat-grid compact-grid muted-grid">
             <div class="stat-card icon-card">
-              <span class="icon-chip" aria-hidden="true">👥</span>
+              <span class="icon-chip" aria-hidden="true">☁️</span>
               <div>
-                <span class="stat-label">For people using it</span>
-                <strong>Friendly sign-in, document-backed answers, and clearer trust boundaries about who can see what.</strong>
+                <span class="stat-label">Azure setup</span>
+                <strong>Tenant, governance, identity, secrets, diagnostics, and the deployment baseline.</strong>
               </div>
             </div>
             <div class="stat-card icon-card">
-              <span class="icon-chip" aria-hidden="true">🏗️</span>
+              <span class="icon-chip" aria-hidden="true">🌐</span>
               <div>
-                <span class="stat-label">For technical readers</span>
-                <strong>Hub-and-spoke networking, private endpoints, managed identity, Key Vault, Azure OpenAI, AI Search, and Flask.</strong>
+                <span class="stat-label">Networking</span>
+                <strong>Hub-and-spoke layout, private endpoints, DNS, and egress through a Linux NVA path.</strong>
               </div>
             </div>
             <div class="stat-card icon-card">
-              <span class="icon-chip" aria-hidden="true">🔎</span>
+              <span class="icon-chip" aria-hidden="true">🤖</span>
               <div>
-                <span class="stat-label">For reviewers</span>
-                <strong>Threat modeling, implementation artifacts, and detection-oriented operational visibility are all documented separately.</strong>
+                <span class="stat-label">AI app</span>
+                <strong>Flask, managed identity, chunking, hybrid search, citations, and guarded model calls.</strong>
               </div>
             </div>
           </div>
@@ -101,68 +93,42 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-subtle">
       <div class="container">
         <div class="section-heading narrow">
-          <p class="eyebrow">What visitors can explore</p>
-          <h2>A simple way into the project, with deeper layers when you want them.</h2>
+          <p class="eyebrow">Start here</p>
+          <h2>What visitors can understand in under a minute.</h2>
           <p>
-            The home page explains the project in plain language. The deeper pages keep the heavier technical detail where it belongs:
-            architecture for system shape, security for trust decisions, artifacts for source evidence, and a guided walkthrough for people who want the quick tour.
+            Project Aegis is not just a chatbot skin. It is a full-stack security-minded AI project that separates platform setup, network design,
+            application logic, retrieval, and monitoring so each trust decision has a clear home.
           </p>
         </div>
 
-        <div class="feature-grid three">
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">✨</span>
-            <h3>Start with the product idea</h3>
-            <p>Understand the problem Aegis is solving: making private enterprise AI useful, explainable, and much less casual about access control.</p>
-            <a class="text-link" href="interview.html">Open the walkthrough</a>
+        <div class="quick-grid">
+          <article class="feature-card icon-feature minimal-card">
+            <span class="section-icon" aria-hidden="true">1</span>
+            <h3>Azure Setup</h3>
+            <p>How the tenant, identity controls, Key Vault, diagnostics, and baseline cloud services are assembled.</p>
+            <a class="text-link" href="setup.html">Open Azure setup</a>
           </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🏛️</span>
-            <h3>Dive into architecture</h3>
-            <p>See how the Azure environment separates network, application, AI, and data responsibilities so the model is not treated as the trust boundary.</p>
-            <a class="text-link" href="architecture.html">Open architecture</a>
+          <article class="feature-card icon-feature minimal-card">
+            <span class="section-icon" aria-hidden="true">2</span>
+            <h3>Networking</h3>
+            <p>How hub-and-spoke networking, private connectivity, and the NVA egress path shape traffic flow.</p>
+            <a class="text-link" href="networking.html">Open networking</a>
           </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🧾</span>
-            <h3>Check the evidence</h3>
-            <p>Review the diagram, threat-model outputs, build checklist, egress notes, application details, and adversarial prompt material behind the site.</p>
-            <a class="text-link" href="artifacts.html">Open artifacts</a>
+          <article class="feature-card icon-feature minimal-card">
+            <span class="section-icon" aria-hidden="true">3</span>
+            <h3>AI App</h3>
+            <p>How uploads, chunking, hybrid search, model calls, and citations fit together in the Flask app.</p>
+            <a class="text-link" href="app.html">Open AI app</a>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-subtle">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Why Aegis is structured this way</p>
-          <h2>The project keeps the friendly story up front and the hard controls underneath.</h2>
-        </div>
-
-        <div class="proof-grid proof-grid-home">
-          <div class="proof-card light motif-card">
-            <span class="motif" aria-hidden="true">🔐</span>
-            <strong>Identity stays authoritative</strong>
-            <p>Entra ID, MFA, and server-side scope checks decide who gets access. The model does not get to improvise trust.</p>
-          </div>
-          <div class="proof-card light motif-card">
-            <span class="motif" aria-hidden="true">🌐</span>
-            <strong>Network paths stay intentional</strong>
-            <p>Private endpoints, DNS decisions, and segmented Azure networking keep service-to-service access from turning into a public free-for-all.</p>
-          </div>
-          <div class="proof-card light motif-card">
-            <span class="motif" aria-hidden="true">📎</span>
-            <strong>Answers stay tied to content</strong>
-            <p>Retrieved chunks, citations, and scoped context keep the AI experience anchored to source documents rather than vibes alone.</p>
-          </div>
-          <div class="proof-card light motif-card">
-            <span class="motif" aria-hidden="true">📡</span>
-            <strong>Operations stay observable</strong>
-            <p>Logs and diagnostics are treated like part of the security design so failures and weird behavior can be spotted early.</p>
-          </div>
+          <article class="feature-card icon-feature minimal-card">
+            <span class="section-icon" aria-hidden="true">4</span>
+            <h3>Logging &amp; Testing</h3>
+            <p>How the project detects prompt injection, tracks authorization failures, and supports investigation afterward.</p>
+            <a class="text-link" href="logging.html">Open logging &amp; testing</a>
+          </article>
         </div>
       </div>
     </section>
@@ -170,17 +136,53 @@
     <section class="section">
       <div class="container">
         <div class="section-heading narrow">
-          <p class="eyebrow">Quick read</p>
-          <h2>What Project Aegis actually delivers.</h2>
+          <p class="eyebrow">Why it exists</p>
+          <h2>The project is trying to answer one practical question.</h2>
         </div>
 
-        <ul class="summary-list summary-list-rich">
-          <li><span class="summary-symbol" aria-hidden="true">•</span><div><strong>Secure Azure AI foundation:</strong> a segmented environment that separates application, AI, data, and shared network concerns instead of flattening them together.</div></li>
-          <li><span class="summary-symbol" aria-hidden="true">•</span><div><strong>Access with guardrails:</strong> Entra ID sign-in, Conditional Access, MFA, groups, RBAC, and server-side scope logic govern document and retrieval access.</div></li>
-          <li><span class="summary-symbol" aria-hidden="true">•</span><div><strong>Retrieval with provenance:</strong> uploads can be chunked, indexed, retrieved, and cited so the user experience stays more inspectable than a raw chatbot flow.</div></li>
-          <li><span class="summary-symbol" aria-hidden="true">•</span><div><strong>Security-first threat framing:</strong> the project explicitly calls out prompt injection, poisoning, authorization abuse, and infrastructure misconfiguration as first-order risks.</div></li>
-          <li><span class="summary-symbol" aria-hidden="true">•</span><div><strong>Evidence behind the claims:</strong> architecture diagrams, threat models, build records, and implementation notes are available for readers who want more than polished copy.</div></li>
-        </ul>
+        <div class="feature-grid two simple-columns">
+          <article class="feature-card">
+            <h3>Can internal-document AI be useful without getting sloppy about trust?</h3>
+            <p>
+              Aegis is built around the idea that AI answers only stay credible when identity, scope, retrieval, and logging are treated as part of the product,
+              not as cleanup work after the model is already running.
+            </p>
+          </article>
+          <article class="feature-card">
+            <h3>What makes this different from a toy demo?</h3>
+            <p>
+              The site breaks the project into the same pieces a real deployment would care about: cloud setup, networking, app behavior, evidence, and
+              operational visibility. The technical depth is still here, just moved off the front page so newcomers can breathe first.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading narrow">
+          <p class="eyebrow">About me</p>
+          <h2>Why I built Project Aegis.</h2>
+          <p>
+            I created Project Aegis to learn what it really takes to make an enterprise AI system feel useful and defensible at the same time.
+            I wanted to go beyond a basic chat experience and understand the harder parts: Azure architecture, identity design, retrieval boundaries,
+            hybrid search, logging, and how to test whether the system holds up when people or documents behave badly.
+          </p>
+        </div>
+
+        <div class="feature-grid two simple-columns">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🧠</span>
+            <h3>What I was trying to learn</h3>
+            <p>How cloud security, networking, and AI application design interact when the goal is a real private-document workflow instead of a one-screen demo.</p>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🎯</span>
+            <h3>What I wanted the project to prove</h3>
+            <p>That a modern AI app can be approachable on the surface while still being deliberate about authorization, retrieval provenance, and detection behind the scenes.</p>
+          </article>
+        </div>
       </div>
     </section>
   </main>
@@ -189,13 +191,13 @@
     <div class="container footer-layout">
       <div>
         <strong>Project Aegis</strong>
-        <p>Azure enterprise AI with identity, network, and retrieval controls.</p>
+        <p>Azure enterprise AI with identity, network, retrieval, and monitoring controls.</p>
       </div>
       <div class="footer-links">
-        <a href="architecture.html">Architecture</a>
-        <a href="security.html">Security</a>
-        <a href="artifacts.html">Artifacts</a>
-        <a href="interview.html">Walkthrough</a>
+        <a href="setup.html">Azure Setup</a>
+        <a href="networking.html">Networking</a>
+        <a href="app.html">AI App</a>
+        <a href="logging.html">Logging &amp; Testing</a>
       </div>
     </div>
   </footer>

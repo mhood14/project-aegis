@@ -2,133 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=networking.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Architecture | Project Aegis</title>
-  <meta name="description" content="Architecture overview for Project Aegis, including hub-and-spoke Azure design, trust zones, and data flow." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-noise" aria-hidden="true"></div>
-  <header class="site-header">
-    <div class="container nav-shell">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">A</span>
-        <span>
-          <strong>Project Aegis</strong>
-          <small>Secure Enterprise AI on Azure</small>
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a class="is-active" href="architecture.html">Architecture</a>
-        <a href="security.html">Security</a>
-        <a href="artifacts.html">Artifacts</a>
-        <a href="interview.html">Walkthrough</a>
-      </nav>
+  <main class="section">
+    <div class="container">
+      <p class="eyebrow">Redirecting</p>
+      <h1 class="page-title">Architecture now lives in the Networking section.</h1>
+      <p class="page-intro">If you are not redirected automatically, <a class="text-link" href="networking.html">open Networking</a>.</p>
     </div>
-  </header>
-
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <p class="eyebrow">Architecture</p>
-        <h1 class="page-title">Hub-and-spoke Azure architecture for a private AI workflow.</h1>
-        <p class="page-intro">Project Aegis separates shared network services, application hosting, AI services, and data services so that identity, routing, private connectivity, and observability can be managed deliberately rather than as a single flat boundary.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="architecture-layout">
-          <article class="panel panel-visual">
-            <div class="panel-head">
-              <h3>Reference architecture diagram</h3>
-              <a href="SupportingDocs/aegis_final_polished_diagram.png" target="_blank" rel="noopener">Open full diagram</a>
-            </div>
-            <img class="architecture-image" src="SupportingDocs/aegis_final_polished_diagram.png" alt="Project Aegis Azure architecture diagram showing hub-and-spoke networking, private endpoints, AI, app, and data components." />
-          </article>
-
-          <div class="stacked-panels">
-            <article class="panel">
-              <h3>Network layout</h3>
-              <ul class="clean-list">
-                <li><strong>Hub VNet:</strong> shared routing functions, private DNS, and central control-plane services.</li>
-                <li><strong>App spoke:</strong> the Flask application runs in App Service with VNet integration for controlled service access.</li>
-                <li><strong>AI spoke:</strong> Azure OpenAI and Azure AI Search are reached through private endpoint paths.</li>
-                <li><strong>Data spoke:</strong> Blob Storage access is isolated from broad public exposure and aligned with the retrieval workflow.</li>
-              </ul>
-            </article>
-
-            <article class="panel">
-              <h3>Egress direction</h3>
-              <ul class="clean-list">
-                <li><strong>Phase 1:</strong> native Azure outbound routing keeps the initial build cost lower while preserving the segmented layout.</li>
-                <li><strong>Target state:</strong> Azure Firewall in the hub, UDRs on spoke subnets, forwarded traffic enabled in peering, and centralized inspection through the firewall path.</li>
-                <li><strong>Reason for the phased approach:</strong> establish the security architecture first, then add forced tunneling and centralized outbound enforcement as the environment matures.</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-
-        <div class="section-heading narrow spaced-top">
-          <p class="eyebrow">Core flow</p>
-          <h2>How identity, data, and model access move through the system.</h2>
-        </div>
-
-        <div class="flow-grid flow-grid-four">
-          <article class="feature-card flow-card">
-            <span class="step">01</span>
-            <h3>User signs in with Entra ID</h3>
-            <p>Authentication begins with Entra ID, while Conditional Access and MFA add policy enforcement before the application session is trusted.</p>
-          </article>
-          <article class="feature-card flow-card">
-            <span class="step">02</span>
-            <h3>Application applies authorization</h3>
-            <p>The Flask backend validates scope and access rules before allowing uploads, retrieval, or downstream model use.</p>
-          </article>
-          <article class="feature-card flow-card">
-            <span class="step">03</span>
-            <h3>Documents are stored and indexed</h3>
-            <p>Uploaded source documents are stored in Blob Storage, processed into chunks, and prepared for Azure AI Search retrieval.</p>
-          </article>
-          <article class="feature-card flow-card">
-            <span class="step">04</span>
-            <h3>Scoped context reaches Azure OpenAI</h3>
-            <p>Only the retrieval output selected for the current request is sent forward into the model path, with citations tied back to chunk sources.</p>
-          </article>
-        </div>
-
-        <div class="feature-grid two spaced-top">
-          <article class="feature-card">
-            <h3>Provisioning baseline</h3>
-            <p>The build checklist shows the environment starting from management groups, role assignments, resource groups, VNets, subnets, peerings, private DNS, NSGs, Entra ID P1 licensing, Conditional Access, Key Vault, Defender for Key Vault, and diagnostic settings.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Why the separation matters</h3>
-            <p>By keeping application logic, search, model access, secrets, and storage as distinct responsibilities, the environment avoids treating the model itself as the main trust boundary. Identity, routing, and application logic still do the hard security work.</p>
-          </article>
-        </div>
-      </div>
-    </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-layout">
-      <div>
-        <strong>Project Aegis</strong>
-        <p>Azure enterprise AI with identity, network, and retrieval controls.</p>
-      </div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="security.html">Security</a>
-        <a href="artifacts.html">Artifacts</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

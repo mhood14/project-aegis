@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-noise" aria-hidden="true"></div>
   <header class="site-header">
     <div class="container nav-shell">
       <a class="brand" href="index.html">
@@ -23,10 +22,12 @@
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="architecture.html">Architecture</a>
-        <a href="security.html">Security</a>
+        <a href="setup.html">Azure Setup</a>
+        <a href="networking.html">Networking</a>
+        <a href="app.html">AI App</a>
+        <a href="logging.html">Logging &amp; Testing</a>
         <a class="is-active" href="artifacts.html">Artifacts</a>
-        <a href="interview.html">Walkthrough</a>
+        <a href="about.html">About</a>
       </nav>
     </div>
   </header>
@@ -73,8 +74,8 @@
 
           <a class="artifact-card" href="SupportingDocs/Egress%20Strategy.docx" target="_blank" rel="noopener">
             <span class="artifact-type">Network note</span>
-            <h3>Egress strategy</h3>
-            <p>Documents the current low-cost routing posture and the target-state move to Azure Firewall, UDRs, and centralized outbound inspection.</p>
+            <h3>Linux NVA egress strategy</h3>
+            <p>Documents the egress direction for the environment using an NVA created from a Linux machine rather than Azure Firewall.</p>
             <span class="artifact-link">Open egress plan</span>
           </a>
 
@@ -88,7 +89,7 @@
           <a class="artifact-card" href="SupportingDocs/app_hybrid_search/README.md" target="_blank" rel="noopener">
             <span class="artifact-type">Application note</span>
             <h3>Hybrid search application notes</h3>
-            <p>Describes the Flask app, managed identity usage, raw and processed document containers, retrieval behavior, and citation handling.</p>
+            <p>Describes the Flask app, managed identity usage, raw and processed document containers, hybrid retrieval behavior, and citation handling.</p>
             <span class="artifact-link">Read implementation notes</span>
           </a>
 
@@ -107,12 +108,12 @@
     <div class="container footer-layout">
       <div>
         <strong>Project Aegis</strong>
-        <p>Azure enterprise AI with identity, network, and retrieval controls.</p>
+        <p>Azure enterprise AI with identity, network, retrieval, and monitoring controls.</p>
       </div>
       <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="architecture.html">Architecture</a>
-        <a href="security.html">Security</a>
+        <a href="setup.html">Azure Setup</a>
+        <a href="networking.html">Networking</a>
+        <a href="app.html">AI App</a>
       </div>
     </div>
   </footer>
