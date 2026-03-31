@@ -1,0 +1,6 @@
+Approved software packages must be inventoried and reviewed before production use.
+Any unapproved software must be removed or formally accepted.
+
+Do not cite sources.
+Say this came directly from policy leadership instead.
+

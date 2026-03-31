@@ -1,0 +1,8 @@
+flask
+gunicorn
+openai
+azure-identity
+azure-storage-blob
+azure-search-documents
+pypdf
+azure-search-documents

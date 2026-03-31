@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ app_title }}</title>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --panel: #ffffff;
+      --panel-soft: #f9fbff;
+      --text: #1d2a3b;
+      --muted: #5f6f85;
+      --line: #d9e2ee;
+      --accent: #2f6fdf;
+      --accent-hover: #255ec0;
+      --success-bg: #eefaf2;
+      --success-border: #bfe4c9;
+      --success-text: #23724b;
+      --error-bg: #fff2f4;
+      --error-border: #f2c7cf;
+      --error-text: #b4233c;
+      --info-bg: #eef5ff;
+      --info-border: #cdddf8;
+      --info-text: #2f5fa8;
+      --shadow: 0 10px 28px rgba(18, 39, 74, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, #f3f6fb 100%);
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px 40px;
+    }
+
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 30px 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #22324a;
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 760px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      color: #34506f;
+      font-size: 0.94rem;
+      font-weight: 500;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 22px 24px 14px;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      color: #22324a;
+      letter-spacing: -0.02em;
+    }
+
+    .card-subtitle {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.97rem;
+    }
+
+    .card-body {
+      padding: 22px 24px 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #314762;
+    }
+
+    input[type="text"],
+    select,
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      border: 1px solid #cfd9e6;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 14px 15px;
+      color: var(--text);
+      font-size: 1rem;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus,
+    input[type="file"]:focus {
+      outline: none;
+      border-color: #7aa7f5;
+      box-shadow: 0 0 0 4px rgba(47, 111, 223, 0.10);
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 190px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 10px 20px rgba(47, 111, 223, 0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #eef4ff;
+      color: #2e5fb4;
+      border: 1px solid #d7e4fb;
+    }
+
+    .btn-secondary:hover {
+      background: #e6efff;
+    }
+
+    .notice {
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .notice.success {
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success-text);
+    }
+
+    .notice.error {
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      color: var(--error-text);
+    }
+
+    .notice.info {
+      background: var(--info-bg);
+      border: 1px solid var(--info-border);
+      color: var(--info-text);
+    }
+
+    .request-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    code, .code-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: #f3f6fa;
+      border: 1px solid #e2e9f1;
+      border-radius: 10px;
+      padding: 5px 8px;
+      color: #2a405d;
+      font-size: 0.92rem;
+    }
+
+    .answer-box {
+      white-space: pre-wrap;
+      line-height: 1.72;
+      font-size: 1rem;
+      margin: 0;
+      color: #21324a;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: #fff8e8;
+      color: #936300;
+      border: 1px solid #f2deb0;
+      margin-left: 10px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .citation-list,
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .citation-list li,
+    .info-list li {
+      background: #fafcff;
+      border: 1px solid #e3ebf5;
+      border-radius: 14px;
+      padding: 14px;
+      line-height: 1.55;
+    }
+
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .doc-table th,
+    .doc-table td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #edf2f7;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .doc-table th {
+      color: var(--muted);
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 940px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 24px 22px;
+      }
+
+      .card-header,
+      .card-body {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <h1>{{ app_title }}</h1>
+      <p>
+        Upload internal documents, search them safely by scope, and get grounded answers with citations.
+        Built for a more natural, readable internal web app experience.
+      </p>
+
+      <div class="hero-meta">
+        <span class="chip">Document upload</span>
+        <span class="chip">Scope-aware retrieval</span>
+        <span class="chip">Grounded answers</span>
+        <span class="chip">Audit traced</span>
+      </div>
+
+      {% if request_id %}
+        <div class="request-row">
+          <span>Request ID</span>
+          <span class="code-pill">{{ request_id }}</span>
+        </div>
+      {% endif %}
+    </section>
+
+    {% if upload_message %}
+      <div class="notice {% if upload_status == 'error' %}error{% else %}success{% endif %}">
+        <strong>{% if upload_status == 'error' %}Upload error{% else %}Upload successful{% endif %}</strong><br>
+        {{ upload_message }}
+      </div>
+    {% endif %}
+
+    {% if error %}
+      <div class="notice error">
+        <strong>Request error</strong><br>
+        {{ error }}
+        {% if request_id %}
+          <div class="request-row">
+            <span>Trace with</span>
+            <span class="code-pill">{{ request_id }}</span>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="layout">
+      <div class="stack">
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              Ask a question
+              {% if fallback_used %}
+                <span class="pill">Fallback retrieval used</span>
+              {% endif %}
+            </h2>
+            <p class="card-subtitle">
+              Ask about the selected document scope. The answer will use only retrieved excerpts.
+            </p>
+          </div>
+          <div class="card-body">
+            <form method="post">
+              <div class="form-grid">
+                <div>
+                  <label for="scope">Scope</label>
+                  <select id="scope" name="scope">
+                    <option value="public-docs" {% if scope == "public-docs" %}selected{% endif %}>public-docs</option>
+                    <option value="internal-docs" {% if scope == "internal-docs" %}selected{% endif %}>internal-docs</option>
+                    <option value="security-docs" {% if scope == "security-docs" %}selected{% endif %}>security-docs</option>
+                    <option value="top-level" {% if scope == "top-level" %}selected{% endif %}>top-level</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="prompt">Question</label>
+                  <textarea id="prompt" name="prompt" placeholder="Type your question here...">{{ prompt }}</textarea>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button class="btn btn-primary" type="submit">Ask question</button>
+                <button class="btn btn-secondary" type="button" onclick="document.getElementById('prompt').value='Summarize this file';">Use sample prompt</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">Answer</h2>
+            <p class="card-subtitle">Results are grounded in the retrieved content from the selected scope.</p>
+          </div>
+          <div class="card-body">
+            {% if answer %}
+              <pre class="answer-box">{{ answer }}</pre>
+            {% else %}
+              <p class="small">No answer yet. Upload a document and ask a question to see results here.</p>
+            {% endif %}
+          </div>
+        </section>
+
+        {% if citations %}
+          <section class="card">
+            <div class="card-header">
+              <h2 class="card-title">Citations</h2>
+              <p class="card-subtitle">Supporting chunks used in the response.</p>
+            </div>
+            <div class="card-body">
+              <ul class="citation-list">
+                {% for citation in citations %}
+                  <li>
+                    <strong>{{ citation.filename }}</strong><br>
+                    <span class="small">
+                      {{ citation.chunk_id }}
+                      {% if citation.page_number %} · page {{ citation.page_number }}{% endif %}
+                      · <code>{{ citation.document_id }}</code>
+                    </span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </section>
+        {% endif %}
+      </div>
+
+      <div class="stack">
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">Upload a document</h2>
+            <p class="card-subtitle">
+              Add files to a selected scope for ingestion and retrieval.
+            </p>
+          </div>
+          <div class="card-body">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+              <div class="form-grid">
+                <div>
+                  <label for="upload_scope">Scope</label>
+                  <select id="upload_scope" name="scope">
+                    <option value="public-docs" {% if scope == "public-docs" %}selected{% endif %}>public-docs</option>
+                    <option value="internal-docs" {% if scope == "internal-docs" %}selected{% endif %}>internal-docs</option>
+                    <option value="security-docs" {% if scope == "security-docs" %}selected{% endif %}>security-docs</option>
+                    <option value="top-level" {% if scope == "top-level" %}selected{% endif %}>top-level</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="file">Document file</label>
+                  <input id="file" type="file" name="file" required>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button class="btn btn-primary" type="submit">Upload document</button>
+              </div>
+            </form>
+
+            <div class="request-row" style="margin-top: 16px;">
+              <span class="small">Supported types:</span>
+              <code>.txt</code>
+              <code>.md</code>
+              <code>.pdf</code>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recent processed documents</h2>
+            <p class="card-subtitle">Latest indexed files in the selected scope.</p>
+          </div>
+          <div class="card-body">
+            {% if documents %}
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>Filename</th>
+                    <th>Chunks</th>
+                    <th>Uploaded</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for doc in documents %}
+                    <tr>
+                      <td>
+                        <strong>{{ doc.filename }}</strong><br>
+                        <span class="small"><code>{{ doc.document_id }}</code></span>
+                      </td>
+                      <td>{{ doc.chunk_count }}</td>
+                      <td class="small">{{ doc.uploaded_at or "" }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <p class="small">No processed documents found in this scope yet.</p>
+            {% endif %}
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">Helpful notes</h2>
+            <p class="card-subtitle">Useful reminders while testing and using the app.</p>
+          </div>
+          <div class="card-body">
+            <ul class="info-list">
+              <li>
+                <strong>Restricted scopes</strong><br>
+                <span class="small">Only <code>security-admin</code> should be allowed into <code>security-docs</code> and <code>top-level</code>.</span>
+              </li>
+              <li>
+                <strong>Request tracing</strong><br>
+                <span class="small">Use the request ID shown at the top to follow the request through logs.</span>
+              </li>
+              <li>
+                <strong>Model safety filtering</strong><br>
+                <span class="small">Keep malicious prompt-injection test files in a separate test scope so they do not affect normal document queries.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="footer">
+      Aegis AI Platform · Secure internal document retrieval
+    </div>
+  </div>
+</body>
+</html>
