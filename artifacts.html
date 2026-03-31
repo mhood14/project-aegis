@@ -35,8 +35,8 @@
     <section class="page-hero">
       <div class="container">
         <p class="eyebrow">Artifacts</p>
-        <h1 class="page-title">Evidence, source material, and implementation proof.</h1>
-        <p class="page-intro">These artifacts turn the project from a summary into proof. They show the network design, threat model, build sequence, application notes, and adversarial testing inputs that shaped the implementation.</p>
+        <h1 class="page-title">Project evidence and source documents.</h1>
+        <p class="page-intro">The artifact set includes the reference architecture, threat-model outputs, the build checklist, egress planning, application implementation notes, and the prompt-injection test corpus used to pressure-test the retrieval workflow.</p>
       </div>
     </section>
 
@@ -46,56 +46,56 @@
           <a class="artifact-card featured" href="SupportingDocs/aegis_final_polished_diagram.png" target="_blank" rel="noopener">
             <span class="artifact-type">Diagram</span>
             <h3>Final network and service architecture</h3>
-            <p>Polished visual architecture of the Azure environment, trust zones, and service placement decisions.</p>
-            <span class="artifact-link">View full architecture</span>
+            <p>Reference diagram showing the hub, spokes, private endpoint placement, and the relationship between application, AI, data, and shared services.</p>
+            <span class="artifact-link">View architecture diagram</span>
           </a>
 
           <a class="artifact-card" href="SupportingDocs/Threat%20Modeling%20Document%20-%20Executive.docx" target="_blank" rel="noopener">
-            <span class="artifact-type">Threat Model</span>
-            <h3>Executive threat modeling document</h3>
-            <p>Detailed threat narrative covering trust boundaries, risks, controls, residual concerns, and recommendations.</p>
+            <span class="artifact-type">Threat model</span>
+            <h3>Executive threat model narrative</h3>
+            <p>Detailed write-up of trust boundaries, objectives, attack surfaces, and risks across the Azure tenant and AI application.</p>
             <span class="artifact-link">Open document</span>
           </a>
 
           <a class="artifact-card" href="SupportingDocs/Threat%20Modeling%20Document%20-%20Executive%20Table.docx" target="_blank" rel="noopener">
-            <span class="artifact-type">Risk Table</span>
+            <span class="artifact-type">Risk table</span>
             <h3>Prioritized executive risk table</h3>
-            <p>Short-form summary of severity, business impact, likelihood, and recommended action order.</p>
+            <p>Severity, impact, likelihood, current controls, and recommended action order for the top security issues.</p>
             <span class="artifact-link">Open risk summary</span>
           </a>
 
           <a class="artifact-card" href="SupportingDocs/Project%20Aegis%20checklist%20and%20screen%20shots.docx" target="_blank" rel="noopener">
-            <span class="artifact-type">Build Record</span>
-            <h3>Implementation checklist and screenshots</h3>
-            <p>Provisioning and validation notes for the tenant, resources, and app build-out.</p>
+            <span class="artifact-type">Build record</span>
+            <h3>Provisioning checklist and screenshots</h3>
+            <p>Evidence of the environment build-out, including management structure, networking, Conditional Access, Key Vault, Defender, and diagnostics.</p>
             <span class="artifact-link">Review build evidence</span>
           </a>
 
           <a class="artifact-card" href="SupportingDocs/Egress%20Strategy.docx" target="_blank" rel="noopener">
-            <span class="artifact-type">Architecture Note</span>
+            <span class="artifact-type">Network note</span>
             <h3>Egress strategy</h3>
-            <p>Supporting design material for outbound traffic decisions and network-control posture.</p>
-            <span class="artifact-link">Open design note</span>
+            <p>Documents the current low-cost routing posture and the target-state move to Azure Firewall, UDRs, and centralized outbound inspection.</p>
+            <span class="artifact-link">Open egress plan</span>
           </a>
 
           <a class="artifact-card" href="SupportingDocs/IP%20Adressing%20Plan.xlsx" target="_blank" rel="noopener">
-            <span class="artifact-type">Network Plan</span>
+            <span class="artifact-type">Addressing plan</span>
             <h3>IP addressing plan</h3>
-            <p>Addressing structure that supports the segmented hub-and-spoke deployment model.</p>
-            <span class="artifact-link">Open network plan</span>
+            <p>Subnet and network structure that supports segmentation across the hub, app, AI, and data portions of the environment.</p>
+            <span class="artifact-link">Open spreadsheet</span>
           </a>
 
           <a class="artifact-card" href="SupportingDocs/app_hybrid_search/README.md" target="_blank" rel="noopener">
-            <span class="artifact-type">App Source</span>
+            <span class="artifact-type">Application note</span>
             <h3>Hybrid search application notes</h3>
-            <p>Implementation summary for the Flask app, managed identity usage, chunk flow, storage, and citations.</p>
+            <p>Describes the Flask app, managed identity usage, raw and processed document containers, retrieval behavior, and citation handling.</p>
             <span class="artifact-link">Read implementation notes</span>
           </a>
 
           <a class="artifact-card" href="SupportingDocs/PromptInjection/01_ignore_instructions.txt" target="_blank" rel="noopener">
-            <span class="artifact-type">Adversarial Test</span>
-            <h3>Prompt injection test corpus</h3>
-            <p>Sample malicious content used to validate that retrieved documents are treated as untrusted data.</p>
+            <span class="artifact-type">Adversarial test</span>
+            <h3>Prompt-injection test corpus</h3>
+            <p>Sample malicious content used to validate that retrieved documents remain untrusted and do not silently override the application prompt strategy.</p>
             <span class="artifact-link">Inspect test file</span>
           </a>
         </div>
@@ -107,7 +107,7 @@
     <div class="container footer-layout">
       <div>
         <strong>Project Aegis</strong>
-        <p>Security-first Azure AI portfolio case study.</p>
+        <p>Azure enterprise AI with identity, network, and retrieval controls.</p>
       </div>
       <div class="footer-links">
         <a href="index.html">Home</a>

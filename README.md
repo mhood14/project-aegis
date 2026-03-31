@@ -1,10 +1,15 @@
-# Aegis AI Platform GitHub Pages
+# Project Aegis GitHub Pages Site
 
-This is a static GitHub Pages landing site for the Aegis AI Platform portfolio project.
+This repository contains a static multi-page website for Project Aegis.
 
 ## Files
-- `index.html` - main landing page
-- `styles.css` - page styling
+- `index.html` - home page and system summary
+- `architecture.html` - Azure architecture and network flow
+- `security.html` - controls, risks, and detections
+- `artifacts.html` - supporting documents and evidence
+- `interview.html` - concise walkthrough for discussing the project
+- `styles.css` - shared site styling
+- `script.js` - header and reveal behavior
 
 ## How to publish with GitHub Pages
 1. Create a GitHub repository.
@@ -16,7 +21,7 @@ This is a static GitHub Pages landing site for the Aegis AI Platform portfolio p
 5. Save.
 6. GitHub will publish the site at your Pages URL.
 
-## Recommended next edits
-- Replace placeholder copy with your exact live demo links
-- Add screenshots or architecture images if desired
-- Add links to your threat model PDF and final architecture diagram
+## Notes
+- Supporting documents live in `SupportingDocs/`.
+- Keep project content aligned with the actual Azure build, threat model, and implementation evidence.
+- Avoid placeholder or meta commentary in the site copy.

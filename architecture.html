@@ -35,8 +35,8 @@
     <section class="page-hero">
       <div class="container">
         <p class="eyebrow">Architecture</p>
-        <h1 class="page-title">Zero Trust Azure design with explicit trust separation.</h1>
-        <p class="page-intro">The architecture keeps application, AI, secrets, and data responsibilities separated so security decisions are enforced by the platform and the application rather than casually delegated to the model layer.</p>
+        <h1 class="page-title">Hub-and-spoke Azure architecture for a private AI workflow.</h1>
+        <p class="page-intro">Project Aegis separates shared network services, application hosting, AI services, and data services so that identity, routing, private connectivity, and observability can be managed deliberately rather than as a single flat boundary.</p>
       </div>
     </section>
 
@@ -53,52 +53,62 @@
 
           <div class="stacked-panels">
             <article class="panel">
-              <h3>Network pattern</h3>
+              <h3>Network layout</h3>
               <ul class="clean-list">
-                <li><strong>Hub VNet:</strong> central routing, NVA traffic forwarding, private DNS, and shared control-plane functions.</li>
-                <li><strong>App spoke:</strong> App Service with VNet integration and isolated workload placement.</li>
-                <li><strong>AI spoke:</strong> Azure OpenAI and Azure AI Search via private endpoint paths.</li>
-                <li><strong>Data spoke:</strong> Storage account access isolated from the public internet.</li>
+                <li><strong>Hub VNet:</strong> shared routing functions, private DNS, and central control-plane services.</li>
+                <li><strong>App spoke:</strong> the Flask application runs in App Service with VNet integration for controlled service access.</li>
+                <li><strong>AI spoke:</strong> Azure OpenAI and Azure AI Search are reached through private endpoint paths.</li>
+                <li><strong>Data spoke:</strong> Blob Storage access is isolated from broad public exposure and aligned with the retrieval workflow.</li>
               </ul>
             </article>
 
             <article class="panel">
-              <h3>Control intent</h3>
+              <h3>Egress direction</h3>
               <ul class="clean-list">
-                <li>Keep model access private and application-mediated.</li>
-                <li>Use bidirectional peering to preserve necessary internal reachability between spokes and hub.</li>
-                <li>Keep identity, data, and AI controls from collapsing into a single boundary.</li>
-                <li>Preserve operational visibility through centralized logging and diagnostics.</li>
+                <li><strong>Phase 1:</strong> native Azure outbound routing keeps the initial build cost lower while preserving the segmented layout.</li>
+                <li><strong>Target state:</strong> Azure Firewall in the hub, UDRs on spoke subnets, forwarded traffic enabled in peering, and centralized inspection through the firewall path.</li>
+                <li><strong>Reason for the phased approach:</strong> establish the security architecture first, then add forced tunneling and centralized outbound enforcement as the environment matures.</li>
               </ul>
             </article>
           </div>
         </div>
 
         <div class="section-heading narrow spaced-top">
-          <p class="eyebrow">Flow</p>
-          <h2>How data and trust move through the system.</h2>
+          <p class="eyebrow">Core flow</p>
+          <h2>How identity, data, and model access move through the system.</h2>
         </div>
 
         <div class="flow-grid flow-grid-four">
           <article class="feature-card flow-card">
             <span class="step">01</span>
-            <h3>User identity is established</h3>
-            <p>Entra ID authenticates the user and Conditional Access adds MFA and policy enforcement.</p>
+            <h3>User signs in with Entra ID</h3>
+            <p>Authentication begins with Entra ID, while Conditional Access and MFA add policy enforcement before the application session is trusted.</p>
           </article>
           <article class="feature-card flow-card">
             <span class="step">02</span>
-            <h3>App enforces authorization</h3>
-            <p>The backend validates scope and access boundaries before any retrieval or upload action is allowed.</p>
+            <h3>Application applies authorization</h3>
+            <p>The Flask backend validates scope and access rules before allowing uploads, retrieval, or downstream model use.</p>
           </article>
           <article class="feature-card flow-card">
             <span class="step">03</span>
-            <h3>Documents are stored and prepared</h3>
-            <p>Uploads are tagged, chunked, and stored with metadata before being made available for retrieval.</p>
+            <h3>Documents are stored and indexed</h3>
+            <p>Uploaded source documents are stored in Blob Storage, processed into chunks, and prepared for Azure AI Search retrieval.</p>
           </article>
           <article class="feature-card flow-card">
             <span class="step">04</span>
-            <h3>Scoped retrieval feeds Azure OpenAI</h3>
-            <p>Only the filtered context needed to answer the question is forwarded into the model path.</p>
+            <h3>Scoped context reaches Azure OpenAI</h3>
+            <p>Only the retrieval output selected for the current request is sent forward into the model path, with citations tied back to chunk sources.</p>
+          </article>
+        </div>
+
+        <div class="feature-grid two spaced-top">
+          <article class="feature-card">
+            <h3>Provisioning baseline</h3>
+            <p>The build checklist shows the environment starting from management groups, role assignments, resource groups, VNets, subnets, peerings, private DNS, NSGs, Entra ID P1 licensing, Conditional Access, Key Vault, Defender for Key Vault, and diagnostic settings.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Why the separation matters</h3>
+            <p>By keeping application logic, search, model access, secrets, and storage as distinct responsibilities, the environment avoids treating the model itself as the main trust boundary. Identity, routing, and application logic still do the hard security work.</p>
           </article>
         </div>
       </div>
@@ -109,7 +119,7 @@
     <div class="container footer-layout">
       <div>
         <strong>Project Aegis</strong>
-        <p>Security-first Azure AI portfolio case study.</p>
+        <p>Azure enterprise AI with identity, network, and retrieval controls.</p>
       </div>
       <div class="footer-links">
         <a href="index.html">Home</a>

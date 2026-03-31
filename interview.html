@@ -35,8 +35,8 @@
     <section class="page-hero">
       <div class="container">
         <p class="eyebrow">Interview Flow</p>
-        <h1 class="page-title">How to walk the project through with a security engineering team.</h1>
-        <p class="page-intro">This page turns the project into a discussion tool: start with the architecture, move into identity and control logic, then use the threat model and telemetry story to show engineering depth rather than feature breadth.</p>
+        <h1 class="page-title">A concise walkthrough of the system and its security decisions.</h1>
+        <p class="page-intro">This flow is meant to explain what was built, how the controls work, and where the hardest risks are. It starts with architecture, moves through identity and retrieval, and ends with threat priorities and operations.</p>
       </div>
     </section>
 
@@ -46,48 +46,38 @@
           <article class="timeline-item">
             <span class="timeline-step">01</span>
             <div>
-              <h3>Start with the architecture, not the UI</h3>
-              <p>Lead with the hub-and-spoke model, private service placement, trust zones, and why the app, AI, data, and secrets were separated.</p>
+              <h3>Open with the deployment boundary</h3>
+              <p>Describe the hub-and-spoke layout, the separation between app, AI, and data services, and where private endpoints and private DNS fit into the design.</p>
             </div>
           </article>
           <article class="timeline-item">
             <span class="timeline-step">02</span>
             <div>
-              <h3>Explain identity and authorization first</h3>
-              <p>Walk through Entra ID SSO, Conditional Access, RBAC, and why scope enforcement is the critical trust control for the application.</p>
+              <h3>Explain identity and scope enforcement</h3>
+              <p>Walk through Entra ID sign-in, Conditional Access, MFA, RBAC, and why server-side scope validation is the most important trust control in the application.</p>
             </div>
           </article>
           <article class="timeline-item">
             <span class="timeline-step">03</span>
             <div>
-              <h3>Show the document and retrieval lifecycle</h3>
-              <p>Discuss upload, metadata tagging, chunking, storage, hybrid retrieval, and how only scoped context is sent into the model flow.</p>
+              <h3>Show the document lifecycle</h3>
+              <p>Cover upload, raw storage, chunk processing, retrieval indexing, cited responses, and how only selected context reaches Azure OpenAI.</p>
             </div>
           </article>
           <article class="timeline-item">
             <span class="timeline-step">04</span>
             <div>
-              <h3>Use the threat model as the differentiator</h3>
-              <p>Highlight prompt injection, poisoning, authorization abuse, and why AI trust issues were treated as application security problems.</p>
+              <h3>Discuss the main AI-specific risks</h3>
+              <p>Use prompt injection, knowledge poisoning, secret exposure attempts, and false authorization claims to show why document trust has to stay separate from model confidence.</p>
             </div>
           </article>
           <article class="timeline-item">
             <span class="timeline-step">05</span>
             <div>
-              <h3>Close with detections and maturity</h3>
-              <p>Connect cloud and application logs to Sentinel, then explain how the design supports monitoring, incident response, and future hardening.</p>
+              <h3>Close with monitoring and future hardening</h3>
+              <p>Point to Sentinel, Log Analytics, Defender-related diagnostics, and the planned move toward centralized Azure Firewall egress enforcement.</p>
             </div>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-subtle">
-      <div class="container">
-        <div class="section-heading narrow">
-          <p class="eyebrow">Why this matters</p>
-          <h2>It frames the project around security engineering judgment.</h2>
-          <p>Instead of presenting the work like “I built an AI app,” this flow helps present it as “I designed a secure cloud system with AI-specific trust controls and operational visibility.” That reads much better for Microsoft-aligned roles.</p>
         </div>
       </div>
     </section>
@@ -97,7 +87,7 @@
     <div class="container footer-layout">
       <div>
         <strong>Project Aegis</strong>
-        <p>Security-first Azure AI portfolio case study.</p>
+        <p>Azure enterprise AI with identity, network, and retrieval controls.</p>
       </div>
       <div class="footer-links">
         <a href="index.html">Home</a>

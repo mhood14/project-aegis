@@ -35,8 +35,8 @@
     <section class="page-hero">
       <div class="container">
         <p class="eyebrow">Security</p>
-        <h1 class="page-title">Controls, trust boundaries, and AI-specific failure modes.</h1>
-        <p class="page-intro">The core idea behind Project Aegis is that enterprise AI security is not solved by network isolation alone. It depends on how identity, retrieval, authorization, content trust, and monitoring are designed together as one control system.</p>
+        <h1 class="page-title">Controls for identity, retrieval, secrets, and monitoring.</h1>
+        <p class="page-intro">The security model assumes that network isolation helps, but does not solve AI trust problems by itself. Identity, authorization, document trust, prompt handling, and telemetry all have to work together for the platform to stay credible.</p>
       </div>
     </section>
 
@@ -46,37 +46,37 @@
           <article class="feature-card">
             <h3>Identity and access</h3>
             <ul class="clean-list">
-              <li>Entra ID used for SSO and tenant-backed user identity.</li>
-              <li>Conditional Access requires MFA and blocks legacy authentication.</li>
-              <li>Users, groups, and RBAC roles are designed as durable control structures.</li>
-              <li>Scope enforcement must be derived from trusted claims and validated server-side.</li>
+              <li>Entra ID provides single sign-on and tenant-backed user identity.</li>
+              <li>Conditional Access requires MFA and blocks legacy authentication paths.</li>
+              <li>Roles and groups are used as durable access-control structures.</li>
+              <li>Trusted claims and server-side checks determine scope rather than user-supplied values.</li>
             </ul>
           </article>
           <article class="feature-card">
-            <h3>Secrets and service auth</h3>
+            <h3>Secrets and service authentication</h3>
             <ul class="clean-list">
-              <li>Azure Key Vault stores application secrets and sensitive configuration values.</li>
-              <li>Managed identity reduces hardcoded credential exposure.</li>
-              <li>Diagnostic visibility supports secret-access monitoring and review.</li>
-              <li>Private exposure patterns reduce unnecessary internet reachability.</li>
+              <li>Azure Key Vault stores secrets and sensitive configuration values.</li>
+              <li>Managed identity reduces the need for embedded credentials.</li>
+              <li>Key Vault diagnostics support monitoring of secret-access activity.</li>
+              <li>Private service exposure patterns reduce unnecessary internet reachability.</li>
             </ul>
           </article>
           <article class="feature-card">
-            <h3>Data and AI safety</h3>
+            <h3>Document and model trust</h3>
             <ul class="clean-list">
-              <li>Retrieved documents are treated as untrusted content.</li>
-              <li>Chunking narrows blast radius and retrieval scope.</li>
-              <li>Prompt injection and document poisoning are treated as primary design threats.</li>
-              <li>Context should stay separated from instruction logic in orchestration.</li>
+              <li>Uploaded and retrieved documents are treated as untrusted content.</li>
+              <li>Chunking limits retrieval scope and narrows the effect of hostile content.</li>
+              <li>Prompt injection and document poisoning are treated as first-order risks.</li>
+              <li>Prompt assembly should keep system instructions distinct from retrieved context.</li>
             </ul>
           </article>
           <article class="feature-card">
             <h3>Monitoring and detection</h3>
             <ul class="clean-list">
               <li>Cloud and application events flow into Log Analytics and Sentinel.</li>
-              <li>Security-relevant application logs are treated as telemetry, not just debugging output.</li>
-              <li>Design supports alerts for suspicious prompts, authorization failures, and abnormal usage patterns.</li>
-              <li>Monitoring closes the loop between prevention and operational response.</li>
+              <li>Application logs are treated as security telemetry, not only debugging output.</li>
+              <li>The design supports detections for suspicious prompts, authorization failures, fallback behavior, and abnormal usage patterns.</li>
+              <li>Observability is part of the security control set, not a separate afterthought.</li>
             </ul>
           </article>
         </div>
@@ -86,47 +86,47 @@
     <section class="section section-subtle">
       <div class="container">
         <div class="section-heading narrow">
-          <p class="eyebrow">Threat model</p>
-          <h2>Highest-priority risks identified in the project.</h2>
-          <p>The executive threat model prioritizes authorization abuse, prompt injection, poisoning, and infrastructure weakness as the key areas that can break trust in the system.</p>
+          <p class="eyebrow">Threat priorities</p>
+          <h2>Highest-priority risks identified in the project material.</h2>
+          <p>The executive threat model puts the biggest weight on authorization abuse, prompt injection, knowledge poisoning, credential misuse, application vulnerabilities, infrastructure weakness, and monitoring blind spots.</p>
         </div>
 
         <div class="risk-grid">
           <article class="risk-card critical">
             <span class="risk-level">Critical</span>
-            <h3>Authorization / scope abuse</h3>
-            <p>Unauthorized access to higher-sensitivity content if scope logic is weak or user-controlled.</p>
-            <small>Priority action: derive scope from claims, groups, or policy rather than trusting user input.</small>
+            <h3>Authorization and scope abuse</h3>
+            <p>Weak scope logic can expose higher-sensitivity content to the wrong user even when authentication itself succeeds.</p>
+            <small>Priority action: derive scope from claims, groups, or policy and enforce it server-side.</small>
           </article>
           <article class="risk-card high">
             <span class="risk-level">High</span>
-            <h3>Prompt injection</h3>
-            <p>Malicious instructions embedded in retrieved documents can distort model behavior and outputs.</p>
-            <small>Priority action: isolate retrieved context and harden orchestration prompts.</small>
+            <h3>Prompt injection through retrieved content</h3>
+            <p>Malicious instructions hidden in documents can distort model behavior, suppress citations, or attempt unsafe output paths.</p>
+            <small>Priority action: separate instructions from retrieved context and detect suspicious chunks.</small>
           </article>
           <article class="risk-card high">
             <span class="risk-level">High</span>
             <h3>Knowledge poisoning</h3>
-            <p>Adversarial or low-trust data inside a valid scope can degrade output integrity and business value.</p>
-            <small>Priority action: add provenance, review state, quarantine, and rollback mechanisms.</small>
+            <p>Bad but in-scope data can degrade answer quality and create false confidence even without crossing an authorization boundary.</p>
+            <small>Priority action: add provenance, review state, quarantine, ignore, and rollback controls.</small>
           </article>
           <article class="risk-card medium">
             <span class="risk-level">Med-High</span>
             <h3>Infrastructure misconfiguration</h3>
-            <p>Private DNS, NVA routing, and segmentation introduce operational dependencies that must be validated.</p>
-            <small>Priority action: regularly test routes, DNS, east-west paths, and segmentation boundaries.</small>
+            <p>Private DNS, peering, routing, and centralized inspection plans create dependencies that need validation and continuous testing.</p>
+            <small>Priority action: test routes, DNS, east-west paths, and segmentation behavior regularly.</small>
           </article>
         </div>
 
         <div class="feature-grid two spaced-top">
           <article class="feature-card">
-            <h3>Adversarial examples included</h3>
-            <p>Supporting documents include test prompts meant to simulate malicious or manipulative retrieved content.</p>
+            <h3>Adversarial test material</h3>
+            <p>The prompt-injection corpus includes examples such as:</p>
             <ul class="clean-list">
-              <li>Ignore previous instructions</li>
-              <li>Fake authorization claims</li>
-              <li>Secret exfiltration requests</li>
-              <li>Evidence suppression attempts</li>
+              <li>Instructions to ignore previous instructions</li>
+              <li>Attempts to fake authorization or escalate access</li>
+              <li>Requests to suppress citations</li>
+              <li>Secret-exfiltration style prompts</li>
             </ul>
           </article>
           <article class="feature-card code-card">
@@ -148,7 +148,7 @@
     <div class="container footer-layout">
       <div>
         <strong>Project Aegis</strong>
-        <p>Security-first Azure AI portfolio case study.</p>
+        <p>Azure enterprise AI with identity, network, and retrieval controls.</p>
       </div>
       <div class="footer-links">
         <a href="index.html">Home</a>
