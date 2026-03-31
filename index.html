@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aegis AI Platform | Secure Enterprise AI on Azure</title>
+  <meta name="description" content="Aegis AI Platform is a secure enterprise AI system built on Azure with Zero Trust architecture, scoped retrieval, hybrid search, and Sentinel-integrated logging." />
+  <meta property="og:title" content="Aegis AI Platform" />
+  <meta property="og:description" content="Secure enterprise AI on Azure with Zero Trust architecture, hybrid search, and security telemetry." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">Aegis AI Platform</a>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#security">Security</a>
+        <a href="#hybrid-search">Hybrid Search</a>
+        <a href="#detections">Detections</a>
+        <a href="#demo">Demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Secure Enterprise AI on Azure</p>
+          <h1>From homelab project to a resume-worthy security architecture.</h1>
+          <p class="hero-copy">
+            Aegis AI Platform is a secure document retrieval and question-answering system built on Azure.
+            It combines Entra ID, managed identity, scoped authorization, private networking, Azure AI Search,
+            Azure OpenAI, hybrid search, and Sentinel telemetry into one Zero Trust AI design.
+          </p>
+          <div class="cta-row">
+            <a class="button primary" href="#demo">View Demo Flow</a>
+            <a class="button secondary" href="#architecture">Explore Architecture</a>
+          </div>
+          <ul class="hero-highlights">
+            <li>Zero Trust hub-and-spoke Azure architecture</li>
+            <li>Scoped retrieval with RBAC-backed authorization</li>
+            <li>Hybrid search with keyword + embeddings</li>
+            <li>Sentinel-ready security telemetry and detections</li>
+          </ul>
+        </div>
+        <div class="hero-card">
+          <div class="metric-card">
+            <span class="metric-label">Core theme</span>
+            <strong>Secure AI Platform</strong>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Identity</span>
+            <strong>Entra ID + Managed Identity</strong>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Retrieval</span>
+            <strong>Scoped RAG + Hybrid Search</strong>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Monitoring</span>
+            <strong>Sentinel + KQL Detections</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Project Overview</p>
+          <h2>What this project demonstrates</h2>
+        </div>
+        <div class="cards three">
+          <article class="card">
+            <h3>Cloud Security Architecture</h3>
+            <p>
+              Designed a hub-and-spoke Azure environment with separated app, AI, data, and control-plane responsibilities,
+              using private endpoints, private DNS, and managed identity.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Secure AI Implementation</h3>
+            <p>
+              Built a secure document Q&amp;A platform using Azure OpenAI and Azure AI Search with scope-aware retrieval,
+              prompt hardening, and document handling controls.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Operational Security Mindset</h3>
+            <p>
+              Treated application logs as security telemetry and validated detections in Microsoft Sentinel for
+              authorization failures, content filtering, and suspicious retrieval behavior.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Architecture</p>
+          <h2>Zero Trust Azure design</h2>
+        </div>
+        <div class="architecture-grid">
+          <div class="card architecture-card">
+            <h3>Network layout</h3>
+            <ul class="clean-list">
+              <li><strong>Hub:</strong> Key Vault, private DNS, shared control-plane services</li>
+              <li><strong>App Spoke:</strong> App Service with VNet integration</li>
+              <li><strong>AI Spoke:</strong> Azure OpenAI and Azure AI Search private access paths</li>
+              <li><strong>Data Spoke:</strong> Storage account private access path</li>
+            </ul>
+            <p class="muted">
+              The design separates application, data, and AI responsibilities while keeping identity and network
+              trust decisions out of the model itself.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Core data flow</h3>
+            <ol class="flow-list">
+              <li>User authenticates with Entra ID</li>
+              <li>App enforces authorization and scope boundaries</li>
+              <li>Documents are uploaded, chunked, tagged, and indexed</li>
+              <li>Hybrid search retrieves scoped content</li>
+              <li>Azure OpenAI answers only from retrieved context</li>
+              <li>Logs flow to Sentinel for monitoring and detections</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="security" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Security Design</p>
+          <h2>Built like a control system, not just a chatbot</h2>
+        </div>
+        <div class="cards two">
+          <article class="card">
+            <h3>Identity and access</h3>
+            <ul class="clean-list">
+              <li>Entra ID SSO for user authentication</li>
+              <li>Conditional Access with MFA and blocked legacy auth</li>
+              <li>Server-side scope enforcement before retrieval</li>
+              <li>Security-sensitive scopes restricted to elevated roles</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Data and AI safety</h3>
+            <ul class="clean-list">
+              <li>Documents treated as data, not trusted instructions</li>
+              <li>Chunking reduces blast radius of malicious content</li>
+              <li>Suspicious prompt content can be sanitized before model use</li>
+              <li>Test documents isolated from normal retrieval scopes</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Service authentication</h3>
+            <ul class="clean-list">
+              <li>Managed identity for Storage, Search, OpenAI, and Key Vault access</li>
+              <li>No hardcoded application secrets in code</li>
+              <li>Least-privilege RBAC applied per Azure service</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Threats addressed</h3>
+            <ul class="clean-list">
+              <li>Prompt injection</li>
+              <li>Document poisoning</li>
+              <li>Authorization bypass</li>
+              <li>Data exfiltration through weak retrieval boundaries</li>
+              <li>Model misuse and over-retrieval</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="hybrid-search" class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Hybrid Search</p>
+          <h2>Keyword precision plus semantic matching</h2>
+        </div>
+        <div class="cards two">
+          <article class="card">
+            <h3>Why hybrid search matters</h3>
+            <p>
+              Keyword search is excellent for exact phrases and known terms. Vector search helps when users ask
+              conceptual or paraphrased questions. Hybrid search combines both, improving retrieval quality without
+              weakening scope filters or trust boundaries.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Implementation summary</h3>
+            <ul class="clean-list">
+              <li>Azure OpenAI embeddings generated during ingestion</li>
+              <li>Vector field stored in a dedicated Azure AI Search hybrid index</li>
+              <li>Query flow uses text + vector retrieval together</li>
+              <li>Scope and document trust filters remain enforced server-side</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="detections" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Security Telemetry</p>
+          <h2>From logs to detections</h2>
+        </div>
+        <div class="cards two">
+          <article class="card">
+            <h3>Custom detections planned</h3>
+            <ul class="clean-list">
+              <li>Repeated authorization denial events</li>
+              <li>Suspicious prompt injection or content-filter blocks</li>
+              <li>Unusual fallback retrieval frequency or scope usage</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Example KQL ideas</h3>
+            <pre><code>AppServiceConsoleLogs
+| where ResultDescription contains '"event_type": "authz_denied"'</code></pre>
+            <pre><code>AppServiceConsoleLogs
+| where ResultDescription contains '"event_type": "content_filter_blocked"'</code></pre>
+            <pre><code>AppServiceConsoleLogs
+| where ResultDescription contains '"event_type": "fallback_used"'
+| summarize count() by bin(TimeGenerated, 1d)</code></pre>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo" class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Demo Flow</p>
+          <h2>How I would walk this through in an interview</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-number">1</span>
+            <div>
+              <h3>Authenticate with Entra ID</h3>
+              <p>Show the app requires SSO before any user interaction.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-number">2</span>
+            <div>
+              <h3>Upload a document into a permitted scope</h3>
+              <p>Demonstrate metadata tagging, chunking, indexing, and audit logging.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-number">3</span>
+            <div>
+              <h3>Ask a question and show scoped retrieval</h3>
+              <p>Explain how the model only receives filtered, retrieved context.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-number">4</span>
+            <div>
+              <h3>Show a denied action or suspicious case</h3>
+              <p>Validate that security controls are enforced in the backend, not by the model.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-number">5</span>
+            <div>
+              <h3>Pivot to monitoring and threat model</h3>
+              <p>Show how detections, logging, and trust boundaries tie the architecture together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Resume-Ready Outcomes</p>
+          <h2>What this project proves</h2>
+        </div>
+        <div class="card">
+          <ul class="clean-list">
+            <li>Designed and deployed a secure Azure-based AI platform using hub-and-spoke architecture, managed identity, and private networking.</li>
+            <li>Built a scoped document retrieval and question-answering system using Azure OpenAI and Azure AI Search.</li>
+            <li>Implemented hybrid search with embeddings to improve semantic relevance while preserving authorization boundaries.</li>
+            <li>Integrated application security telemetry into Microsoft Sentinel and planned custom detections for misuse and abuse cases.</li>
+            <li>Developed an AI-focused threat model covering prompt injection, data exfiltration, poisoning, and authorization risks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>Built as a security-focused AI architecture portfolio project.</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
