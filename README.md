@@ -3,11 +3,11 @@
 This repository contains a static multi-page website for Project Aegis.
 
 ## Files
-- `index.html` - home page and system summary
+- `index.html` - friendly home page and project overview
 - `architecture.html` - Azure architecture and network flow
-- `security.html` - controls, risks, and detections
+- `security.html` - controls, risks, detections, and trust model
 - `artifacts.html` - supporting documents and evidence
-- `interview.html` - concise walkthrough for discussing the project
+- `interview.html` - guided project walkthrough
 - `styles.css` - shared site styling
 - `script.js` - header and reveal behavior
 

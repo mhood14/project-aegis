@@ -798,3 +798,117 @@ code {
     border-color: transparent;
   }
 }
+
+
+:root {
+  --accent-tint: #d9e7ff;
+  --accent-line: #7aa2ff;
+  --accent-glow: rgba(122, 162, 255, 0.18);
+}
+
+.brand-mark {
+  background: linear-gradient(135deg, #111111 0%, #284b8f 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.button-primary {
+  background: linear-gradient(135deg, #111111 0%, #24427d 100%);
+  border-color: #1c3361;
+}
+
+.button-secondary:hover,
+.site-nav a:hover,
+.site-nav a.is-active {
+  border-color: rgba(122, 162, 255, 0.35);
+}
+
+.hero-home {
+  background: radial-gradient(circle at top right, var(--accent-glow), transparent 28%);
+}
+
+.hero-points-friendly li,
+.icon-feature,
+.motif-card,
+.summary-list-rich li,
+.hero-story-card {
+  position: relative;
+}
+
+.point-kicker {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.hero-story-card p {
+  margin-top: 0.7rem;
+  color: var(--text-soft);
+}
+
+.icon-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.icon-chip,
+.section-icon,
+.motif {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--accent-tint);
+  box-shadow: inset 0 0 0 1px rgba(122, 162, 255, 0.18);
+}
+
+.section-icon {
+  margin-bottom: 0.8rem;
+}
+
+.motif {
+  margin-bottom: 0.75rem;
+}
+
+.icon-feature,
+.motif-card,
+.summary-list-rich li {
+  border-top-color: rgba(122, 162, 255, 0.26);
+}
+
+.summary-list-rich li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+}
+
+.summary-symbol {
+  color: var(--accent-line);
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.risk-card::before {
+  width: 6px;
+  border-radius: 999px;
+}
+
+.risk-card h3::before {
+  margin-right: 0.45rem;
+}
+
+.risk-card.critical h3::before { content: "⛔"; }
+.risk-card.high h3::before { content: "⚠️"; }
+.risk-card.medium h3::before { content: "🧪"; }
+
+@media (max-width: 640px) {
+  .icon-card,
+  .summary-list-rich li {
+    grid-template-columns: 1fr;
+  }
+}

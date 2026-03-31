@@ -26,7 +26,7 @@
         <a href="architecture.html">Architecture</a>
         <a class="is-active" href="security.html">Security</a>
         <a href="artifacts.html">Artifacts</a>
-        <a href="interview.html">Interview Flow</a>
+        <a href="interview.html">Walkthrough</a>
       </nav>
     </div>
   </header>
@@ -42,8 +42,15 @@
 
     <section class="section">
       <div class="container">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Control areas</p>
+          <h2>The trust model in four readable pieces.</h2>
+          <p>These are the main control families the project keeps in view so the AI workflow stays understandable and defensible instead of magical.</p>
+        </div>
+
         <div class="feature-grid two">
-          <article class="feature-card">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🔐</span>
             <h3>Identity and access</h3>
             <ul class="clean-list">
               <li>Entra ID provides single sign-on and tenant-backed user identity.</li>
@@ -52,7 +59,8 @@
               <li>Trusted claims and server-side checks determine scope rather than user-supplied values.</li>
             </ul>
           </article>
-          <article class="feature-card">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🗝️</span>
             <h3>Secrets and service authentication</h3>
             <ul class="clean-list">
               <li>Azure Key Vault stores secrets and sensitive configuration values.</li>
@@ -61,7 +69,8 @@
               <li>Private service exposure patterns reduce unnecessary internet reachability.</li>
             </ul>
           </article>
-          <article class="feature-card">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">📄</span>
             <h3>Document and model trust</h3>
             <ul class="clean-list">
               <li>Uploaded and retrieved documents are treated as untrusted content.</li>
@@ -70,7 +79,8 @@
               <li>Prompt assembly should keep system instructions distinct from retrieved context.</li>
             </ul>
           </article>
-          <article class="feature-card">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">📡</span>
             <h3>Monitoring and detection</h3>
             <ul class="clean-list">
               <li>Cloud and application events flow into Log Analytics and Sentinel.</li>
@@ -119,7 +129,8 @@
         </div>
 
         <div class="feature-grid two spaced-top">
-          <article class="feature-card">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🧪</span>
             <h3>Adversarial test material</h3>
             <p>The prompt-injection corpus includes examples such as:</p>
             <ul class="clean-list">
@@ -129,7 +140,8 @@
               <li>Secret-exfiltration style prompts</li>
             </ul>
           </article>
-          <article class="feature-card code-card">
+          <article class="feature-card code-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🛰️</span>
             <h3>Detection examples</h3>
             <pre><code>AppServiceConsoleLogs
 | where ResultDescription contains '"event_type": "authz_denied"'</code></pre>
