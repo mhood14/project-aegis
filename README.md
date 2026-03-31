@@ -3,14 +3,13 @@
 This repository contains a static multi-page website for Project Aegis.
 
 ## Files
-- `index.html` - friendly home page and project overview
-- `setup.html` - Azure tenant, identity, governance, secrets, and diagnostics baseline
-- `networking.html` - hub-and-spoke layout, private endpoints, DNS, and Linux NVA egress path
-- `app.html` - Flask app flow, hybrid search, citations, and live demo link
+- `index.html` - minimal home page
+- `architecture.html` - the main architecture page, organized into Azure foundation, networking layer, and AI application architecture
+- `app.html` - live demo page and application flow
 - `logging.html` - logging, testing, detections, and investigation examples
 - `artifacts.html` - supporting documents and evidence
-- `about.html` - personal context, learning goals, and project motivation
-- `architecture.html` / `security.html` / `interview.html` - lightweight redirects kept for compatibility
+- `about.html` - project story, learning goals, and objectives
+- `setup.html` / `networking.html` / `security.html` / `interview.html` - lightweight redirects kept for compatibility
 - `styles.css` - shared site styling
 - `script.js` - header and reveal behavior
 
@@ -27,4 +26,4 @@ This repository contains a static multi-page website for Project Aegis.
 ## Notes
 - Supporting documents live in `SupportingDocs/`.
 - Keep project content aligned with the actual Azure build, threat model, and implementation evidence.
-- Avoid placeholder or meta commentary in the site copy.
+- Avoid placeholder or meta commentary in the site copy except where logging screenshots intentionally use `[INSERT DESCRIPTION HERE]` placeholders.

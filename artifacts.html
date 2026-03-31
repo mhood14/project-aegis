@@ -17,17 +17,16 @@
         <span class="brand-mark">A</span>
         <span>
           <strong>Project Aegis</strong>
-          <small>Secure Enterprise AI on Azure</small>
+          <small>Secure AI Document Retrieval</small>
         </span>
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="setup.html">Azure Setup</a>
-        <a href="networking.html">Networking</a>
-        <a href="app.html">AI App</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="app.html">Live Demo</a>
         <a href="logging.html">Logging &amp; Testing</a>
         <a class="is-active" href="artifacts.html">Artifacts</a>
-        <a href="about.html">About</a>
+        <a href="about.html">About This Project</a>
       </nav>
     </div>
   </header>
@@ -37,7 +36,7 @@
       <div class="container">
         <p class="eyebrow">Artifacts</p>
         <h1 class="page-title">Project evidence and source documents.</h1>
-        <p class="page-intro">The artifact set includes the reference architecture, threat-model outputs, the build checklist, egress planning, application implementation notes, and the prompt-injection test corpus used to pressure-test the retrieval workflow.</p>
+        <p class="page-intro">The artifact set includes the architecture diagram, threat-model outputs, the build checklist, egress planning, implementation notes, and prompt-injection test material used to pressure-test the retrieval workflow.</p>
       </div>
     </section>
 
@@ -54,7 +53,7 @@
           <a class="artifact-card" href="SupportingDocs/Threat%20Modeling%20Document%20-%20Executive.docx" target="_blank" rel="noopener">
             <span class="artifact-type">Threat model</span>
             <h3>Executive threat model narrative</h3>
-            <p>Detailed write-up of trust boundaries, objectives, attack surfaces, and risks across the Azure tenant and AI application.</p>
+            <p>Detailed write-up of trust boundaries, objectives, attack surfaces, and risks across the Microsoft cloud environment and AI application.</p>
             <span class="artifact-link">Open document</span>
           </a>
 
@@ -75,29 +74,15 @@
           <a class="artifact-card" href="SupportingDocs/Egress%20Strategy.docx" target="_blank" rel="noopener">
             <span class="artifact-type">Network note</span>
             <h3>Linux NVA egress strategy</h3>
-            <p>Documents the egress direction for the environment using an NVA created from a Linux machine rather than Azure Firewall.</p>
+            <p>Documents the egress direction for the environment using a Linux-based network virtual appliance.</p>
             <span class="artifact-link">Open egress plan</span>
           </a>
 
           <a class="artifact-card" href="SupportingDocs/IP%20Adressing%20Plan.xlsx" target="_blank" rel="noopener">
             <span class="artifact-type">Addressing plan</span>
             <h3>IP addressing plan</h3>
-            <p>Subnet and network structure that supports segmentation across the hub, app, AI, and data portions of the environment.</p>
+            <p>Subnet and network structure supporting segmentation across the hub, application, AI, and data portions of the environment.</p>
             <span class="artifact-link">Open spreadsheet</span>
-          </a>
-
-          <a class="artifact-card" href="SupportingDocs/app_hybrid_search/README.md" target="_blank" rel="noopener">
-            <span class="artifact-type">Application note</span>
-            <h3>Hybrid search application notes</h3>
-            <p>Describes the Flask app, managed identity usage, raw and processed document containers, hybrid retrieval behavior, and citation handling.</p>
-            <span class="artifact-link">Read implementation notes</span>
-          </a>
-
-          <a class="artifact-card" href="SupportingDocs/PromptInjection/01_ignore_instructions.txt" target="_blank" rel="noopener">
-            <span class="artifact-type">Adversarial test</span>
-            <h3>Prompt-injection test corpus</h3>
-            <p>Sample malicious content used to validate that retrieved documents remain untrusted and do not silently override the application prompt strategy.</p>
-            <span class="artifact-link">Inspect test file</span>
           </a>
         </div>
       </div>
@@ -108,12 +93,12 @@
     <div class="container footer-layout">
       <div>
         <strong>Project Aegis</strong>
-        <p>Azure enterprise AI with identity, network, retrieval, and monitoring controls.</p>
+        <p>Secure AI document retrieval on a Microsoft cloud and networking backbone.</p>
       </div>
       <div class="footer-links">
-        <a href="setup.html">Azure Setup</a>
-        <a href="networking.html">Networking</a>
-        <a href="app.html">AI App</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="app.html">Live Demo</a>
+        <a href="logging.html">Logging &amp; Testing</a>
       </div>
     </div>
   </footer>

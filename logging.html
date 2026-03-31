@@ -17,17 +17,16 @@
         <span class="brand-mark">A</span>
         <span>
           <strong>Project Aegis</strong>
-          <small>Secure Enterprise AI on Azure</small>
+          <small>Secure AI Document Retrieval</small>
         </span>
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="setup.html">Azure Setup</a>
-        <a href="networking.html">Networking</a>
-        <a href="app.html">AI App</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="app.html">Live Demo</a>
         <a class="is-active" href="logging.html">Logging &amp; Testing</a>
         <a href="artifacts.html">Artifacts</a>
-        <a href="about.html">About</a>
+        <a href="about.html">About This Project</a>
       </nav>
     </div>
   </header>
@@ -36,34 +35,29 @@
     <section class="page-hero">
       <div class="container">
         <p class="eyebrow">Logging &amp; Testing</p>
-        <h1 class="page-title">How the project records behavior and pressure-tests trust boundaries.</h1>
-        <p class="page-intro">Aegis treats logging as part of the architecture, not just a debugging convenience. The app emits meaningful events, Azure diagnostics can flow into Log Analytics, and Sentinel can surface suspicious patterns for review.</p>
+        <h1 class="page-title">How Project Aegis records and tests system behavior.</h1>
+        <p class="page-intro">Logging is part of the design. Application events, Azure diagnostics, Log Analytics queries, and Sentinel detections make it possible to follow what happened across the retrieval system after a test, failure, or attack attempt.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="section-heading narrow">
-          <p class="eyebrow">What gets tracked</p>
-          <h2>Activity across the system can be followed instead of guessed at.</h2>
-        </div>
-
         <div class="feature-grid two simple-columns">
           <article class="feature-card icon-feature">
             <span class="section-icon" aria-hidden="true">📝</span>
             <h3>Application events</h3>
-            <p>The Flask app logs events like authorization allowed, authorization denied, search indexing, LLM requests started, content sanitization, content filter blocks, and request failures.</p>
+            <p>The Flask application logs authorization outcomes, indexing events, retrieval sanitization, model-call starts, model-call completions, content-filter blocks, and request failures.</p>
           </article>
           <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">📊</span>
+            <span class="section-icon" aria-hidden="true">🛡️</span>
             <h3>Platform telemetry</h3>
-            <p>Azure-side diagnostics from services such as App Service, Key Vault, and other resources can be sent into Log Analytics, where Sentinel analytics rules can work from the collected data.</p>
+            <p>Azure diagnostics from App Service, Key Vault, and related resources can be routed into Log Analytics, where Sentinel analytics rules can identify suspicious patterns and support investigation.</p>
           </article>
         </div>
 
         <div class="section-heading narrow spaced-top">
           <p class="eyebrow">Sequence walkthroughs</p>
-          <h2>Four concrete examples of what happens and what can be queried later.</h2>
+          <h2>Examples that show how testing and evidence work step by step.</h2>
         </div>
 
         <div class="timeline detailed-timeline">
@@ -71,23 +65,31 @@
             <span class="timeline-step">01</span>
             <div>
               <h3>Prompt injection attempt</h3>
-              <p>A malicious document or retrieved chunk includes lines such as “ignore previous instructions” or tries to suppress citations. Before the model call, the app sanitizes matching lines from retrieved content. If risky material is removed, the app logs a <code>retrieved_content_sanitized</code> event. If everything useful is stripped out, the request can be blocked before it reaches the model. If Azure OpenAI itself blocks the prompt, the app records an <code>llm_request_blocked_content_filter</code> event.</p>
+              <p><strong>Step 1:</strong> A malicious document chunk includes instructions such as “ignore previous instructions” or attempts to suppress citations.</p>
+              <p><strong>Step 2:</strong> The retrieval pipeline treats that content as untrusted data and strips suspicious lines before the model call when sanitization rules match.</p>
+              <p><strong>Step 3:</strong> The app records events such as <code>retrieved_content_sanitized</code>. If the request cannot safely continue, the workflow can stop before the model call. If Azure OpenAI blocks the request, the app records <code>llm_request_blocked_content_filter</code>.</p>
+              <p><strong>Step 4:</strong> Analysts can later query the request trail, affected document identifiers, and whether sanitization occurred before the model stage.</p>
               <p class="image-placeholder">[INSERT DESCRIPTION HERE]</p>
             </div>
           </article>
           <article class="timeline-item">
             <span class="timeline-step">02</span>
             <div>
-              <h3>Repeated failed authorizations</h3>
-              <p>A user repeatedly requests a scope they are not allowed to access. The app logs <code>authorization_denied</code> events with the requested scope, user context, and denial reason. Those denials can be forwarded into Log Analytics and picked up by a Sentinel analytics rule that looks for repeated failures over time or unusual access patterns from the same identity.</p>
+              <h3>Repeated failed authorizations detected by Sentinel</h3>
+              <p><strong>Step 1:</strong> A user repeatedly requests a document scope they are not allowed to access.</p>
+              <p><strong>Step 2:</strong> The app records <code>authorization_denied</code> events with the requested scope, user context, and denial reason.</p>
+              <p><strong>Step 3:</strong> Those events land in Log Analytics and are evaluated by a Sentinel analytics rule looking for repeated denials across a time window or unusual access behavior from the same identity.</p>
+              <p><strong>Step 4:</strong> The rule raises an alert for review, giving the operator a repeatable path from app event to security signal.</p>
               <p class="image-placeholder">[INSERT DESCRIPTION HERE]</p>
             </div>
           </article>
           <article class="timeline-item">
             <span class="timeline-step">03</span>
             <div>
-              <h3>Querying the evidence afterward</h3>
-              <p>After a test or incident, the project supports querying the log trail to answer basic questions: Which request ID triggered the block? Which document IDs were involved? Did the app sanitize retrieved content? Was the model request started, completed, or blocked? Did the same user generate repeated denials? This makes the system easier to investigate after the fact instead of relying on memory.</p>
+              <h3>Querying the information afterward</h3>
+              <p><strong>Step 1:</strong> After a test or suspected incident, the operator queries Log Analytics for the request ID, affected user, or specific event type.</p>
+              <p><strong>Step 2:</strong> The query can show whether the request was denied, sanitized, blocked by content filtering, or completed successfully.</p>
+              <p><strong>Step 3:</strong> Related records help answer which document IDs were involved, whether the same user triggered repeated denials, and how activity changed over time.</p>
               <div class="code-card inline-code-card">
                 <pre><code>AppServiceConsoleLogs
 | where ResultDescription contains 'authorization_denied'
@@ -100,7 +102,10 @@
             <span class="timeline-step">04</span>
             <div>
               <h3>Tracing activity across the system</h3>
-              <p>Logs can show how one workflow moves across layers: a user authenticates, the app evaluates scope, documents are retrieved, sanitization may occur, a model call starts, the answer completes or is blocked, and the resulting telemetry can be reviewed in Log Analytics or Sentinel. That end-to-end trail is important because AI incidents rarely live in just one service.</p>
+              <p><strong>Step 1:</strong> A signed-in user reaches the app and starts a retrieval request.</p>
+              <p><strong>Step 2:</strong> The app evaluates authorization, performs retrieval, and may sanitize risky content before the model call.</p>
+              <p><strong>Step 3:</strong> Azure OpenAI receives scoped context, the request completes or is blocked, and the result is written to application and platform logs.</p>
+              <p><strong>Step 4:</strong> Log Analytics and Sentinel make it possible to follow that same workflow across identity, application, and security layers afterward.</p>
               <p class="image-placeholder">[INSERT DESCRIPTION HERE]</p>
             </div>
           </article>
@@ -109,7 +114,7 @@
         <div class="feature-grid two simple-columns spaced-top">
           <article class="feature-card code-card icon-feature">
             <span class="section-icon" aria-hidden="true">🔎</span>
-            <h3>Example detection queries</h3>
+            <h3>Example queries</h3>
             <pre><code>AppServiceConsoleLogs
 | where ResultDescription contains 'retrieved_content_sanitized'</code></pre>
             <pre><code>AppServiceConsoleLogs
@@ -119,9 +124,9 @@
 | summarize attempts=count() by ResultDescription, bin(TimeGenerated, 1h)</code></pre>
           </article>
           <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🧪</span>
-            <h3>Why this section matters</h3>
-            <p>It shows that the project is not only about building the app. It is also about proving that behavior can be tested, suspicious activity can be detected, and useful evidence remains available afterward.</p>
+            <span class="section-icon" aria-hidden="true">📡</span>
+            <h3>What the logs prove</h3>
+            <p>The project can show how retrieval, authorization, hybrid search, model use, and security monitoring fit together rather than treating them as isolated features.</p>
           </article>
         </div>
       </div>
@@ -132,12 +137,12 @@
     <div class="container footer-layout">
       <div>
         <strong>Project Aegis</strong>
-        <p>Azure enterprise AI with identity, network, retrieval, and monitoring controls.</p>
+        <p>Secure AI document retrieval on a Microsoft cloud and networking backbone.</p>
       </div>
       <div class="footer-links">
-        <a href="setup.html">Azure Setup</a>
-        <a href="networking.html">Networking</a>
-        <a href="app.html">AI App</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="app.html">Live Demo</a>
+        <a href="about.html">About This Project</a>
       </div>
     </div>
   </footer>

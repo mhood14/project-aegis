@@ -2,99 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=architecture.html#azure-foundation" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Azure Setup | Project Aegis</title>
-  <meta name="description" content="Azure setup and cloud baseline for Project Aegis, including identity, governance, secrets, and diagnostics." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Azure Foundation | Project Aegis</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-shell">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">A</span>
-        <span>
-          <strong>Project Aegis</strong>
-          <small>Secure Enterprise AI on Azure</small>
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a class="is-active" href="setup.html">Azure Setup</a>
-        <a href="networking.html">Networking</a>
-        <a href="app.html">AI App</a>
-        <a href="logging.html">Logging &amp; Testing</a>
-        <a href="artifacts.html">Artifacts</a>
-        <a href="about.html">About</a>
-      </nav>
+  <main class="section">
+    <div class="container">
+      <p class="eyebrow">Redirecting</p>
+      <h1 class="page-title">Azure foundation lives in the Architecture section.</h1>
+      <p class="page-intro">If you are not redirected automatically, <a class="text-link" href="architecture.html#azure-foundation">open Azure foundation</a>.</p>
     </div>
-  </header>
-
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <p class="eyebrow">Azure Setup</p>
-        <h1 class="page-title">The cloud baseline behind the project.</h1>
-        <p class="page-intro">This part of Aegis focuses on how the Azure environment is organized before the AI workflow even starts: identity, governance, secrets, diagnostics, and the deployment footing that the rest of the project depends on.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="feature-grid two simple-columns">
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🏢</span>
-            <h3>Tenant and governance baseline</h3>
-            <p>The provisioning record shows management structure, resource organization, role assignments, and the supporting Azure layout needed to keep the project understandable as it grows.</p>
-          </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🛂</span>
-            <h3>Identity first</h3>
-            <p>Entra ID provides the sign-in layer, with MFA and Conditional Access helping ensure that authentication policy is enforced before the app treats a session as trusted.</p>
-          </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🗝️</span>
-            <h3>Secrets and service trust</h3>
-            <p>Azure Key Vault stores secrets while managed identity reduces the amount of long-lived credentials embedded in application code or configuration.</p>
-          </article>
-          <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">📈</span>
-            <h3>Diagnostics as part of the build</h3>
-            <p>Diagnostic settings are not treated as optional polish. They are part of the initial platform setup so later investigation has something real to work with.</p>
-          </article>
-        </div>
-
-        <div class="section-heading narrow spaced-top">
-          <p class="eyebrow">What this setup enables</p>
-          <h2>The Azure foundation supports the rest of the project in a few specific ways.</h2>
-        </div>
-
-        <ul class="summary-list summary-list-rich">
-          <li><span class="summary-symbol" aria-hidden="true">•</span><div><strong>Identity-backed sessions:</strong> the application can make authorization decisions using trusted claims and roles instead of user-supplied scope values.</div></li>
-          <li><span class="summary-symbol" aria-hidden="true">•</span><div><strong>Safer service access:</strong> managed identity and Key Vault reduce casual secret sprawl.</div></li>
-          <li><span class="summary-symbol" aria-hidden="true">•</span><div><strong>Operational evidence:</strong> diagnostics and monitoring data can be routed into Log Analytics and surfaced in Sentinel.</div></li>
-          <li><span class="summary-symbol" aria-hidden="true">•</span><div><strong>Room for segmentation:</strong> governance and resource structure make the network and application pieces easier to separate cleanly.</div></li>
-        </ul>
-      </div>
-    </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-layout">
-      <div>
-        <strong>Project Aegis</strong>
-        <p>Azure enterprise AI with identity, network, retrieval, and monitoring controls.</p>
-      </div>
-      <div class="footer-links">
-        <a href="networking.html">Networking</a>
-        <a href="app.html">AI App</a>
-        <a href="logging.html">Logging &amp; Testing</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

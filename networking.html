@@ -2,123 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=architecture.html#networking-layer" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Networking | Project Aegis</title>
-  <meta name="description" content="Networking design for Project Aegis, including hub-and-spoke Azure layout, private endpoints, DNS, and Linux NVA egress strategy." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Networking Layer | Project Aegis</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-shell">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">A</span>
-        <span>
-          <strong>Project Aegis</strong>
-          <small>Secure Enterprise AI on Azure</small>
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="setup.html">Azure Setup</a>
-        <a class="is-active" href="networking.html">Networking</a>
-        <a href="app.html">AI App</a>
-        <a href="logging.html">Logging &amp; Testing</a>
-        <a href="artifacts.html">Artifacts</a>
-        <a href="about.html">About</a>
-      </nav>
+  <main class="section">
+    <div class="container">
+      <p class="eyebrow">Redirecting</p>
+      <h1 class="page-title">Networking now lives in the Architecture section.</h1>
+      <p class="page-intro">If you are not redirected automatically, <a class="text-link" href="architecture.html#networking-layer">open Networking layer</a>.</p>
     </div>
-  </header>
-
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <p class="eyebrow">Networking</p>
-        <h1 class="page-title">Hub-and-spoke networking with deliberate traffic paths.</h1>
-        <p class="page-intro">The network design keeps shared services, application hosting, AI services, and data services from collapsing into one flat trust zone. Private endpoints, DNS decisions, and egress routing all matter here.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="architecture-layout">
-          <article class="panel panel-visual">
-            <div class="panel-head">
-              <h3>Reference architecture diagram</h3>
-              <a href="SupportingDocs/aegis_final_polished_diagram.png" target="_blank" rel="noopener">Open full diagram</a>
-            </div>
-            <img class="architecture-image" src="SupportingDocs/aegis_final_polished_diagram.png" alt="Project Aegis Azure architecture diagram showing hub-and-spoke networking, private endpoints, AI, app, and data components." />
-          </article>
-
-          <div class="stacked-panels">
-            <article class="panel">
-              <h3>Core layout</h3>
-              <ul class="clean-list">
-                <li><strong>Hub VNet:</strong> shared routing functions, private DNS, and central network coordination live here.</li>
-                <li><strong>App spoke:</strong> App Service uses VNet integration so the Flask app can reach downstream services through controlled paths.</li>
-                <li><strong>AI spoke:</strong> Azure OpenAI and Azure AI Search are reached through private endpoint patterns.</li>
-                <li><strong>Data spoke:</strong> Blob Storage stays aligned to the document workflow rather than broad public reachability.</li>
-              </ul>
-            </article>
-
-            <article class="panel">
-              <h3>Egress strategy</h3>
-              <ul class="clean-list">
-                <li><strong>Accurate current design:</strong> outbound inspection is planned through an NVA built from a Linux machine, not Azure Firewall.</li>
-                <li><strong>Traffic direction:</strong> user-defined routes can steer spoke traffic toward the NVA path for centralized control.</li>
-                <li><strong>Why it matters:</strong> this keeps the egress story aligned with the project’s real implementation choice and cost-conscious design.</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-
-        <div class="section-heading narrow spaced-top">
-          <p class="eyebrow">Flow</p>
-          <h2>How traffic and trust move through the networked system.</h2>
-        </div>
-
-        <div class="flow-grid flow-grid-four">
-          <article class="feature-card flow-card">
-            <span class="step">01</span>
-            <h3>User reaches the app</h3>
-            <p>The user authenticates through Entra ID before the application begins serving document or retrieval functionality.</p>
-          </article>
-          <article class="feature-card flow-card">
-            <span class="step">02</span>
-            <h3>App reaches private services</h3>
-            <p>App Service uses its integrated network path to reach storage, search, and model services without relying on broad public service exposure.</p>
-          </article>
-          <article class="feature-card flow-card">
-            <span class="step">03</span>
-            <h3>Private DNS keeps names honest</h3>
-            <p>Private endpoint routing only works cleanly when name resolution follows the intended private path instead of leaking to public resolution.</p>
-          </article>
-          <article class="feature-card flow-card">
-            <span class="step">04</span>
-            <h3>NVA controls outbound direction</h3>
-            <p>The Linux-based NVA provides the egress control point for traffic that should leave through an inspected, centralized route.</p>
-          </article>
-        </div>
-      </div>
-    </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-layout">
-      <div>
-        <strong>Project Aegis</strong>
-        <p>Azure enterprise AI with identity, network, retrieval, and monitoring controls.</p>
-      </div>
-      <div class="footer-links">
-        <a href="setup.html">Azure Setup</a>
-        <a href="app.html">AI App</a>
-        <a href="logging.html">Logging &amp; Testing</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
