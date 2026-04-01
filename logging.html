@@ -98,7 +98,7 @@
 | where ResultDescription contains 'authorization_denied'
 | summarize count() by CallerIpAddress, bin(TimeGenerated, 15m)</code></pre>
               </div>
-              <figure class="supporting-figure supporting-figure-restrained"><img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Log Analytics query results in the Sentinel workspace showing Project Aegis content filter and related application events for investigation." /><figcaption>The same workspace used by Sentinel analytics can be queried directly to verify test results, inspect filter outcomes, and compare event patterns over time.</figcaption></figure>
+              <figure class="supporting-figure supporting-figure-restrained"><img class="content-image" src="SupportingDocs/AppPictures/AuthorizationDenied.png" alt="Log Analytics query results in the Sentinel workspace showing Project Aegis content filter and related application events for investigation." /><figcaption>The same workspace used by Sentinel analytics can be queried directly to verify test results, inspect filter outcomes, and compare event patterns over time.</figcaption></figure>
             </div>
           </article>
           <article class="timeline-item">
