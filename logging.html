@@ -56,6 +56,25 @@
         </div>
 
         <div class="section-heading narrow spaced-top">
+          <p class="eyebrow">Sentinel investigation views</p>
+          <h2>Two Sentinel-linked screenshots anchor the investigation flow on this page.</h2>
+          <p>The supporting images in <code>SupportingDocs/AppPictures</code> that fit the Sentinel workflow are <code>log-content-filter-query.png</code> and <code>log-request-trace-query.png</code>. They are used below where the operator would naturally pivot during testing, alert review, and cross-system tracing.</p>
+        </div>
+
+        <div class="supporting-figure-grid">
+          <figure class="supporting-figure supporting-figure-compact supporting-figure-restrained">
+            <span class="screenshot-kicker">Sentinel / Log Analytics</span>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis content filter and related application events." />
+            <figcaption><code>log-content-filter-query.png</code> shows the Sentinel workspace view used to validate content-filter behavior, prompt-injection handling, and related security-relevant application events.</figcaption>
+          </figure>
+          <figure class="supporting-figure supporting-figure-compact supporting-figure-restrained">
+            <span class="screenshot-kicker">Sentinel / Log Analytics</span>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
+            <figcaption><code>log-request-trace-query.png</code> shows the request-trace view used to follow a single workflow across authorization, retrieval, sanitization, and model stages after a test or alert.</figcaption>
+          </figure>
+        </div>
+
+        <div class="section-heading narrow spaced-top">
           <p class="eyebrow">Sequence walkthroughs</p>
           <h2>Examples that show how testing and evidence work step by step.</h2>
         </div>
@@ -69,7 +88,7 @@
               <p><strong>Step 2:</strong> The retrieval pipeline treats that content as untrusted data and strips suspicious lines before the model call when sanitization rules match.</p>
               <p><strong>Step 3:</strong> The app records events such as <code>retrieved_content_sanitized</code>. If the request cannot safely continue, the workflow can stop before the model call. If Azure OpenAI blocks the request, the app records <code>llm_request_blocked_content_filter</code>.</p>
               <p><strong>Step 4:</strong> Analysts can later query the request trail, affected document identifiers, and whether sanitization occurred before the model stage.</p>
-              <figure class="supporting-figure supporting-figure-restrained"><img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Log Analytics results showing Project Aegis content filter events captured from application logs." /><figcaption>Log Analytics captures content-filter outcomes from the application path so blocked model requests can be reviewed after testing.</figcaption></figure>
+              <figure class="supporting-figure supporting-figure-restrained"><span class="screenshot-kicker">Prompt injection handling</span><img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Log Analytics results showing Project Aegis content filter events captured from application logs." /><figcaption>The Sentinel-linked query view makes the prompt-injection test observable after the fact by showing whether sanitization occurred, whether the request reached content filtering, and which security-relevant events were emitted by the app.</figcaption></figure>
             </div>
           </article>
           <article class="timeline-item">
@@ -81,8 +100,8 @@
               <p><strong>Step 3:</strong> Those events land in Log Analytics and are evaluated by a Sentinel analytics rule looking for repeated denials across a time window or unusual access behavior from the same identity.</p>
               <p><strong>Step 4:</strong> The rule raises an alert for review, and the same workspace can be queried to confirm timing, source pattern, and whether the denials align with a broader probing sequence.</p>
               <div class="supporting-figure-grid">
-                <figure class="supporting-figure supporting-figure-compact"><img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics results in the Sentinel workspace showing correlated Project Aegis request events that support repeated authorization failure investigation." /><figcaption>Once Sentinel flags the pattern, the request-trace view helps confirm whether the same identity or source is stepping through multiple denied actions in a short window.</figcaption></figure>
-                <figure class="supporting-figure supporting-figure-compact"><img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Log Analytics results in the Sentinel workspace showing related Project Aegis security events that can be compared against repeated authorization failures." /><figcaption>A second Sentinel workspace query can be used to compare those denial events with other security-relevant application events nearby in time, helping distinguish simple mistakes from broader probing.</figcaption></figure>
+                <figure class="supporting-figure supporting-figure-compact"><span class="screenshot-kicker">Repeated denial investigation</span><img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics results in the Sentinel workspace showing correlated Project Aegis request events that support repeated authorization failure investigation." /><figcaption>Once Sentinel flags the pattern, the request-trace view helps confirm whether the same identity or source is stepping through multiple denied actions in a short window and whether those denials line up with one request chain or repeated probes.</figcaption></figure>
+                <figure class="supporting-figure supporting-figure-compact"><span class="screenshot-kicker">Sentinel analytics pivot</span><img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Log Analytics results in the Sentinel workspace showing related Project Aegis security events that can be compared against repeated authorization failures." /><figcaption>The companion query view gives the analyst a restrained second pivot inside the same Sentinel workspace, making it easy to compare authorization denials with nearby filter events and other suspicious application activity.</figcaption></figure>
               </div>
             </div>
           </article>
@@ -98,7 +117,7 @@
 | where ResultDescription contains 'authorization_denied'
 | summarize count() by CallerIpAddress, bin(TimeGenerated, 15m)</code></pre>
               </div>
-              <figure class="supporting-figure supporting-figure-restrained"><img class="content-image" src="SupportingDocs/AppPictures/AuthorizationDenied.png" alt="Log Analytics query results in the Sentinel workspace showing Project Aegis content filter and related application events for investigation." /><figcaption>The same workspace used by Sentinel analytics can be queried directly to verify test results, inspect filter outcomes, and compare event patterns over time.</figcaption></figure>
+              <figure class="supporting-figure supporting-figure-restrained"><span class="screenshot-kicker">Sentinel analytics &amp; querying</span><img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Log Analytics query results in the Sentinel workspace showing Project Aegis content filter and related application events for investigation." /><figcaption>The same Sentinel workspace used for analytics rules can also be queried directly after a test, letting the operator validate content-filter outcomes, inspect event timing, and compare patterns over time without leaving the investigation surface.</figcaption></figure>
             </div>
           </article>
           <article class="timeline-item">
@@ -109,7 +128,7 @@
               <p><strong>Step 2:</strong> The app evaluates authorization, performs retrieval, and may sanitize risky content before the model call.</p>
               <p><strong>Step 3:</strong> Azure OpenAI receives scoped context, the request completes or is blocked, and the result is written to application and platform logs.</p>
               <p><strong>Step 4:</strong> Log Analytics and Sentinel make it possible to follow that same workflow across identity, application, and security layers afterward.</p>
-              <figure class="supporting-figure supporting-figure-compact supporting-figure-restrained"><img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics query results tracing a single Project Aegis request across retrieval, sanitization, and model stages for cross-system investigation." /><figcaption>Cross-system tracing ties one request to the retrieval, sanitization, and model stages so the operator can reconstruct what happened without guessing.</figcaption></figure>
+              <figure class="supporting-figure supporting-figure-compact supporting-figure-restrained"><span class="screenshot-kicker">Cross-system activity tracing</span><img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics query results tracing a single Project Aegis request across retrieval, sanitization, and model stages for cross-system investigation." /><figcaption>The request-trace screenshot is the natural fit for cross-system activity tracing because it ties one request to authorization, retrieval, sanitization, and model stages so the operator can reconstruct what happened without guessing.</figcaption></figure>
             </div>
           </article>
         </div>
