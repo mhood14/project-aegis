@@ -408,7 +408,7 @@ p { margin: 0; }
   margin: 0 auto;
 }
 .app-use-image {
-  width: min(13.5%, 170px);
+  width: min(56%, 640px);
 }
 .media-caption,
 .supporting-figure figcaption {
@@ -432,6 +432,13 @@ p { margin: 0; }
 }
 .supporting-figure .content-image {
   box-shadow: none;
+}
+.workflow-proof {
+  margin-top: 1rem;
+  max-width: 640px;
+}
+.workflow-proof .content-image {
+  border-color: rgba(79, 116, 191, 0.16);
 }
 .screenshot-kicker {
   display: inline-block;

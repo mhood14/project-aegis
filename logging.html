@@ -56,27 +56,9 @@
         </div>
 
         <div class="section-heading narrow spaced-top">
-          <p class="eyebrow">Sentinel investigation views</p>
-          <h2>Two Sentinel-linked screenshots anchor the investigation flow on this page.</h2>
-          <p>The Sentinel-related screenshots in <code>SupportingDocs/AppPictures</code> are <code>log-content-filter-query.png</code> and <code>log-request-trace-query.png</code>. They are used here as the two primary investigation pivots: one for detection-oriented security events and one for end-to-end request reconstruction.</p>
-        </div>
-
-        <div class="supporting-figure-grid">
-          <figure class="supporting-figure supporting-figure-compact supporting-figure-restrained">
-            <span class="screenshot-kicker">Sentinel / Log Analytics</span>
-            <img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis content filter and related application events." />
-            <figcaption><code>log-content-filter-query.png</code> is the natural fit for prompt-injection handling, content-filter validation, and nearby security-event review inside the Sentinel-connected workspace.</figcaption>
-          </figure>
-          <figure class="supporting-figure supporting-figure-compact supporting-figure-restrained">
-            <span class="screenshot-kicker">Sentinel / Log Analytics</span>
-            <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
-            <figcaption><code>log-request-trace-query.png</code> is the natural fit for repeated authorization investigations, post-test tracing, and reconstructing one request across application stages.</figcaption>
-          </figure>
-        </div>
-
-        <div class="section-heading narrow spaced-top">
           <p class="eyebrow">Sequence walkthroughs</p>
           <h2>Examples that show how testing and evidence work step by step.</h2>
+          <p>The Sentinel-related screenshots in <code>SupportingDocs/AppPictures</code> are <code>log-content-filter-query.png</code> and <code>log-request-trace-query.png</code>. They are paired below with the workflows they support so the evidence feels attached to the sequence instead of sitting apart from it.</p>
         </div>
 
         <div class="timeline detailed-timeline">
@@ -88,6 +70,11 @@
               <p><strong>Step 2:</strong> The retrieval pipeline treats that content as untrusted data and strips suspicious lines before the model call when sanitization rules match.</p>
               <p><strong>Step 3:</strong> The app records events such as <code>retrieved_content_sanitized</code>. If the request cannot safely continue, the workflow can stop before the model call. If Azure OpenAI blocks the request, the app records <code>llm_request_blocked_content_filter</code>.</p>
               <p><strong>Step 4:</strong> Analysts can later query the request trail, affected document identifiers, and whether sanitization occurred before the model stage.</p>
+              <figure class="supporting-figure supporting-figure-restrained workflow-proof">
+                <span class="screenshot-kicker">Sentinel / Log Analytics</span>
+                <img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis content filter and related application events." />
+                <figcaption><code>log-content-filter-query.png</code> fits this workflow because it keeps prompt-injection handling, sanitization outcomes, and content-filter review in the same investigation surface.</figcaption>
+              </figure>
               <p class="callout-inline"><strong>Sentinel pivot:</strong> Use <code>log-content-filter-query.png</code> for this workflow because it highlights sanitization and content-filter-related events in the same investigation surface.</p>
             </div>
           </article>
@@ -99,6 +86,11 @@
               <p><strong>Step 2:</strong> The app records <code>authorization_denied</code> events with the requested scope, user context, and denial reason.</p>
               <p><strong>Step 3:</strong> Those events land in Log Analytics and are evaluated by a Sentinel analytics rule looking for repeated denials across a time window or unusual access behavior from the same identity.</p>
               <p><strong>Step 4:</strong> The rule raises an alert for review, and the same workspace can be queried to confirm timing, source pattern, and whether the denials align with a broader probing sequence.</p>
+              <figure class="supporting-figure supporting-figure-restrained workflow-proof">
+                <span class="screenshot-kicker">Sentinel / Log Analytics</span>
+                <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
+                <figcaption><code>log-request-trace-query.png</code> is the natural starting point for repeated authorization analysis because it reconstructs the denied request chain before an analyst widens the search.</figcaption>
+              </figure>
               <p class="callout-inline"><strong>Sentinel pivot:</strong> Start with <code>log-request-trace-query.png</code> to reconstruct the denied request chain, then compare nearby security events in <code>log-content-filter-query.png</code> if the pattern suggests broader probing.</p>
             </div>
           </article>
@@ -114,6 +106,11 @@
 | where ResultDescription contains 'authorization_denied'
 | summarize count() by CallerIpAddress, bin(TimeGenerated, 15m)</code></pre>
               </div>
+              <figure class="supporting-figure supporting-figure-restrained workflow-proof">
+                <span class="screenshot-kicker">Sentinel / Log Analytics</span>
+                <img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis content filter and related application events." />
+                <figcaption><code>log-content-filter-query.png</code> supports the post-test workflow by showing the query surface used to validate filter outcomes, compare timing, and spot adjacent events worth escalating.</figcaption>
+              </figure>
               <p class="callout-inline"><strong>Sentinel pivot:</strong> <code>log-content-filter-query.png</code> is the best fit here because it shows the direct post-test query surface used to validate filter outcomes, timing, and event patterns.</p>
             </div>
           </article>
@@ -125,6 +122,11 @@
               <p><strong>Step 2:</strong> The app evaluates authorization, performs retrieval, and may sanitize risky content before the model call.</p>
               <p><strong>Step 3:</strong> Azure OpenAI receives scoped context, the request completes or is blocked, and the result is written to application and platform logs.</p>
               <p><strong>Step 4:</strong> Log Analytics and Sentinel make it possible to follow that same workflow across identity, application, and security layers afterward.</p>
+              <figure class="supporting-figure supporting-figure-restrained workflow-proof">
+                <span class="screenshot-kicker">Sentinel / Log Analytics</span>
+                <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
+                <figcaption><code>log-request-trace-query.png</code> fits cross-system tracing because it follows one request through authorization, retrieval, sanitization, and model-related stages from a single workspace view.</figcaption>
+              </figure>
               <p class="callout-inline"><strong>Sentinel pivot:</strong> Use <code>log-request-trace-query.png</code> here to trace one request across authorization, retrieval, sanitization, and model stages without leaving the workspace.</p>
             </div>
           </article>
