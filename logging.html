@@ -67,12 +67,22 @@
             <h3>Filtering and detection view</h3>
             <img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis content filter and related application events." />
             <p>This view fits prompt-injection handling, content-filter review, and post-test validation because it keeps sanitization-related events and nearby signals in the same workspace.</p>
+            <ul class="clean-list">
+              <li>Best fit for prompt-injection handling and content-filter evidence.</li>
+              <li>Useful after a test to compare blocked, sanitized, and successful paths side by side.</li>
+              <li>Gives Sentinel analysts a compact place to widen from one suspicious event into adjacent activity.</li>
+            </ul>
           </article>
           <article class="feature-card evidence-card">
             <span class="screenshot-kicker">Sentinel / Log Analytics</span>
             <h3>Request trace and correlation view</h3>
             <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
             <p>This view fits repeated authorization analysis and cross-system tracing because it reconstructs a request path across authorization, retrieval, sanitization, and model-related stages.</p>
+            <ul class="clean-list">
+              <li>Best fit for repeated failed-authorization review and identity-based investigation.</li>
+              <li>Helps correlate one request across application stages without leaving the workspace.</li>
+              <li>Supports follow-on pivots into broader Sentinel analytics when a pattern looks deliberate.</li>
+            </ul>
           </article>
         </div>
 
