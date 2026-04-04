@@ -58,7 +58,22 @@
         <div class="section-heading narrow spaced-top">
           <p class="eyebrow">Sequence walkthroughs</p>
           <h2>Examples that show how testing and evidence work step by step.</h2>
-          <p>The Sentinel-related screenshots in <code>SupportingDocs/AppPictures</code> are <code>log-content-filter-query.png</code> and <code>log-request-trace-query.png</code>. They are paired below with the workflows they support so the evidence feels attached to the sequence instead of sitting apart from it.</p>
+          <p>The Sentinel-related screenshots in <code>SupportingDocs/AppPictures</code> are <code>log-content-filter-query.png</code> and <code>log-request-trace-query.png</code>. They are used here as restrained investigation views: one centered on filtering and adjacent security signals, and one centered on end-to-end request tracing.</p>
+        </div>
+
+        <div class="feature-grid two simple-columns sentinel-evidence-grid">
+          <article class="feature-card evidence-card">
+            <span class="screenshot-kicker">Sentinel / Log Analytics</span>
+            <h3>Filtering and detection view</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis content filter and related application events." />
+            <p>This view fits prompt-injection handling, content-filter review, and post-test validation because it keeps sanitization-related events and nearby signals in the same workspace.</p>
+          </article>
+          <article class="feature-card evidence-card">
+            <span class="screenshot-kicker">Sentinel / Log Analytics</span>
+            <h3>Request trace and correlation view</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
+            <p>This view fits repeated authorization analysis and cross-system tracing because it reconstructs a request path across authorization, retrieval, sanitization, and model-related stages.</p>
+          </article>
         </div>
 
         <div class="timeline detailed-timeline">
