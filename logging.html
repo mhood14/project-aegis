@@ -98,14 +98,19 @@
             <div>
               <h3>Repeated failed authorizations detected by Sentinel</h3>
               <p><strong>Step 1:</strong> A user repeatedly requests a document scope they are not allowed to access.</p>
+              <figure class="supporting-figure supporting-figure-restrained workflow-proof auth-denied-proof">
+                <span class="screenshot-kicker">Application evidence</span>
+                <img class="content-image" src="SupportingDocs/AppPictures/AuthorizationDenied.png" alt="Project Aegis interface showing an authorization denied result for a scoped document request." />
+                <figcaption><code>AuthorizationDenied.png</code> shows the user-facing denial that should correspond to a logged <code>authorization_denied</code> event.</figcaption>
+              </figure>
               <p><strong>Step 2:</strong> The app records <code>authorization_denied</code> events with the requested scope, user context, and denial reason.</p>
               <p><strong>Step 3:</strong> Those events land in Log Analytics and are evaluated by a Sentinel analytics rule looking for repeated denials across a time window or unusual access behavior from the same identity.</p>
-              <p><strong>Step 4:</strong> The rule raises an alert for review, and the same workspace can be queried to confirm timing, source pattern, and whether the denials align with a broader probing sequence.</p>
               <figure class="supporting-figure supporting-figure-restrained workflow-proof">
                 <span class="screenshot-kicker">Sentinel / Log Analytics</span>
                 <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
                 <figcaption><code>log-request-trace-query.png</code> is the natural starting point for repeated authorization analysis because it reconstructs the denied request chain before an analyst widens the search.</figcaption>
               </figure>
+              <p><strong>Step 4:</strong> The rule raises an alert for review, and the same workspace can be queried to confirm timing, source pattern, and whether the denials align with a broader probing sequence.</p>
               <p class="callout-inline"><strong>Sentinel pivot:</strong> Start with <code>log-request-trace-query.png</code> to reconstruct the denied request chain, then compare nearby security events in <code>log-content-filter-query.png</code> if the pattern suggests broader probing.</p>
             </div>
           </article>
