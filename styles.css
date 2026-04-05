@@ -408,8 +408,8 @@ p { margin: 0; }
   margin: 0 auto;
 }
 .app-use-image {
-  width: 56%;
-  max-width: 640px;
+  width: 42%;
+  max-width: 480px;
 }
 .media-caption,
 .supporting-figure figcaption {
@@ -438,6 +438,8 @@ p { margin: 0; }
   border-top-color: rgba(79, 116, 191, 0.2);
 }
 .evidence-card .content-image {
+  max-width: 92%;
+  margin: 0 auto;
   box-shadow: none;
 }
 .evidence-card p {
@@ -454,6 +456,8 @@ p { margin: 0; }
   max-width: 580px;
 }
 .workflow-proof .content-image {
+  max-width: 92%;
+  margin: 0 auto;
   border-color: rgba(79, 116, 191, 0.16);
 }
 .auth-denied-proof {
