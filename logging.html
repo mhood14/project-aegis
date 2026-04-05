@@ -46,7 +46,7 @@
           <article class="feature-card icon-feature">
             <span class="section-icon" aria-hidden="true">📝</span>
             <h3>Application events</h3>
-            <p>The Flask application logs authorization outcomes, indexing events, retrieval sanitization, model-call starts, model-call completions, content-filter blocks, and request failures.</p>
+            <p>The application records authorization outcomes, indexing events, retrieval sanitization, model activity, content-filter blocks, and request failures.</p>
           </article>
           <article class="feature-card icon-feature">
             <span class="section-icon" aria-hidden="true">🛡️</span>
@@ -58,7 +58,7 @@
         <div class="section-heading narrow spaced-top">
           <p class="eyebrow">Sequence walkthroughs</p>
           <h2>Examples that show how testing and evidence work step by step.</h2>
-          <p>Several Sentinel-related screenshots from <code>SupportingDocs/AppPictures</code> anchor these examples: <code>ContentFilterAlert.png</code> and <code>AuthorizationDeniedAlert.png</code> show the actual incidents created from custom analytics rules, while <code>log-content-filter-query.png</code> and <code>log-request-id-trace-query.png</code> show the query and trace work used to validate and investigate those alerts. Together they help showcase both custom alert logic and the follow-on incident review process, so the page demonstrates not just that logs exist, but how they are used operationally.</p>
+          <p>These examples show both sides of the monitoring workflow: the incidents created by custom Sentinel analytics rules and the supporting query evidence used to validate and investigate them. The goal is to show how security-relevant application events move from raw telemetry into alerts, triage, and follow-on analysis.</p>
         </div>
 
         <div class="feature-grid two simple-columns sentinel-evidence-grid">
@@ -66,7 +66,7 @@
             <span class="screenshot-kicker">Sentinel incident</span>
             <h3>Content filter policy incident</h3>
             <img class="content-image" src="SupportingDocs/AppPictures/ContentFilterAlert.png" alt="Microsoft Sentinel incident view for a ContentFilterPolicyTriggered alert." />
-            <p>This is the actual Sentinel incident generated from the content-filter policy detection, showing how prompt-injection or unsafe content activity is surfaced for triage.</p>
+            <p>This incident shows how prompt-injection or unsafe content activity is elevated into a triage-ready Sentinel case instead of remaining buried in raw telemetry.</p>
             <ul class="clean-list">
               <li>Direct example of a custom alert created from model-safety related events.</li>
               <li>Useful for showing the SOC-facing outcome, not just the underlying query.</li>
@@ -88,7 +88,7 @@
             <span class="screenshot-kicker">Log Analytics validation</span>
             <h3>Request trace and query validation</h3>
             <img class="content-image" src="SupportingDocs/AppPictures/log-request-id-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
-            <p>This query view complements the incident screenshots by showing the request-level trace analysts can use to validate what triggered the alert and how the activity moved through the pipeline.</p>
+            <p>This query view complements the incident screenshots by showing the request-level trace analysts can use to validate what triggered the alert and how activity moved through the pipeline.</p>
             <ul class="clean-list">
               <li>Best fit for tracing one request across authorization, retrieval, sanitization, and model stages.</li>
               <li>Supports validation of both denied-access and content-filter related alerts.</li>
@@ -106,7 +106,7 @@
               <p><strong>Step 2:</strong> The retrieval pipeline treats that content as untrusted data and strips suspicious lines before the model call when sanitization rules match.</p>
               <p><strong>Step 3:</strong> The app records events such as <code>retrieved_content_sanitized</code>. If the request cannot safely continue, the workflow can stop before the model call. If Azure OpenAI blocks the request, the app records <code>llm_request_blocked_content_filter</code>.</p>
               <p><strong>Step 4:</strong> Analysts can later query the request trail, affected document identifiers, and whether sanitization occurred before the model stage.</p>
-              <p class="callout-inline"><strong>Sentinel pivot:</strong> Start with <code>ContentFilterAlert.png</code> to show the incident created by the analytics rule, then validate the underlying activity in <code>log-content-filter-query.png</code>.</p>
+              <p class="callout-inline"><strong>Sentinel pivot:</strong> Start with the content filter incident to show the alert created by the analytics rule, then validate the underlying activity in Log Analytics.</p>
             </div>
           </article>
           <article class="timeline-item">
@@ -117,12 +117,12 @@
               <figure class="supporting-figure supporting-figure-restrained workflow-proof auth-denied-proof">
                 <span class="screenshot-kicker">Application evidence</span>
                 <img class="content-image" src="SupportingDocs/AppPictures/AuthorizationDenied.png" alt="Project Aegis interface showing an authorization denied result for a scoped document request." />
-                <figcaption><code>AuthorizationDenied.png</code> shows the user-facing denial that should correspond to a logged <code>authorization_denied</code> event.</figcaption>
+                <figcaption>This user-facing denial should correspond to a logged <code>authorization_denied</code> event in the monitoring pipeline.</figcaption>
               </figure>
               <p><strong>Step 2:</strong> The app records <code>authorization_denied</code> events with the requested scope, user context, and denial reason.</p>
               <p><strong>Step 3:</strong> Those events land in Log Analytics and are evaluated by a Sentinel analytics rule looking for repeated denials across a time window or unusual access behavior from the same identity.</p>
               <p><strong>Step 4:</strong> The rule raises an alert for review, and the same workspace can be queried to confirm timing, source pattern, and whether the denials align with a broader probing sequence.</p>
-              <p class="callout-inline"><strong>Sentinel pivot:</strong> Start with <code>AuthorizationDeniedAlert.png</code> to show the actual incident, then use <code>log-request-id-trace-query.png</code> to reconstruct the denied request chain and confirm the pattern.</p>
+              <p class="callout-inline"><strong>Sentinel pivot:</strong> Start with the authorization-denied incident to show the alert itself, then use request tracing to reconstruct the denied request chain and confirm the pattern.</p>
             </div>
           </article>
           <article class="timeline-item">
@@ -137,7 +137,7 @@
 | where ResultDescription contains 'authorization_denied'
 | summarize count() by CallerIpAddress, bin(TimeGenerated, 15m)</code></pre>
               </div>
-              <p class="callout-inline"><strong>Sentinel pivot:</strong> <code>log-content-filter-query.png</code> is the best fit here because it shows the direct post-test query surface used to validate filter outcomes, timing, and event patterns.</p>
+              <p class="callout-inline"><strong>Sentinel pivot:</strong> The Log Analytics query view is the best fit here because it shows the post-test surface used to validate filter outcomes, timing, and event patterns.</p>
             </div>
           </article>
           <article class="timeline-item">
@@ -148,7 +148,7 @@
               <p><strong>Step 2:</strong> The app evaluates authorization, performs retrieval, and may sanitize risky content before the model call.</p>
               <p><strong>Step 3:</strong> Azure OpenAI receives scoped context, the request completes or is blocked, and the result is written to application and platform logs.</p>
               <p><strong>Step 4:</strong> Log Analytics and Sentinel make it possible to follow that same workflow across identity, application, and security layers afterward.</p>
-              <p class="callout-inline"><strong>Sentinel pivot:</strong> Use <code>log-request-trace-query.png</code> here to trace one request across authorization, retrieval, sanitization, and model stages without leaving the workspace.</p>
+              <p class="callout-inline"><strong>Sentinel pivot:</strong> Use the request-trace view here to follow one request across authorization, retrieval, sanitization, and model stages without leaving the workspace.</p>
             </div>
           </article>
         </div>
