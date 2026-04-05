@@ -408,8 +408,8 @@ p { margin: 0; }
   margin: 0 auto;
 }
 .app-use-image {
-  width: 42%;
-  max-width: 480px;
+  width: 32%;
+  max-width: 360px;
 }
 .media-caption,
 .supporting-figure figcaption {
