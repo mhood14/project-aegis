@@ -58,7 +58,7 @@
         <div class="section-heading narrow spaced-top">
           <p class="eyebrow">Sequence walkthroughs</p>
           <h2>Examples that show how testing and evidence work step by step.</h2>
-          <p>Two Sentinel-related screenshots from <code>SupportingDocs/AppPictures</code> anchor these examples: <code>log-content-filter-query.png</code> for prompt-injection handling and post-test analytics, and <code>log-request-trace-query.png</code> for repeated failed-authorization investigation and end-to-end request tracing. Together they help showcase both custom alert logic and the follow-on incident review process, so the page demonstrates not just that logs exist, but how they are used operationally.</p>
+          <p>Several Sentinel-related screenshots from <code>SupportingDocs/AppPictures</code> anchor these examples: <code>log-content-filter-query.png</code> for prompt-injection handling and post-test analytics, <code>log-request-id-trace-query.png</code> for end-to-end request tracing, and <code>log-security-docs-scope-query.png</code> for scope-focused incident follow-up. Together they help showcase both custom alert logic and the follow-on incident review process, so the page demonstrates not just that logs exist, but how they are used operationally.</p>
         </div>
 
         <div class="feature-grid two simple-columns sentinel-evidence-grid">
@@ -76,12 +76,23 @@
           <article class="feature-card evidence-card">
             <span class="screenshot-kicker">Sentinel / Log Analytics</span>
             <h3>Request trace and correlation view</h3>
-            <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
+            <img class="content-image" src="SupportingDocs/AppPictures/log-request-id-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
             <p>This view fits repeated authorization analysis and cross-system tracing because it reconstructs a request path across authorization, retrieval, sanitization, and model-related stages.</p>
             <ul class="clean-list">
               <li>Best fit for repeated failed-authorization review and identity-based investigation.</li>
               <li>Helps correlate one request across application stages without leaving the workspace.</li>
               <li>Supports follow-on pivots into broader Sentinel analytics when a pattern looks deliberate.</li>
+            </ul>
+          </article>
+          <article class="feature-card evidence-card">
+            <span class="screenshot-kicker">Sentinel / Log Analytics</span>
+            <h3>Scope-focused investigation view</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-security-docs-scope-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis events filtered around a protected document scope." />
+            <p>This view supports custom incident follow-up by pivoting on a protected scope and reviewing nearby authorization activity, letting analysts test whether an alert reflects normal access or suspicious probing.</p>
+            <ul class="clean-list">
+              <li>Best fit for scope-based investigation after a Sentinel alert is created.</li>
+              <li>Helps compare authorization patterns tied to sensitive document scopes.</li>
+              <li>Adds another concrete incident-review screenshot instead of only query examples.</li>
             </ul>
           </article>
         </div>

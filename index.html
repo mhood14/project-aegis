@@ -81,15 +81,15 @@
         <div class="feature-grid two simple-columns sentinel-evidence-grid compact-evidence-grid">
           <article class="feature-card evidence-card compact-evidence-card">
             <span class="screenshot-kicker">Custom detection evidence</span>
-            <h3>Content-filter and alert validation</h3>
-            <img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis content filter and related application events." />
-            <p>Shows how prompt-injection and content-filter testing can be reviewed in Sentinel-backed Log Analytics to validate detections and compare blocked, sanitized, and successful outcomes.</p>
+            <h3>Request trace used during incident review</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-request-id-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across authorization, retrieval, sanitization, and model stages." />
+            <p>Shows the correlated request trail analysts can use after a custom Sentinel alert fires, making it easier to validate what happened across the app pipeline from one request ID.</p>
           </article>
           <article class="feature-card evidence-card compact-evidence-card">
             <span class="screenshot-kicker">Incident investigation</span>
-            <h3>Request tracing for repeated denied access</h3>
-            <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
-            <p>Highlights how repeated authorization denials and related request activity can be correlated across the retrieval pipeline during incident review.</p>
+            <h3>Scope-focused evidence for custom alert follow-up</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-security-docs-scope-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis events filtered around a protected document scope." />
+            <p>Highlights how analysts can pivot on a protected scope during incident follow-up to review authorization activity and surrounding events tied to custom detections.</p>
           </article>
         </div>
 
