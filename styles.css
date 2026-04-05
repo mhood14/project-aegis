@@ -408,7 +408,8 @@ p { margin: 0; }
   margin: 0 auto;
 }
 .app-use-image {
-  width: min(18%, 205px);
+  width: 56%;
+  max-width: 640px;
 }
 .media-caption,
 .supporting-figure figcaption {
@@ -450,13 +451,13 @@ p { margin: 0; }
 }
 .workflow-proof {
   margin-top: 1rem;
-  max-width: 640px;
+  max-width: 580px;
 }
 .workflow-proof .content-image {
   border-color: rgba(79, 116, 191, 0.16);
 }
 .auth-denied-proof {
-  max-width: 520px;
+  max-width: 480px;
 }
 .screenshot-kicker {
   display: inline-block;
