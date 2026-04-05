@@ -75,21 +75,21 @@
         <div class="section-heading narrow">
           <p class="eyebrow">Application snapshots</p>
           <h2>From live app behavior to security evidence.</h2>
-          <p>The app experience stays simple for the user, but the supporting telemetry is built to show how custom detections and investigation workflows work after testing. These two Sentinel screenshots reinforce that story without overwhelming the page.</p>
+          <p>The app experience stays simple for the user, but the supporting telemetry is built to show how custom detections and investigation workflows work after testing. These two Sentinel incident views now show the actual alerts created for authorization denials and content-filter policy triggers.</p>
         </div>
 
         <div class="feature-grid two simple-columns sentinel-evidence-grid compact-evidence-grid">
           <article class="feature-card evidence-card compact-evidence-card">
-            <span class="screenshot-kicker">Custom detection evidence</span>
-            <h3>Request trace used during incident review</h3>
-            <img class="content-image" src="SupportingDocs/AppPictures/log-request-id-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across authorization, retrieval, sanitization, and model stages." />
-            <p>Shows the correlated request trail analysts can use after a custom Sentinel alert fires, making it easier to validate what happened across the app pipeline from one request ID.</p>
+            <span class="screenshot-kicker">Sentinel incident</span>
+            <h3>AuthorizationDenied alert in Sentinel</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/AuthorizationDeniedAlert.png" alt="Microsoft Sentinel incident view for an AuthorizationDenied alert involving one user." />
+            <p>Shows the incident created from repeated authorization-denied activity, giving a direct example of how custom detections turn application events into a triage-ready security alert.</p>
           </article>
           <article class="feature-card evidence-card compact-evidence-card">
-            <span class="screenshot-kicker">Incident investigation</span>
-            <h3>Scope-focused evidence for custom alert follow-up</h3>
-            <img class="content-image" src="SupportingDocs/AppPictures/log-security-docs-scope-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis events filtered around a protected document scope." />
-            <p>Highlights how analysts can pivot on a protected scope during incident follow-up to review authorization activity and surrounding events tied to custom detections.</p>
+            <span class="screenshot-kicker">Sentinel incident</span>
+            <h3>ContentFilterPolicyTriggered alert</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/ContentFilterAlert.png" alt="Microsoft Sentinel incident view for a ContentFilterPolicyTriggered alert." />
+            <p>Shows the incident created from content-filter policy activity, reinforcing how suspicious prompt or model-safety events are surfaced for review instead of staying buried in raw logs.</p>
           </article>
         </div>
 
