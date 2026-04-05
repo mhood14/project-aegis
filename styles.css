@@ -434,6 +434,9 @@ p { margin: 0; }
 .sentinel-evidence-grid {
   align-items: start;
 }
+.compact-evidence-grid {
+  margin-top: 1.25rem;
+}
 .evidence-card {
   border-top-color: rgba(79, 116, 191, 0.2);
 }
@@ -441,6 +444,9 @@ p { margin: 0; }
   max-width: 92%;
   margin: 0 auto;
   box-shadow: none;
+}
+.compact-evidence-card .content-image {
+  max-width: 100%;
 }
 .evidence-card p {
   margin-top: 0.75rem;

@@ -72,7 +72,28 @@
 
     <section class="section section-subtle">
       <div class="container">
-        <div class="quick-nav-grid">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Application snapshots</p>
+          <h2>From live app behavior to security evidence.</h2>
+          <p>The app experience stays simple for the user, but the supporting telemetry is built to show how custom detections and investigation workflows work after testing. These two Sentinel screenshots reinforce that story without overwhelming the page.</p>
+        </div>
+
+        <div class="feature-grid two simple-columns sentinel-evidence-grid compact-evidence-grid">
+          <article class="feature-card evidence-card compact-evidence-card">
+            <span class="screenshot-kicker">Custom detection evidence</span>
+            <h3>Content-filter and alert validation</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-content-filter-query.png" alt="Sentinel-linked Log Analytics results showing Project Aegis content filter and related application events." />
+            <p>Shows how prompt-injection and content-filter testing can be reviewed in Sentinel-backed Log Analytics to validate detections and compare blocked, sanitized, and successful outcomes.</p>
+          </article>
+          <article class="feature-card evidence-card compact-evidence-card">
+            <span class="screenshot-kicker">Incident investigation</span>
+            <h3>Request tracing for repeated denied access</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
+            <p>Highlights how repeated authorization denials and related request activity can be correlated across the retrieval pipeline during incident review.</p>
+          </article>
+        </div>
+
+        <div class="quick-nav-grid spaced-top">
           <a class="nav-tile" href="architecture.html">
             <span class="tile-icon" aria-hidden="true">☁️</span>
             <strong>Architecture</strong>
@@ -86,7 +107,7 @@
           <a class="nav-tile" href="logging.html">
             <span class="tile-icon" aria-hidden="true">📊</span>
             <strong>Logging &amp; Testing</strong>
-            <span>Follow attack tests, detections, and investigation paths.</span>
+            <span>Follow attack tests, custom detections, and investigation paths.</span>
           </a>
           <a class="nav-tile" href="about.html">
             <span class="tile-icon" aria-hidden="true">ℹ️</span>
