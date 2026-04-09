@@ -408,8 +408,8 @@ p { margin: 0; }
   margin: 0 auto;
 }
 .app-use-image {
-  width: 13.5%;
-  max-width: 172px;
+  width: 10%;
+  max-width: 128px;
 }
 .media-caption,
 .supporting-figure figcaption {
@@ -601,7 +601,10 @@ code {
   .hero-points, .hero-actions, .timeline-item, .summary-list-rich li, .icon-card { grid-template-columns: 1fr; }
   .button { width: 100%; }
   .timeline-item { gap: 0.85rem; }
-  .app-use-image { width: 100%; }
+  .app-use-image {
+    width: min(78%, 320px);
+    max-width: 320px;
+  }
   .site-nav a {
     padding-left: 0;
     padding-right: 0;
