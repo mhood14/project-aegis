@@ -65,35 +65,46 @@
         <div class="feature-grid two simple-columns sentinel-evidence-grid">
           <article class="feature-card evidence-card">
             <span class="screenshot-kicker">Sentinel incident</span>
-            <h3>Content filter policy incident</h3>
+            <h3>Prompt injection and content filter incident</h3>
             <img class="content-image" src="SupportingDocs/AppPictures/ContentFilterAlert.png" alt="Microsoft Sentinel incident view for a ContentFilterPolicyTriggered alert." />
-            <p>This incident shows how prompt-injection or unsafe content activity is elevated into a triage-ready Sentinel case instead of remaining buried in raw telemetry.</p>
+            <p>This incident card is the SOC-facing starting point for the prompt-injection workflow: Sentinel raises the case, then the analyst pivots into the supporting query trail below.</p>
             <ul class="clean-list">
-              <li>Direct example of a custom alert created from model-safety related events.</li>
-              <li>Useful for showing the SOC-facing outcome, not just the underlying query.</li>
-              <li>Pairs naturally with the Log Analytics evidence used to validate the alert.</li>
+              <li>Represents the alert created from model-safety or blocked-content events.</li>
+              <li>Fits the prompt-injection handling sequence described later on the page.</li>
+              <li>Pairs directly with the content-filter query evidence used for validation.</li>
             </ul>
           </article>
           <article class="feature-card evidence-card">
             <span class="screenshot-kicker">Sentinel incident</span>
-            <h3>Authorization denied incident</h3>
+            <h3>Repeated failed authorization incident</h3>
             <img class="content-image" src="SupportingDocs/AppPictures/AuthorizationDeniedAlert.png" alt="Microsoft Sentinel incident view for an AuthorizationDenied alert involving one user." />
-            <p>This incident shows how repeated authorization-denied behavior is elevated into a reviewable Sentinel case tied to a specific user and time window.</p>
+            <p>This alert shows how repeated denied-access activity becomes a reviewable Sentinel incident tied to one identity, one pattern, and one investigation window.</p>
             <ul class="clean-list">
-              <li>Direct example of a custom alert created from repeated denied-access activity.</li>
-              <li>Shows how application-level security events become incident-response evidence.</li>
-              <li>Provides a clean bridge from app behavior to Sentinel investigation.</li>
+              <li>Maps cleanly to the repeated failed authorization sequence below.</li>
+              <li>Shows application-level denials as incident-response evidence, not just app behavior.</li>
+              <li>Pairs with the scope-focused query evidence used to verify the denial pattern.</li>
             </ul>
           </article>
           <article class="feature-card evidence-card">
             <span class="screenshot-kicker">Sentinel analytics &amp; querying</span>
             <h3>Workspace query pivot for validation</h3>
             <img class="content-image" src="SupportingDocs/AppPictures/log-request-id-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
-            <p>This workspace view shows the next step after an incident opens: analysts pivot from Sentinel into Log Analytics, follow the request trail, and validate what actually happened across the application stages.</p>
+            <p>This screenshot shows the normal analyst pivot after an incident or test run: move from Sentinel into the linked workspace, isolate a request, and validate the exact event sequence.</p>
             <ul class="clean-list">
-              <li>Useful for post-alert validation and post-test review from the same Sentinel-linked workspace.</li>
-              <li>Connects incident triage to request-level evidence instead of leaving the page at the alert screenshot alone.</li>
-              <li>Sets up the deeper workflow examples below for content filtering, authorization denials, and cross-system tracing.</li>
+              <li>Useful for post-alert validation and post-test review in the same workspace.</li>
+              <li>Shows the analytics/querying surface that turns incidents into traceable evidence.</li>
+              <li>Sets up the request-ID investigation sequence later on the page.</li>
+            </ul>
+          </article>
+          <article class="feature-card evidence-card">
+            <span class="screenshot-kicker">Cross-system tracing</span>
+            <h3>Request trace across the stack</h3>
+            <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics query results showing cross-system request tracing for a Project Aegis transaction across authorization, retrieval, sanitization, and model stages." />
+            <p>This view is the restrained end-state of the logging design: one request can be reconstructed across authorization, retrieval, sanitization, and model-handling steps without leaving the monitoring workspace.</p>
+            <ul class="clean-list">
+              <li>Best fit for the cross-system activity tracing workflow.</li>
+              <li>Keeps the monitoring story anchored in one coherent request trail.</li>
+              <li>Complements the detailed sequence further down without changing the page structure.</li>
             </ul>
           </article>
         </div>
