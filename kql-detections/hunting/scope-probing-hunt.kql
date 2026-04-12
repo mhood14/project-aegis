@@ -1,0 +1,12 @@
+AppServiceConsoleLogs
+| where ResultDescription has_any ('authorization_allowed', 'authorization_denied')
+| extend Parsed = parse_json(ResultDescription)
+| extend EventTime = coalesce(todatetime(Parsed.timestamp), TimeGenerated),
+         EventType = tostring(Parsed.event_type),
+         UserId = tostring(Parsed.details.user_id),
+         RequestedScope = tostring(Parsed.details.requested_scope),
+         Reason = tostring(Parsed.details.reason),
+         RequestId = tostring(Parsed.details.request_id)
+| where isnotempty(UserId)
+| project EventTime, UserId, EventType, RequestedScope, Reason, RequestId
+| order by EventTime desc

@@ -185,6 +185,31 @@
           </article>
         </div>
 
+        <div class="section-heading narrow spaced-top">
+          <p class="eyebrow">KQL detections</p>
+          <h2>Detection engineering packaged alongside the site.</h2>
+          <p>To finish the monitoring story, the repository now includes a dedicated <code>kql-detections/</code> folder with Sentinel-ready detection notes, KQL analytics, and hunting queries tuned to the actual Project Aegis application audit schema.</p>
+        </div>
+
+        <div class="feature-grid two simple-columns">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🧠</span>
+            <h3>Detections included</h3>
+            <ul class="clean-list">
+              <li>Authorization Denied</li>
+              <li>Content Filter Triggered</li>
+              <li>Suspicious Scope Usage</li>
+              <li>Unusual Upload Activity</li>
+              <li>Repeated Authentication Failures</li>
+            </ul>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🗂️</span>
+            <h3>Why it is credible</h3>
+            <p>These queries were adjusted to match the app’s real JSON audit events, including <code>event_type</code>, <code>status</code>, and nested <code>details.*</code> fields such as <code>request_id</code>, <code>user_id</code>, <code>requested_scope</code>, <code>filename</code>, and <code>document_id</code>.</p>
+          </article>
+        </div>
+
         <div class="feature-grid two simple-columns spaced-top">
           <article class="feature-card code-card icon-feature">
             <span class="section-icon" aria-hidden="true">🔎</span>
@@ -201,6 +226,7 @@
             <span class="section-icon" aria-hidden="true">📡</span>
             <h3>What the logs prove</h3>
             <p>The project can show how retrieval, authorization, hybrid search, model use, and security monitoring fit together rather than treating them as isolated features.</p>
+            <p class="small">The supporting KQL package lives in <code>kql-detections/</code> and can be adapted into Sentinel analytics rules, hunting queries, and workbook views without changing the current GitHub Pages deployment model.</p>
           </article>
         </div>
       </div>

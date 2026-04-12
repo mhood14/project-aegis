@@ -1,0 +1,25 @@
+AppServiceConsoleLogs
+| where ResultDescription has 'document_upload_started' or ResultDescription has 'upload_size_exceeded' or ResultDescription has 'invalid_upload_request'
+| extend Parsed = parse_json(ResultDescription)
+| extend EventType = tostring(Parsed.event_type),
+         Status = tostring(Parsed.status),
+         EventTime = coalesce(todatetime(Parsed.timestamp), TimeGenerated),
+         RequestId = tostring(Parsed.details.request_id),
+         UserId = tostring(Parsed.details.user_id),
+         UploadedBy = tostring(Parsed.details.uploaded_by),
+         Scope = tostring(Parsed.details.scope),
+         FileName = tostring(Parsed.details.filename),
+         ByteCount = tolong(Parsed.details.byte_count),
+         Reason = tostring(Parsed.details.reason)
+| extend Actor = coalesce(UploadedBy, UserId)
+| where isnotempty(Actor)
+| summarize UploadEventCount = count(),
+            DistinctFiles = dcount(FileName),
+            DistinctScopes = dcount(Scope),
+            TotalBytes = sum(ByteCount),
+            EventTypes = make_set(EventType, 10),
+            Reasons = make_set(Reason, 10),
+            RequestIds = make_set(RequestId, 20)
+    by Actor, bin(EventTime, 1h)
+| where UploadEventCount >= 5 or DistinctFiles >= 5 or DistinctScopes >= 2 or TotalBytes >= 25000000
+| order by UploadEventCount desc, TotalBytes desc

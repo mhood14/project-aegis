@@ -1,0 +1,22 @@
+AppServiceConsoleLogs
+| where ResultDescription has 'llm_request_blocked_content_filter' or ResultDescription has 'retrieved_content_sanitized' or ResultDescription has 'llm_request_blocked_preflight'
+| extend Parsed = parse_json(ResultDescription)
+| extend EventType = tostring(Parsed.event_type),
+         Status = tostring(Parsed.status),
+         EventTime = coalesce(todatetime(Parsed.timestamp), TimeGenerated),
+         RequestId = tostring(Parsed.details.request_id),
+         ChunkCount = toint(Parsed.details.chunk_count),
+         RemovedLineGroups = toint(Parsed.details.removed_line_groups),
+         Reason = tostring(Parsed.details.reason),
+         DocumentIds = tostring(Parsed.details.document_ids),
+         Message = tostring(Parsed.message)
+| where EventType in ('retrieved_content_sanitized', 'llm_request_blocked_preflight', 'llm_request_blocked_content_filter')
+| summarize EventCount = count(),
+            FirstSeen = min(EventTime),
+            LastSeen = max(EventTime),
+            EventTypes = make_set(EventType, 10),
+            Reasons = make_set(Reason, 10),
+            Requests = make_set(RequestId, 20)
+    by bin(EventTime, 1h)
+| where EventCount >= 1
+| order by LastSeen desc

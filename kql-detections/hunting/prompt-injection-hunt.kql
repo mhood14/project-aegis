@@ -1,0 +1,11 @@
+AppServiceConsoleLogs
+| where ResultDescription has_any ('retrieved_content_sanitized', 'llm_request_blocked_preflight', 'llm_request_blocked_content_filter')
+| extend Parsed = parse_json(ResultDescription)
+| extend EventTime = coalesce(todatetime(Parsed.timestamp), TimeGenerated),
+         EventType = tostring(Parsed.event_type),
+         RequestId = tostring(Parsed.details.request_id),
+         Reason = tostring(Parsed.details.reason),
+         RemovedLineGroups = toint(Parsed.details.removed_line_groups),
+         DocumentIds = tostring(Parsed.details.document_ids)
+| project EventTime, EventType, RequestId, Reason, RemovedLineGroups, DocumentIds, ResultDescription
+| order by EventTime desc

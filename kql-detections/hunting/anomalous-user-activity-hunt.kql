@@ -1,0 +1,16 @@
+AppServiceConsoleLogs
+| where ResultDescription has_any ('authorization_denied', 'document_upload_started', 'document_processing_failed', 'llm_request_blocked_content_filter', 'application_error')
+| extend Parsed = parse_json(ResultDescription)
+| extend EventTime = coalesce(todatetime(Parsed.timestamp), TimeGenerated),
+         EventType = tostring(Parsed.event_type),
+         Status = tostring(Parsed.status),
+         UserId = tostring(Parsed.details.user_id),
+         UploadedBy = tostring(Parsed.details.uploaded_by),
+         Scope = tostring(Parsed.details.scope),
+         RequestedScope = tostring(Parsed.details.requested_scope),
+         RequestId = tostring(Parsed.details.request_id),
+         ErrorType = tostring(Parsed.details.error_type),
+         ErrorMessage = tostring(Parsed.details.error_message)
+| extend Actor = coalesce(UserId, UploadedBy)
+| project EventTime, Actor, EventType, Status, Scope, RequestedScope, RequestId, ErrorType, ErrorMessage
+| order by EventTime desc

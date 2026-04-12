@@ -1,0 +1,21 @@
+AppServiceConsoleLogs
+| where ResultDescription has 'authorization_denied'
+| extend Parsed = parse_json(ResultDescription)
+| extend EventType = tostring(Parsed.event_type),
+         Status = tostring(Parsed.status),
+         EventTime = coalesce(todatetime(Parsed.timestamp), TimeGenerated),
+         RequestId = tostring(Parsed.details.request_id),
+         UserId = tostring(Parsed.details.user_id),
+         RequestedScope = tostring(Parsed.details.requested_scope),
+         Reason = tostring(Parsed.details.reason),
+         AllowedScopes = tostring(Parsed.details.allowed_scopes),
+         Message = tostring(Parsed.message)
+| where EventType == 'authorization_denied'
+| summarize DeniedCount = count(),
+            FirstSeen = min(EventTime),
+            LastSeen = max(EventTime),
+            RequestIds = make_set(RequestId, 20),
+            Reasons = make_set(Reason, 10)
+    by UserId, RequestedScope, AllowedScopes, bin(EventTime, 1h)
+| where DeniedCount >= 3
+| order by DeniedCount desc, LastSeen desc
