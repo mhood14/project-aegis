@@ -123,6 +123,11 @@
               <p><strong>Step 1:</strong> A malicious document chunk includes instructions such as “ignore previous instructions” or attempts to suppress citations.</p>
               <p><strong>Step 2:</strong> The retrieval pipeline treats that content as untrusted data and strips suspicious lines before the model call when sanitization rules match.</p>
               <p><strong>Step 3:</strong> The app records events such as <code>retrieved_content_sanitized</code>. If the request cannot safely continue, the workflow can stop before the model call. If Azure OpenAI blocks the request, the app records <code>llm_request_blocked_content_filter</code>.</p>
+              <figure class="supporting-figure supporting-figure-restrained workflow-proof compact-evidence-card">
+                <span class="screenshot-kicker">Sentinel incident</span>
+                <img class="content-image" src="SupportingDocs/AppPictures/ContentFilterAlert.png" alt="Microsoft Sentinel incident view for a ContentFilterPolicyTriggered alert generated during prompt injection or blocked-content testing." />
+                <figcaption>This is the incident handoff point for the prompt-injection workflow: the blocked-content or model-safety event becomes a triageable Sentinel case before deeper workspace validation begins.</figcaption>
+              </figure>
               <p><strong>Step 4:</strong> Analysts can later query the request trail, affected document identifiers, and whether sanitization occurred before the model stage.</p>
               <figure class="supporting-figure supporting-figure-restrained workflow-proof workflow-proof-query">
                 <span class="screenshot-kicker">Sentinel query evidence</span>
@@ -144,6 +149,11 @@
               </figure>
               <p><strong>Step 2:</strong> The app records <code>authorization_denied</code> events with the requested scope, user context, and denial reason.</p>
               <p><strong>Step 3:</strong> Those events land in Log Analytics and are evaluated by a Sentinel analytics rule looking for repeated denials across a time window or unusual access behavior from the same identity.</p>
+              <figure class="supporting-figure supporting-figure-restrained workflow-proof compact-evidence-card">
+                <span class="screenshot-kicker">Sentinel incident</span>
+                <img class="content-image" src="SupportingDocs/AppPictures/AuthorizationDeniedAlert.png" alt="Microsoft Sentinel incident view for an AuthorizationDenied alert involving repeated denied document access activity." />
+                <figcaption>This alert is the escalation point for repeated failed authorization attempts: the denial pattern becomes a security investigation rather than remaining only an application-side event.</figcaption>
+              </figure>
               <p><strong>Step 4:</strong> The rule raises an alert for review, and the same workspace can be queried to confirm timing, source pattern, and whether the denials align with a broader probing sequence.</p>
               <figure class="supporting-figure supporting-figure-restrained workflow-proof workflow-proof-query">
                 <span class="screenshot-kicker">Scope query evidence</span>
