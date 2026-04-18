@@ -408,8 +408,8 @@ p { margin: 0; }
   margin: 0 auto;
 }
 .app-use-image {
-  width: min(14%, 150px);
-  max-width: 150px;
+  width: min(56%, 640px);
+  max-width: 640px;
   margin: 0 auto;
 }
 .media-caption,
@@ -603,8 +603,8 @@ code {
   .button { width: 100%; }
   .timeline-item { gap: 0.85rem; }
   .app-use-image {
-    width: min(31%, 128px);
-    max-width: 128px;
+    width: min(76%, 480px);
+    max-width: 480px;
   }
   .site-nav a {
     padding-left: 0;
