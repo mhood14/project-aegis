@@ -58,63 +58,8 @@
         <div class="section-heading narrow spaced-top">
           <p class="eyebrow">Sequence walkthroughs</p>
           <h2>Examples that show how testing and evidence work step by step.</h2>
-          <p>These examples show both sides of the monitoring workflow: the incidents created by custom Sentinel analytics rules and the supporting query evidence used to validate and investigate them. The goal is to show how security-relevant application events move from raw telemetry into alerts, triage, and follow-on analysis.</p>
-          <p>Sentinel-related screenshots identified in <code>SupportingDocs/AppPictures</code> include two incident views (<code>ContentFilterAlert.png</code>, <code>AuthorizationDeniedAlert.png</code>) and the linked workspace query pivots used for validation and tracing (<code>log-content-filter-query.png</code>, <code>log-security-docs-scope-query.png</code>, <code>log-request-id-trace-query.png</code>, <code>log-request-trace-query.png</code>).</p>
-          <p>Each workflow below deliberately pairs the Sentinel incident view with the Log Analytics pivot that an analyst would actually use next, so the screenshots read as one restrained investigation sequence rather than as a loose gallery.</p>
-          <p>The screenshots are intentionally embedded where the workflow changes state: incident creation for prompt injection handling and repeated authorization failures, then workspace pivots for Sentinel analytics, request-level validation, and cross-system tracing.</p>
-          <p>That keeps the page focused: each Sentinel screenshot from <code>SupportingDocs/AppPictures</code> sits next to the sequence it proves instead of appearing as a separate gallery.</p>
-          <p>The result is a restrained evidence trail: incident screenshot, investigation pivot, and then the exact request or scope trace that explains what happened.</p>
-        </div>
-
-        <div class="feature-grid two simple-columns sentinel-evidence-grid">
-          <article class="feature-card evidence-card">
-            <span class="screenshot-kicker">Sentinel incident</span>
-            <h3>Prompt injection and content filter incident</h3>
-            <img class="content-image" src="SupportingDocs/AppPictures/ContentFilterAlert.png" alt="Microsoft Sentinel incident view for a ContentFilterPolicyTriggered alert." />
-            <p>This incident card is the SOC-facing starting point for the prompt-injection workflow: Sentinel raises the case, then the analyst pivots into the supporting query trail below.</p>
-            <p><strong>Supports workflow 01:</strong> prompt injection handling and content-filter validation.</p>
-            <ul class="clean-list">
-              <li>Represents the alert created from model-safety or blocked-content events.</li>
-              <li>Fits the prompt-injection handling sequence described later on the page.</li>
-              <li>Pairs directly with the content-filter query evidence used for validation.</li>
-            </ul>
-          </article>
-          <article class="feature-card evidence-card">
-            <span class="screenshot-kicker">Sentinel incident</span>
-            <h3>Repeated failed authorization incident</h3>
-            <img class="content-image" src="SupportingDocs/AppPictures/AuthorizationDeniedAlert.png" alt="Microsoft Sentinel incident view for an AuthorizationDenied alert involving one user." />
-            <p>This alert shows how repeated denied-access activity becomes a reviewable Sentinel incident tied to one identity, one pattern, and one investigation window.</p>
-            <p><strong>Supports workflow 02:</strong> repeated failed authorization detections and analyst follow-up.</p>
-            <ul class="clean-list">
-              <li>Maps cleanly to the repeated failed authorization sequence below.</li>
-              <li>Shows application-level denials as incident-response evidence, not just app behavior.</li>
-              <li>Pairs with the scope-focused query evidence used to verify the denial pattern.</li>
-            </ul>
-          </article>
-          <article class="feature-card evidence-card">
-            <span class="screenshot-kicker">Sentinel analytics &amp; querying</span>
-            <h3>Workspace query pivot for validation</h3>
-            <img class="content-image" src="SupportingDocs/AppPictures/log-request-id-trace-query.png" alt="Sentinel-linked Log Analytics results tracing a Project Aegis request across multiple application stages." />
-            <p>This screenshot shows the normal analyst pivot after an incident or test run: move from Sentinel into the linked workspace, isolate a request, and validate the exact event sequence.</p>
-            <p><strong>Supports workflow 03:</strong> Sentinel analytics/querying after a test or suspicious event.</p>
-            <ul class="clean-list">
-              <li>Useful for post-alert validation and post-test review in the same workspace.</li>
-              <li>Shows the analytics/querying surface that turns incidents into traceable evidence.</li>
-              <li>Sets up the request-ID investigation sequence later on the page.</li>
-            </ul>
-          </article>
-          <article class="feature-card evidence-card">
-            <span class="screenshot-kicker">Cross-system tracing</span>
-            <h3>Request trace across the stack</h3>
-            <img class="content-image" src="SupportingDocs/AppPictures/log-request-trace-query.png" alt="Log Analytics query results showing cross-system request tracing for a Project Aegis transaction across authorization, retrieval, sanitization, and model stages." />
-            <p>This view is the restrained end-state of the logging design: one request can be reconstructed across authorization, retrieval, sanitization, and model-handling steps without leaving the monitoring workspace.</p>
-            <p><strong>Supports workflow 04:</strong> cross-system activity tracing across the application pipeline.</p>
-            <ul class="clean-list">
-              <li>Best fit for the cross-system activity tracing workflow.</li>
-              <li>Keeps the monitoring story anchored in one coherent request trail.</li>
-              <li>Complements the detailed sequence further down without changing the page structure.</li>
-            </ul>
-          </article>
+          <p>The Sentinel screenshots from <code>SupportingDocs/AppPictures</code> are used inline with the workflows they prove: incident views for prompt injection handling and repeated failed authorizations, then Log Analytics pivots for validation, request-level querying, and cross-system tracing.</p>
+          <p>That keeps the page restrained. Instead of a separate screenshot gallery, each image appears at the moment an analyst would actually use it.</p>
         </div>
 
         <div class="timeline detailed-timeline">
