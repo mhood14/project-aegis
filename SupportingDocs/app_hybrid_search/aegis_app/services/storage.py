@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 from typing import Any, Iterable
 
+from azure.core.exceptions import ResourceExistsError
 from flask import current_app
 
 from .azure_clients import get_blob_service_client
@@ -15,8 +16,8 @@ class StorageService:
         container = self.blob_service.get_container_client(container_name)
         try:
             container.create_container()
-        except Exception:
-            pass
+        except ResourceExistsError:
+            return
 
     def upload_bytes(self, container_name: str, blob_name: str, data: bytes, content_type: str | None = None) -> None:
         self.ensure_container(container_name)

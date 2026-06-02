@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+.venv*/
+venv/
+env/
+
+# Local configuration and secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Build and deployment artifacts
+build/
+dist/
+*.egg-info/
+*.zip
+
+# Logs
+*.log

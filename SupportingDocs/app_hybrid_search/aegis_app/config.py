@@ -42,6 +42,8 @@ class Config:
     EMBEDDING_VECTOR_DIMENSIONS = int(os.getenv("EMBEDDING_VECTOR_DIMENSIONS", "1536"))
 
     AUTH_REQUIRE_SIGN_IN = _as_bool(os.getenv("AUTH_REQUIRE_SIGN_IN"), True)
+    FLASK_DEBUG = _as_bool(os.getenv("FLASK_DEBUG"), False)
+    FLASK_RUN_HOST = os.getenv("FLASK_RUN_HOST", "127.0.0.1")
 
     SECURITY_ADMIN_USERS = {
         item.strip().lower()

@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from azure.search.documents.indexes.models import (
     HnswAlgorithmConfiguration,
+    SearchableField,
     SearchField,
     SearchFieldDataType,
     SearchIndex,
-    SearchableField,
     SimpleField,
     VectorSearch,
     VectorSearchProfile,

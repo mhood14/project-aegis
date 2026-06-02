@@ -1,8 +1,7 @@
-flask
-gunicorn
-openai
-azure-identity
-azure-storage-blob
-azure-search-documents
-pypdf
-azure-search-documents
+Flask==3.1.3
+gunicorn==22.0.0
+openai==1.35.15
+azure-identity==1.17.1
+azure-storage-blob==12.20.0
+azure-search-documents==11.5.1
+pypdf==6.10.2
