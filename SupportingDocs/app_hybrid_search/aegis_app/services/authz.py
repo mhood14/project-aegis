@@ -4,7 +4,6 @@ from flask import current_app
 
 from .audit import log_event
 
-
 TOP_LEVEL_SCOPES = {"security-docs", "top-level"}
 BASE_SCOPES = {"public-docs", "internal-docs", "security-tests"}
 

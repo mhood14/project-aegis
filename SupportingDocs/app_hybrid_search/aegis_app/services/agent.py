@@ -5,6 +5,7 @@ from .authz import authorize_scope_or_raise
 from .llm import generate_grounded_answer
 from .retrieval import retrieve_chunks
 
+
 def answer_question(
     *,
     user_context: dict,
@@ -40,14 +41,14 @@ def answer_question(
         ]
 
         log_event(
-            "llm_request_completed",
+            "question_answering_completed",
             {
                 "request_id": request_id,
                 "scope": scope,
                 "chunk_count": len(chunks),
                 "fallback_used": fallback_used,
             },
-            message="LLM request completed",
+            message="Question answering workflow completed",
         )
 
         return {

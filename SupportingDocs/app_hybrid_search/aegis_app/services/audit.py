@@ -4,7 +4,6 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any
 
-
 logger = logging.getLogger("aegis.audit")
 
 if not logger.handlers:

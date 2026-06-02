@@ -1,29 +1,159 @@
-# Project Aegis GitHub Pages Site
+# Project Aegis: Secure AI Document Retrieval on Microsoft Azure
 
-This repository contains a static multi-page website for Project Aegis.
+Project Aegis is a security engineering portfolio project that demonstrates how to design, build, monitor, and threat model a secure AI document retrieval system on Microsoft Azure.
 
-## Files
-- `index.html` - minimal home page
-- `architecture.html` - the main architecture page, organized into Azure foundation, networking layer, and AI application architecture
-- `app.html` - live demo page and application flow
-- `logging.html` - logging, testing, detections, and investigation examples
-- `artifacts.html` - supporting documents and evidence
-- `about.html` - project story, learning goals, and objectives
-- `setup.html` / `networking.html` / `security.html` / `interview.html` - lightweight redirects kept for compatibility
-- `styles.css` - shared site styling
-- `script.js` - header and reveal behavior
+The project combines Azure cloud security architecture, Microsoft Entra identity controls, scoped retrieval-augmented generation, structured application audit logging, and Microsoft Sentinel detection engineering. It is built to support an interview narrative around Microsoft security, cloud security, Zero Trust, AI security, and detection/response.
 
-## How to publish with GitHub Pages
-1. Create a GitHub repository.
-2. Upload these files to the repository root.
-3. In GitHub, go to **Settings → Pages**.
-4. Under **Build and deployment**, choose:
-   - **Source:** Deploy from a branch
-   - **Branch:** `main` and `/root`
-5. Save.
-6. GitHub will publish the site at your Pages URL.
+## Problem statement
 
-## Notes
-- Supporting documents live in `SupportingDocs/`.
-- Keep project content aligned with the actual Azure build, threat model, and implementation evidence.
-- Avoid placeholder or meta commentary in the site copy except where logging screenshots intentionally use `[INSERT DESCRIPTION HERE]` placeholders.
+Internal teams want to ask questions over internal documents with AI, but the system must avoid the common failure modes of insecure RAG systems:
+
+- Users should only retrieve documents from scopes they are authorized to access.
+- Retrieved document text must be treated as untrusted content, not as instructions.
+- Prompt injection and unsafe retrieved content should be visible in logs and detections.
+- Authentication, authorization, and application activity should be traceable for investigations.
+- The cloud design should use Microsoft security primitives instead of embedded secrets or flat networking.
+
+## What this project demonstrates
+
+- Microsoft Entra-backed app access and identity-aware authorization.
+- Scope-based document access controls enforced server-side.
+- Azure OpenAI and Azure AI Search for grounded answers with citations.
+- Azure Blob Storage separation of raw and processed documents.
+- Managed identity-oriented Azure service access.
+- Hub-and-spoke Azure networking with private endpoint-oriented design.
+- Structured JSON audit events designed for Log Analytics and Sentinel.
+- Custom KQL detections for authorization abuse, prompt/content-filter events, scope probing, unusual uploads, and repeated authentication failures.
+- Threat modeling for AI-specific and cloud-specific risks including prompt injection, data poisoning, authorization abuse, egress, DNS/routing, and monitoring gaps.
+
+## Live portfolio site
+
+GitHub Pages site:
+
+https://mhood14.github.io/project-aegis/
+
+Live app note: the Azure Web App is intentionally protected by Microsoft sign-in. Recruiters and interviewers may not be able to access it directly, so this repository includes screenshots, architecture artifacts, KQL detections, and implementation notes as validation evidence.
+
+## Repository map
+
+```text
+.
+├── index.html, architecture.html, logging.html, artifacts.html, about.html
+│   └── GitHub Pages portfolio site
+├── SupportingDocs/
+│   ├── app_hybrid_search/
+│   │   ├── app.py
+│   │   ├── requirements.txt
+│   │   ├── requirements-dev.txt
+│   │   ├── aegis_app/
+│   │   │   ├── routes/
+│   │   │   └── services/
+│   │   └── tests/
+│   │       └── pytest coverage for authorization, sanitizer, audit schema, and retrieval filters
+│   ├── AppPictures/
+│   │   └── app and Sentinel evidence screenshots
+│   ├── PromptInjection/
+│   │   └── adversarial prompt-injection test documents
+│   └── architecture, threat-model, egress, IP, and build evidence artifacts
+├── kql-detections/
+│   ├── detections/
+│   ├── hunting/
+│   └── workbooks/
+├── docs/
+│   ├── architecture-summary.md
+│   └── threat-model-summary.md
+├── app/
+│   └── README.md pointer to the application source package
+├── SECURITY.md
+└── .github/workflows/ci.yml
+```
+
+The source app currently remains in `SupportingDocs/app_hybrid_search/` to preserve the existing portfolio artifact layout. The top-level `app/README.md` mirrors the app location so the engineering artifact is discoverable from the repository root.
+
+## Application flow
+
+1. User authenticates through Microsoft identity / App Service auth.
+2. App derives the user identity and claims from EasyAuth headers.
+3. User selects a document scope and submits a question or upload.
+4. Server-side authorization validates the requested scope.
+5. Retrieval queries Azure AI Search using a scope filter.
+6. Retrieved excerpts are sanitized for obvious prompt-injection lines and treated as untrusted data in the system prompt.
+7. Azure OpenAI returns a grounded answer using only retrieved excerpts.
+8. The response includes citations to retrieved chunks.
+9. Audit events are emitted as structured JSON for Log Analytics/Sentinel.
+10. KQL detections convert suspicious behavior into triage-ready security signals.
+
+## Security controls and design choices
+
+- Server-side scope enforcement is the source of truth; UI scope selection does not grant access.
+- `DefaultAzureCredential` and Azure identity patterns avoid hard-coded service secrets.
+- Raw and processed document storage are separated.
+- Retrieved AI content is explicitly treated as untrusted.
+- Prompt-injection filtering is implemented as defense-in-depth, not as a complete solution.
+- Request IDs support investigation across app logs, retrieval, model calls, and detections.
+- Sentinel detections are aligned to actual application audit event fields.
+
+## Detection engineering package
+
+The `kql-detections/` directory contains application, data, identity, and hunting queries. Examples include:
+
+- Authorization denied activity.
+- Content-filter / prompt-injection-triggered events.
+- Suspicious scope usage and scope probing.
+- Unusual upload activity.
+- Repeated authentication failures.
+- Anomalous user activity hunts.
+
+These detections are intentionally tied to emitted audit events such as `authorization_denied`, `retrieved_content_sanitized`, `llm_request_blocked_content_filter`, and `question_answering_completed`.
+
+## Run the Flask app locally
+
+```bash
+cd SupportingDocs/app_hybrid_search
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Required for real Azure-backed operation:
+export AZURE_OPENAI_ENDPOINT="https://<resource>.openai.azure.com/"
+export AZURE_OPENAI_DEPLOYMENT="<chat-deployment>"
+export AZURE_OPENAI_EMBEDDING_DEPLOYMENT="<embedding-deployment>"
+export STORAGE_ACCOUNT_URL="https://<account>.blob.core.windows.net"
+export AZURE_SEARCH_ENDPOINT="https://<search-service>.search.windows.net"
+
+python app.py
+```
+
+`FLASK_DEBUG` defaults to false and `FLASK_RUN_HOST` defaults to `127.0.0.1`. Set `FLASK_DEBUG=true` only for local development. Set `FLASK_RUN_HOST=0.0.0.0` only when you intentionally need the local server reachable from another host.
+
+## Run tests and quality checks
+
+```bash
+cd SupportingDocs/app_hybrid_search
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt -r requirements-dev.txt
+pytest -q
+ruff check .
+bandit -q -r aegis_app app.py
+pip-audit -r requirements.txt
+```
+
+GitHub Actions runs the same core checks on pull requests and pushes.
+
+## Known limitations and production next steps
+
+- Add CSRF protection for browser POST forms before presenting the app as production-ready.
+- Use Entra group IDs mapped to scopes instead of relying primarily on user allowlists.
+- Add malware scanning, MIME validation, quarantine/review workflow, and upload rate limits.
+- Expand infrastructure-as-code coverage with Bicep or Terraform for repeatable deployment.
+- Deploy Sentinel analytic rules as code.
+- Treat pattern-based prompt-injection filtering as defense-in-depth and continue investing in provenance, quarantine, and suspicious-document workflows.
+- Add a short demo video/GIF because the live app is intentionally protected by Microsoft sign-in.
+
+## Interview talking points
+
+- Cloud security architecture: hub/spoke, private endpoints, private DNS, managed identity, Key Vault, Sentinel, Defender, Conditional Access, and Zero Trust access design.
+- Secure AI application design: scoped retrieval, grounded answers, citations, untrusted retrieved content, prompt-injection test cases, and explicit authorization boundaries.
+- Detection and response: JSON audit telemetry, Log Analytics queries, Sentinel analytic rules, investigation workflows, and alert evidence.
+- Risk communication: executive threat model, prioritized risk table, current controls, and production next steps.
