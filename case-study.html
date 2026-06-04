@@ -117,25 +117,26 @@
     <section class="section">
       <div class="container">
         <div class="section-heading narrow">
-          <p class="eyebrow">Resume translation</p>
-          <h2>How the project maps to security and AI roles.</h2>
-          <p>The project is meant to support concise resume bullets and interview discussion, not require a recruiter to reverse-engineer a GitHub repository.</p>
+          <p class="eyebrow">Role relevance</p>
+          <h2>Why this project matters for Microsoft security and AI work.</h2>
+          <p>Project Aegis was built to show how secure AI systems require more than a working model call. The important engineering decisions are identity, authorization, retrieval scope, monitoring, and human control over sensitive actions.</p>
         </div>
         <div class="feature-grid two simple-columns">
           <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">🧾</span>
-            <h3>Strong resume bullet themes</h3>
+            <span class="section-icon" aria-hidden="true">🧭</span>
+            <h3>Security engineering value</h3>
             <ul class="clean-list">
-              <li>Secure RAG architecture on Azure using Azure OpenAI, Azure AI Search, Blob Storage, and Microsoft Entra-backed access.</li>
-              <li>Scoped retrieval, server-side authorization, managed identity-oriented service access, and structured audit logging.</li>
-              <li>Agentic security controls for human approval boundaries, excessive agency, prompt injection, and AI action auditability.</li>
-              <li>Sentinel/KQL detections for authorization abuse, content-filter events, suspicious scope usage, and unusual upload behavior.</li>
+              <li>Uses Microsoft Entra-backed access and server-side scope checks so retrieval follows user authorization instead of UI preference.</li>
+              <li>Connects Azure OpenAI, Azure AI Search, Blob Storage, and managed identity-oriented access into a secure RAG architecture.</li>
+              <li>Turns application behavior into structured audit events that can support Sentinel detections, KQL hunting, and investigation workflows.</li>
+              <li>Documents production hardening needs such as stronger RBAC mapping, private endpoints, detection-as-code, and AI safety testing.</li>
             </ul>
           </article>
           <article class="feature-card icon-feature">
-            <span class="section-icon" aria-hidden="true">💬</span>
-            <h3>Interview explanation</h3>
-            <p>Project Aegis treats secure AI as a combined cloud security, identity, application security, and detection engineering problem. The core idea is that an AI system should never be trusted to override authorization, silently retrieve sensitive context, or perform privileged actions without explicit controls and traceable logs.</p>
+            <span class="section-icon" aria-hidden="true">🤖</span>
+            <h3>AI security value</h3>
+            <p>The project treats retrieved content and model output as untrusted inputs. Prompt injection, indirect prompt injection, retrieval abuse, excessive agency, and weak auditability are handled as security architecture concerns, not just model-quality concerns.</p>
+            <p>Future agentic workflows are intentionally bounded: the AI can recommend next steps, but privileged execution requires deterministic authorization, explicit approval, and traceable audit logs.</p>
           </article>
         </div>
       </div>
