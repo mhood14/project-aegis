@@ -30,6 +30,7 @@ The most important AI-specific boundary is that retrieved document text is not t
 | Prompt injection in retrieved documents | Malicious text may try to override model instructions or exfiltrate data | Retrieved excerpts framed as untrusted; sanitizer removes obvious patterns; content-filter events are logged | Add quarantine/provenance workflow and stronger suspicious-document scoring |
 | Authorization abuse / scope probing | Users may try to access elevated scopes | Server-side scope authorization and Sentinel detections | Add Entra group-to-scope mapping and more tests |
 | Document poisoning | Uploaded content may pollute retrieval results | Scoped upload authorization and prompt-injection test corpus | Add malware scanning, MIME validation, review queues, and parser isolation |
+| Excessive agency | A future AI agent may execute sensitive actions without proper approval | Current design is recommendation/retrieval only; agentic boundaries are documented | Add explicit tool permissions, approval workflow, and action audit events before automation |
 | Overprivileged identities | Compromised service/user identity could access too much | Managed identity/RBAC design emphasis | Codify least privilege assignments in IaC |
 | Monitoring blind spots | Security events may not become actionable alerts | Structured audit logs and KQL detection package | Automate Sentinel rule deployment and workbook dashboards |
 | Error detail leakage | User-facing errors could expose internals | Known limitation documented | Return generic errors with request IDs and log full details server-side |
@@ -54,7 +55,8 @@ The `kql-detections/` package covers:
 4. Add infrastructure-as-code for Azure resources and RBAC.
 5. Deploy Sentinel analytic rules as code.
 6. Expand regression tests around identity parsing, upload validation, and detection schema compatibility.
-7. Add demo video evidence because the live app is intentionally protected by Microsoft sign-in.
+7. Add agentic security tests for tool-use requests, human approval boundaries, and AI action audit events.
+8. Add demo video evidence because the live app is intentionally protected by Microsoft sign-in.
 
 ## Interview framing
 

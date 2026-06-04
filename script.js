@@ -42,6 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
     revealObserver.observe(item);
   });
 
+  // Keep the site readable in full-page screenshots, static captures, or older
+  // browsers where IntersectionObserver timing can leave off-screen cards hidden.
+  window.setTimeout(() => {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  }, 700);
+
   navLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
       const target = document.querySelector(link.getAttribute('href'));

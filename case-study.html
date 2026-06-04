@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure AI Case Study | Project Aegis</title>
+  <meta name="description" content="A recruiter and interviewer-facing case study for Project Aegis: secure AI document retrieval on Microsoft Azure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>Project Aegis</strong>
+          <small>Secure AI Document Retrieval</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a class="is-active" href="case-study.html">Case Study</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="https://app-aegis-aiplatform-hfcscvfke4hwd0gk.eastus-01.azurewebsites.net/" target="_blank" rel="noopener">Open Live Demo</a>
+        <a href="ai-security.html">AI Security</a>
+        <a href="logging.html">Logging &amp; Testing</a>
+        <a href="artifacts.html">Artifacts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Recruiter-ready case study</p>
+        <h1 class="page-title">Secure AI on Microsoft Azure.</h1>
+        <p class="page-intro">Project Aegis is a security engineering portfolio project focused on one problem: how to let users ask questions over internal documents with AI without turning retrieval, identity, and agent behavior into a data exposure risk.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="feature-grid two simple-columns">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🎯</span>
+            <h3>Problem</h3>
+            <p>Organizations want AI over internal knowledge, but insecure RAG systems can retrieve unauthorized content, follow malicious document instructions, leak sensitive data, or leave security teams without useful investigation evidence.</p>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🛡️</span>
+            <h3>Security objective</h3>
+            <p>Design the system so identity, authorization, scoped retrieval, logging, and monitoring are part of the architecture from the start rather than being bolted on after the AI feature works.</p>
+          </article>
+        </div>
+
+        <div class="section-heading narrow spaced-top">
+          <p class="eyebrow">Solution summary</p>
+          <h2>A secure RAG reference architecture built around Microsoft security primitives.</h2>
+          <p>The application combines Microsoft Entra-backed access, Azure OpenAI, Azure AI Search, Blob Storage, managed identity-oriented service access, structured audit events, Microsoft Sentinel detections, KQL hunting queries, and threat modeling for AI-specific risks.</p>
+        </div>
+
+        <div class="flow-grid flow-grid-four">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">1</span>
+            <h3>Authenticate</h3>
+            <p>Users enter through Microsoft identity / App Service auth, giving the app an identity context before retrieval or upload decisions are made.</p>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">2</span>
+            <h3>Authorize</h3>
+            <p>Server-side scope checks determine which document collections a user can access. UI selections do not grant permission.</p>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">3</span>
+            <h3>Retrieve safely</h3>
+            <p>Azure AI Search returns scoped context, retrieved content is treated as untrusted data, and Azure OpenAI produces grounded answers with citations.</p>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">4</span>
+            <h3>Monitor</h3>
+            <p>Structured JSON events support Log Analytics and Sentinel investigations for prompt injection, authorization abuse, suspicious scope use, and unsafe content handling.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-subtle">
+      <div class="container">
+        <div class="section-heading narrow">
+          <p class="eyebrow">What this demonstrates</p>
+          <h2>Designed for Microsoft cloud security and AI-security conversations.</h2>
+          <p>This project is intentionally positioned as a portfolio artifact for Microsoft security, secure AI, cloud security architecture, and agentic security roles.</p>
+        </div>
+        <div class="feature-grid three">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🔐</span>
+            <h3>Identity-aware AI</h3>
+            <p>Retrieval is constrained by user scope, authorization is enforced server-side, and future production hardening points toward Entra group-to-scope mapping and least-privilege RBAC.</p>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🤖</span>
+            <h3>Agentic security thinking</h3>
+            <p>The design separates recommendations from execution, calls out human approval boundaries, and treats tool use, retrieval, and autonomous actions as security-sensitive events.</p>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">📊</span>
+            <h3>Security operations visibility</h3>
+            <p>Sentinel detections and KQL examples turn AI and app behavior into triageable signals instead of leaving security teams with only application screenshots.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Resume translation</p>
+          <h2>How the project maps to security and AI roles.</h2>
+          <p>The project is meant to support concise resume bullets and interview discussion, not require a recruiter to reverse-engineer a GitHub repository.</p>
+        </div>
+        <div class="feature-grid two simple-columns">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">🧾</span>
+            <h3>Strong resume bullet themes</h3>
+            <ul class="clean-list">
+              <li>Secure RAG architecture on Azure using Azure OpenAI, Azure AI Search, Blob Storage, and Microsoft Entra-backed access.</li>
+              <li>Scoped retrieval, server-side authorization, managed identity-oriented service access, and structured audit logging.</li>
+              <li>Agentic security controls for human approval boundaries, excessive agency, prompt injection, and AI action auditability.</li>
+              <li>Sentinel/KQL detections for authorization abuse, content-filter events, suspicious scope usage, and unusual upload behavior.</li>
+            </ul>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">💬</span>
+            <h3>Interview explanation</h3>
+            <p>Project Aegis treats secure AI as a combined cloud security, identity, application security, and detection engineering problem. The core idea is that an AI system should never be trusted to override authorization, silently retrieve sensitive context, or perform privileged actions without explicit controls and traceable logs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <strong>Project Aegis</strong>
+        <p>Secure AI document retrieval on a Microsoft cloud and networking backbone.</p>
+      </div>
+      <div class="footer-links">
+        <a href="architecture.html">Architecture</a>
+        <a href="https://app-aegis-aiplatform-hfcscvfke4hwd0gk.eastus-01.azurewebsites.net/" target="_blank" rel="noopener">Open Live Demo</a>
+        <a href="ai-security.html">AI Security</a>
+        <a href="logging.html">Logging &amp; Testing</a>
+        <a href="artifacts.html">Artifacts</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=secure-ai-2026-06"></script>
+</body>
+</html>

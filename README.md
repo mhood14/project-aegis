@@ -2,7 +2,7 @@
 
 Project Aegis is a security engineering portfolio project that demonstrates how to design, build, monitor, and threat model a secure AI document retrieval system on Microsoft Azure.
 
-The project combines Azure cloud security architecture, Microsoft Entra identity controls, scoped retrieval-augmented generation, structured application audit logging, and Microsoft Sentinel detection engineering. It is built to support an interview narrative around Microsoft security, cloud security, Zero Trust, AI security, and detection/response.
+The project combines Azure cloud security architecture, Microsoft Entra identity controls, scoped retrieval-augmented generation, structured application audit logging, Microsoft Sentinel detection engineering, and agentic security design. It is built to support an interview narrative around Microsoft security, cloud security, Zero Trust, secure AI, agentic security, and detection/response.
 
 ## Problem statement
 
@@ -24,7 +24,8 @@ Internal teams want to ask questions over internal documents with AI, but the sy
 - Hub-and-spoke Azure networking with private endpoint-oriented design.
 - Structured JSON audit events designed for Log Analytics and Sentinel.
 - Custom KQL detections for authorization abuse, prompt/content-filter events, scope probing, unusual uploads, and repeated authentication failures.
-- Threat modeling for AI-specific and cloud-specific risks including prompt injection, data poisoning, authorization abuse, egress, DNS/routing, and monitoring gaps.
+- Threat modeling for AI-specific and cloud-specific risks including prompt injection, indirect prompt injection, data poisoning, authorization abuse, excessive agency, egress, DNS/routing, and monitoring gaps.
+- Agentic security documentation covering recommendation-versus-execution boundaries, human approval gates, and AI action auditability.
 
 ## Live portfolio site
 
@@ -38,7 +39,7 @@ Live app note: the Azure Web App is intentionally protected by Microsoft sign-in
 
 ```text
 .
-├── index.html, architecture.html, logging.html, artifacts.html, about.html
+├── index.html, case-study.html, ai-security.html, architecture.html, logging.html, artifacts.html, about.html
 │   └── GitHub Pages portfolio site
 ├── SupportingDocs/
 │   ├── app_hybrid_search/
@@ -61,7 +62,10 @@ Live app note: the Azure Web App is intentionally protected by Microsoft sign-in
 │   └── workbooks/
 ├── docs/
 │   ├── architecture-summary.md
-│   └── threat-model-summary.md
+│   ├── threat-model-summary.md
+│   ├── secure-ai-case-study.md
+│   ├── agentic-security.md
+│   └── ai-security-test-plan.md
 ├── app/
 │   └── README.md pointer to the application source package
 ├── SECURITY.md
@@ -105,6 +109,22 @@ The `kql-detections/` directory contains application, data, identity, and huntin
 - Anomalous user activity hunts.
 
 These detections are intentionally tied to emitted audit events such as `authorization_denied`, `retrieved_content_sanitized`, `llm_request_blocked_content_filter`, and `question_answering_completed`.
+
+## Recruiter and interviewer framing
+
+Project Aegis is optimized to support resume bullets and interview discussion around secure AI in Microsoft cloud environments. The quickest review path is:
+
+1. `case-study.html` / `docs/secure-ai-case-study.md` - one-page secure AI case study.
+2. `ai-security.html` / `docs/agentic-security.md` - agentic security boundaries and controls.
+3. `docs/ai-security-test-plan.md` - AI security scenarios, expected behavior, and detection signals.
+4. `logging.html` and `kql-detections/` - Sentinel/KQL evidence and investigation workflow.
+
+Resume-aligned themes demonstrated by the project:
+
+- Secure RAG architecture using Microsoft Entra-backed access, Azure OpenAI, Azure AI Search, Blob Storage, scoped retrieval, and managed identity-oriented service access.
+- Agentic security controls including recommendation-versus-execution boundaries, human-in-the-loop approval, least-privilege AI behavior, and AI action auditability.
+- AI security testing for prompt injection, indirect prompt injection, unauthorized retrieval, sensitive-data requests, document poisoning, and citation/grounding validation.
+- Security operations visibility through structured audit logs, Microsoft Sentinel detections, KQL hunting queries, and request-level investigation workflows.
 
 ## Run the Flask app locally
 
@@ -150,10 +170,12 @@ GitHub Actions runs the same core checks on pull requests and pushes.
 - Deploy Sentinel analytic rules as code.
 - Treat pattern-based prompt-injection filtering as defense-in-depth and continue investing in provenance, quarantine, and suspicious-document workflows.
 - Add a short demo video/GIF because the live app is intentionally protected by Microsoft sign-in.
+- Expand agentic security testing for future tool-use workflows, approval gates, and AI action audit events.
 
 ## Interview talking points
 
 - Cloud security architecture: hub/spoke, private endpoints, private DNS, managed identity, Key Vault, Sentinel, Defender, Conditional Access, and Zero Trust access design.
 - Secure AI application design: scoped retrieval, grounded answers, citations, untrusted retrieved content, prompt-injection test cases, and explicit authorization boundaries.
+- Agentic security design: recommendation-versus-execution separation, human approval gates, excessive-agency risk, and auditability of future AI actions.
 - Detection and response: JSON audit telemetry, Log Analytics queries, Sentinel analytic rules, investigation workflows, and alert evidence.
 - Risk communication: executive threat model, prioritized risk table, current controls, and production next steps.

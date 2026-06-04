@@ -69,3 +69,8 @@ This project connects multiple security disciplines in one coherent build:
 - Detection engineering with KQL.
 - SOC investigation workflow.
 - Threat modeling and risk prioritization.
+
+
+## Agentic security extension
+
+Project Aegis is currently a secure retrieval and recommendation workflow, not an autonomous execution platform. That boundary is intentional. Future agentic capabilities should preserve deterministic authorization, least-privilege tool access, explicit human approval for privileged actions, and audit events that show what the AI saw, recommended, and attempted to do.
