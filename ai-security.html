@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Security & Agentic Controls | Project Aegis</title>
+  <meta name="description" content="AI security and agentic security considerations for Project Aegis, including prompt injection, scoped retrieval, and human approval boundaries." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>Project Aegis</strong>
+          <small>Secure AI Document Retrieval</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="case-study.html">Case Study</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="https://app-aegis-aiplatform-hfcscvfke4hwd0gk.eastus-01.azurewebsites.net/" target="_blank" rel="noopener">Open Live Demo</a>
+        <a class="is-active" href="ai-security.html">AI Security</a>
+        <a href="logging.html">Logging &amp; Testing</a>
+        <a href="artifacts.html">Artifacts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">AI security &amp; agentic controls</p>
+        <h1 class="page-title">Designing AI systems that stay inside security boundaries.</h1>
+        <p class="page-intro">Project Aegis frames AI security around authorization, retrieval integrity, human approval, and auditability. The goal is not just to build an AI assistant, but to show how an AI-enabled system can be governed and investigated.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Agentic security model</p>
+          <h2>Recommendations are allowed. Privileged execution is controlled.</h2>
+          <p>As AI systems move from answering questions toward recommending or triggering actions, the security boundary changes. Project Aegis documents that distinction explicitly.</p>
+        </div>
+        <div class="feature-grid three">
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">✅</span>
+            <h3>Allowed</h3>
+            <ul class="clean-list">
+              <li>Answer questions using authorized retrieved context.</li>
+              <li>Cite supporting document chunks.</li>
+              <li>Recommend investigation next steps.</li>
+              <li>Log user, scope, request ID, and retrieved references.</li>
+            </ul>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">⛔</span>
+            <h3>Not allowed</h3>
+            <ul class="clean-list">
+              <li>Bypass server-side authorization.</li>
+              <li>Retrieve content outside the user’s scope.</li>
+              <li>Modify access policies or security settings.</li>
+              <li>Execute privileged actions based only on model output.</li>
+            </ul>
+          </article>
+          <article class="feature-card icon-feature">
+            <span class="section-icon" aria-hidden="true">👤</span>
+            <h3>Requires human approval</h3>
+            <ul class="clean-list">
+              <li>Access changes and privilege elevation.</li>
+              <li>Incident closure or remediation actions.</li>
+              <li>Document classification changes.</li>
+              <li>Bulk data export or sensitive workflow execution.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-subtle">
+      <div class="container">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Risks and controls</p>
+          <h2>AI-specific risks mapped to concrete security controls.</h2>
+          <p>The project treats retrieved content and model output as untrusted. Authorization and security decisions remain deterministic application controls, not instructions delegated to the model.</p>
+        </div>
+        <div class="risk-grid">
+          <article class="risk-card">
+            <span class="risk-level">Prompt injection</span>
+            <h3>Malicious instructions in user input or retrieved documents</h3>
+            <p><strong>Control:</strong> Retrieve only authorized context, frame documents as untrusted, strip obvious injection patterns as defense-in-depth, log sanitization events, and investigate content-filter triggers in Sentinel.</p>
+          </article>
+          <article class="risk-card">
+            <span class="risk-level">Excessive agency</span>
+            <h3>AI performs sensitive actions without appropriate approval</h3>
+            <p><strong>Control:</strong> Keep the current design recommendation-only, define human approval gates, and require separate authorization checks before any future tool or workflow execution.</p>
+          </article>
+          <article class="risk-card">
+            <span class="risk-level">Retrieval abuse</span>
+            <h3>User or compromised account probes document scopes</h3>
+            <p><strong>Control:</strong> Enforce scope checks server-side, emit authorization-denied events, and alert on repeated denials or unusual scope usage through Sentinel/KQL detections.</p>
+          </article>
+          <article class="risk-card">
+            <span class="risk-level">Weak auditability</span>
+            <h3>Security teams cannot reconstruct what the AI saw or did</h3>
+            <p><strong>Control:</strong> Log request IDs, user identity, selected scope, document IDs, sanitization outcomes, model safety blocks, and completion status for investigation in Log Analytics.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading narrow">
+          <p class="eyebrow">AI security test plan</p>
+          <h2>Security tests focus on behavior, evidence, and detection opportunities.</h2>
+          <p>These scenarios are designed to make secure AI behavior observable rather than relying on a claim that the model “should” behave safely.</p>
+        </div>
+        <div class="timeline detailed-timeline">
+          <article class="timeline-item">
+            <span class="timeline-step">01</span>
+            <div>
+              <h3>Unauthorized retrieval attempt</h3>
+              <p><strong>Expected behavior:</strong> Request is denied before retrieval, no unauthorized context is sent to Azure OpenAI, and an <code>authorization_denied</code> event is logged.</p>
+              <p><strong>Detection opportunity:</strong> Alert on repeated denials, new source patterns, or scope probing from the same identity.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">02</span>
+            <div>
+              <h3>Indirect prompt injection in a retrieved document</h3>
+              <p><strong>Expected behavior:</strong> Retrieved text is treated as data, suspicious instructions are sanitized when detected, and citations remain grounded in authorized content.</p>
+              <p><strong>Detection opportunity:</strong> Track <code>retrieved_content_sanitized</code> and content-filter events for suspicious documents or repeated attempts.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">03</span>
+            <div>
+              <h3>Request to reveal hidden instructions or sensitive data</h3>
+              <p><strong>Expected behavior:</strong> The model response stays within retrieved authorized context, avoids hidden/system prompt disclosure, and logs blocked or unsafe behavior where applicable.</p>
+              <p><strong>Detection opportunity:</strong> Review content-filter triggers and repeated sensitive-data extraction patterns.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-step">04</span>
+            <div>
+              <h3>Future agent action request</h3>
+              <p><strong>Expected behavior:</strong> The AI may recommend an action, but privileged execution requires deterministic authorization and human approval outside model output.</p>
+              <p><strong>Detection opportunity:</strong> Log recommendation metadata, requested action type, approver identity, approval outcome, and request ID for investigation.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <strong>Project Aegis</strong>
+        <p>Secure AI document retrieval on a Microsoft cloud and networking backbone.</p>
+      </div>
+      <div class="footer-links">
+        <a href="case-study.html">Case Study</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="logging.html">Logging &amp; Testing</a>
+        <a href="artifacts.html">Artifacts</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=secure-ai-2026-06"></script>
+</body>
+</html>
